@@ -1,0 +1,275 @@
+# 다낭 숨은 명소·로컬 핫플·2025-2026 트렌드
+
+> 메이저 명소(미케·논누억·손짜·린응·오행산·호이안·용다리·선월드)는 제외. 한국 블로그에 잘 안 알려졌거나 새로 뜬 곳 위주.
+
+---
+
+## 1. 다낭 숨은 명소
+
+### 1-1. Bach Dang Walking Street (박당 보행자 거리·한강 야간 워킹스트리트) ★★★★★
+- **한 줄 정의**: 2024년 6월 오픈한 다낭 최초 강변 보행자 거리, 용다리~쩐티리다리 1.2km
+- **왜 숨은 명소인지**: 2024 중반 오픈으로 한국 블로그 정보 매우 적음. 거리 전체가 야간 명소
+- **위치/거리**: 한강 동안, 용다리 시작점 / 푸라마에서 차량 15분
+- **요금/시간**: 무료 / 매일 15:00–24:00 (식음료·공연은 18:00 이후)
+- **콘텐츠**: 스트릿 매직, 힙합·댄스 퍼포먼스, 라이브 스케치, 베트남 전통 놀이 — **9세 큰 딸이 좋아할 거리 공연 다양**
+- **2025-2026 신선도**: ⭐⭐⭐⭐⭐ (2024 오픈)
+- **우리 가족 적합도**: ★★★★★ — 평지 보행, 일몰 후 시원, 노점 간식
+
+### 1-2. Nguyen Van Thoai Street (응우옌반토아이 거리·MZ 핫스팟) ★★★★
+- **한 줄 정의**: 미케 비치로 향하는 트렌드 거리, 2024-25 신생 카페·파스텔 부티크 거리
+- **왜 숨은 명소인지**: Danang Fantasticity 공식이 2025년 "신규 인스타그래머블 스팟" 직접 지목
+- **위치/거리**: 손짜·미케 진입로 / 푸라마 차량 8분
+- **사진 핫포인트**: 양옆 화단 + 파스텔톤 카페, KATINAT 핫 카페 체인
+- **추천 시간**: 오전 8-10시 (햇볕 약하고 인파 적음)
+- **2025-2026 신선도**: ⭐⭐⭐⭐⭐
+- **우리 가족 적합도**: ★★★★ — 아내가 좋아할 인스타 거리
+
+### 1-3. An Bang Beach (안방 비치·호이안 인근 부티크 비치) ★★★★★
+- **한 줄 정의**: 호이안 올드타운 5분 거리의 비치클럽·카페 비치, 미케보다 한적·파도 약함
+- **왜 숨은 명소인지**: 한국 여행객은 호이안=올드타운으로만 인식. 안방은 외국인·현지 핫플
+- **위치/거리**: 호이안 올드타운 택시 10분(약 4 USD) / 푸라마 차량 25-30분
+- **요금/시간**: 비치 무료 (선베드는 카페 1잔 주문 시 무료)
+- **5세 베이비 친화 평가**: "베트남에서 가장 안전한 영유아 비치 중 하나"
+- **사진 핫포인트**: The DeckHouse 풀+비치 뷰, SoulKitchen·La Plage 비치프론트 카페, 일몰
+- **2025-2026 신선도**: ⭐⭐⭐⭐
+- **우리 가족 적합도**: ★★★★★ — **호이안 일정과 묶음 가능**, The DeckHouse는 풀+비치+키즈 메뉴 한 번에
+
+### 1-4. Nam O Beach & Nam O Reef ★★★
+- **한 줄 정의**: 다낭 시내 북서 17km, 하이반패스 기슭의 어촌 비치 + 액젓 마을
+- **위치/거리**: 미카즈키 차량 10-15분
+- **특징**: 전통 어촌, Nam O 액젓 마을(베트남 최고급 느억맘 산지), 산호 리프
+- **2025-2026 신선도**: ⭐⭐⭐
+- **우리 가족 적합도**: ★★★ — 미카즈키 권역에서 짧게
+
+### 1-5. Bai But & Bai Rang (붓 비치·랑 비치, 손짜반도 숨은 해변) ★★★
+- **위치/거리**: 푸라마 차량 25분 / 린응사와 묶음 가능
+- **사진 핫포인트**: 잔잔한 파도 + 백사장 + 산 백그라운드
+- **주의**: 시설 적음, 그늘 적음 → 짧은 사진 정차 추천
+
+---
+
+## 2. 카페·디저트 핫스팟 (공간 위주)
+
+### 2-1. XLIII Coffee (구 43 Factory Coffee Roaster)
+- **한 줄 정의**: 다낭의 글로벌 스페셜티 커피 성지. 2024년 43 Factory에서 XLIII Coffee로 리브랜딩
+- **왜 숨은 명소인지**: 한국에서 "43 팩토리"로 알려졌지만 2024 리브랜딩 후 정보 갱신 안됨
+- **위치/거리**: 422 Ngo Thi Si, Ngu Hanh Son / 푸라마 차량 8분
+- **시그니처**: 파나마 게이샤 에스프레소(테이스팅 노트 카드 제공)
+- **공간**: 유리 건축 + 연못, "커피 랩" 분위기
+- **2025-2026 신선도**: ⭐⭐⭐⭐
+- **우리 가족 적합도**: ★★★ — 5세에게는 정적, 9세 OK / 아내 인스타는 ⭐⭐⭐⭐⭐
+
+### 2-2. 34 Tropical Café ⭐⭐⭐⭐⭐
+- **한 줄 정의**: 2024 신규 오픈한 "동화 속 정글" 컨셉 카페. 폭포·코이 연못·동굴 인테리어
+- **왜 숨은 명소인지**: 한국 블로그 거의 없음. TikTok·Instagram에서 "Wonderland", "Enchanted Forest"로 폭발적 인기
+- **위치/거리**: 155 Le Dinh Ly, Hoa Thuan Dong / 푸라마 차량 12분
+- **사진 핫포인트**: 인공 폭포 + 코이 연못 + 동굴 입구 + 거대 트로피컬 식물 — 5세가 "와우" 할 비주얼
+- **2025-2026 신선도**: ⭐⭐⭐⭐⭐
+- **우리 가족 적합도**: ★★★★★ — 실내, 햇볕 ❌, 아이들 시각적 자극
+
+### 2-3. Cua Ngo Cafe (모로코 컨셉)
+- **한 줄 정의**: 모로코 리아드 + 베트남 트로피컬 퓨전, 미케 비치 인근
+- **왜 숨은 명소인지**: 2024 오픈, 한국 블로그 거의 없음
+- **위치/거리**: 미케 비치 인근 / 푸라마 차량 5-10분
+- **사진 핫포인트**: 아치형 도어, 첨탑 지붕, 패턴 타일, 컬러풀 벽
+- **추천 시간**: 오전 8시
+- **2025-2026 신선도**: ⭐⭐⭐⭐⭐
+- **우리 가족 적합도**: ★★★★
+
+### 2-4. Nóc Rooftop Café (활주로 뷰)
+- **한 줄 정의**: 다낭 공항 활주로가 보이는 야외 루프탑
+- **위치/거리**: 푸라마 차량 12-15분
+- **사진 핫포인트**: 일몰 + 활주로 라인, 야간 항공기 라이트
+- **우리 가족 적합도**: ★★★★ — 활주로 = 아이들 흥미
+
+### 2-5. Wonderlust Coffee & Souvenir
+- **한 줄 정의**: 3층 건물 카페+로컬 핸드메이드 숍+부티크+루프탑 테라스 복합
+- **위치/거리**: 96 Tran Phu, 시내 / 푸라마 차량 15분
+- **시그니처**: Iced Salted Coffee
+- **우리 가족 적합도**: ★★★★ — 아내 쇼핑+카페 한 곳
+
+### 2-6. Roots Plant-Based Café (An Thuong)
+- **한 줄 정의**: 안투엉 비건 카페, 콜드프레스 주스·스무디 보울
+- **시그니처**: 부다보울, 스무디 보울, 비건 햄버거
+- **우리 가족 적합도**: ★★★★ — 새 음식 거부 아이에게 과일+요거트 베이스
+
+### 2-7. Kem Bo Co Van (껨버 꼬반·아보카도 아이스크림) ⭐⭐⭐⭐⭐
+- **한 줄 정의**: 30년 노포 아보카도 아이스크림, 박미안 시장 인근
+- **위치/거리**: Bac My An Market 인근 / 푸라마 도보 7분
+- **요금**: 1만 5천-2만 5천 동(700-1200원)
+- **2025-2026 신선도**: ⭐⭐⭐ (전통)
+- **우리 가족 적합도**: ★★★★★ — 5세도 아이스크림은 OK
+
+---
+
+## 3. 디자이너·아트 거리
+
+### 3-1. An Thuong Area (안투엉 외국인 거주자 동네) ★★★★★
+- **한 줄 정의**: An Thuong 1·2·3·4 거리, 다낭 비공식 익스팻 본부
+- **왜 숨은 명소인지**: 한국 가이드북은 "한인타운"으로만 표시. 실제로는 디지털 노마드·유럽 익스팻 중심으로 카페·요가·웰니스·서구식 식당 밀집
+- **위치/거리**: 푸라마 도보권 (5-10분)
+- **추천 동선**: An Thuong 4 → Roots 카페 → Wanderlust → 미케 일몰 → 안투엉 저녁식사
+- **2025-2026 트렌드**: 2025 미국·유럽·한국 노마드 유입으로 부동산·물가 급등 = 거리 활기
+- **우리 가족 적합도**: ★★★★★ — 푸라마 베이스 도보권, 평지·식당 다양·서구식 메뉴 多
+
+### 3-2. Da Nang Fine Arts Museum (다낭 미술관·어린이 아트 룸) ★★★★
+- **한 줄 정의**: 2014년 개관, 1000점 소장. 1층에 **아동 아트 학습 공간** 보유
+- **왜 숨은 명소인지**: 한국 블로그 거의 안 다룸 (대신 3D 트릭아트관 위주)
+- **위치/거리**: 78 Le Duan, Hai Chau / 푸라마 차량 12분
+- **요금/시간**: 입장료 약 2만 동, 화-일 운영
+- **우리 가족 적합도**: ★★★★ — 시원한 실내, 5세 아동 공간, 9세 미술 감상
+
+---
+
+## 4. 외곽 휴식지
+
+### 4-1. Lap An Lagoon (랍안 라군·랑꼬) ★★★
+- **한 줄 정의**: 800ha 기수 라군. 일몰·간조 시 모래길 출현, 인스타 일몰 명소
+- **위치/거리**: 다낭 시내 29km, 약 1시간 / 미카즈키에서 50분 (북쪽이라 미카즈키가 유리)
+- **시간/요금**: 자유 / 보트 투어 1인 약 10만 동(5천원)
+- **사진 핫포인트**: 간조 모래길, 어선 + 뗏목, 일몰
+- **체험**: 어부 보트 + 굴 양식 견학 + 굴구이 식사
+- **베스트 시즌**: 4-9월(건기), 5월 OK
+- **2025-2026 신선도**: ⭐⭐⭐⭐
+- **우리 가족 적합도**: ★★★ — 1시간 차량 부담, **단 미카즈키 베이스 + 하이반패스 드라이브 묶음 시 가치 ↑**
+
+### 4-2. Hai Van Pass Sheep Hill Cafe & Hon Da Thuyen Cafe ⭐⭐⭐⭐⭐
+- **한 줄 정의**: 하이반 정상 부근 양 농장 카페 + 보트형 바위 위 카페
+- **위치/거리**: 미카즈키 차량 30-40분 / **랍안 라군 가는 길에 자연스럽게 묶임**
+- **카페1: Hai Van Sheep Hill** — 진짜 양들이 있는 농장 카페, 7-21시 / 음료 2-3만 동
+- **카페2: Hon Da Thuyen** — 보트 모양 거대 바위 위 카페, 24시간
+- **사진 핫포인트**: 양 + 푸른 언덕 + 바다 / 보트 바위 위 절벽 뷰
+- **2025-2026 신선도**: ⭐⭐⭐⭐⭐ (현지 SNS "Golden Coordinate")
+- **우리 가족 적합도**: ★★★★★ — **양 농장 카페는 5세·9세 모두 흥분, 햇볕은 카페 그늘로 회피**
+
+### 4-3. Tra Que Vegetable Village (짜꿰 채소 마을) ★★★★★
+- **한 줄 정의**: 호이안 외곽 3km 400년 유기농 마을, 농부복 입고 농사 체험
+- **위치/거리**: 호이안 시내 3km / 푸라마 차량 25분
+- **요금/시간**: 입장 + 농사 체험 3.5만 동 (1700원). 쿠킹클래스 패키지는 50만~80만 동
+- **체험**: 농부복 착용, 어깨 멜대로 물 주기, 허브 심기, 물소 타기, 바구니배 노 젓기, 베트남 요리 클래스
+- **소요시간**: 2-4시간
+- **2025-2026 신선도**: ⭐⭐⭐⭐
+- **우리 가족 적합도**: ★★★★★ — **5세 농부복 사진**, 9세 농사 체험. 평지+나무 그늘 풍부
+
+### 4-4. Cam Thanh Coconut Village & Basket Boat (껌탄 코코넛 마을·바구니배) ★★★★★
+- **한 줄 정의**: 호이안 동남 5km 코코넛 워터팜, 둥근 바구니배 + 게잡이 + 야자수 잎 공예
+- **위치/거리**: 호이안 올드타운 5km / 푸라마 차량 25-30분
+- **요금**: 바구니배 단독 1인 약 15만 동(7천원), 패키지 50-90만 동
+- **체험 하이라이트**: 게잡이(아이들 광적), 야자잎 모자·반지, 어부 그물 던지기, 바구니배 회전 묘기
+- **시간**: 2시간 추천
+- **2025-2026 신선도**: ⭐⭐⭐⭐
+- **우리 가족 적합도**: ★★★★★ — **5세 검증 완료(구명조끼+바구니 1개당 성인2+아동1)**, 9세는 게잡이로 행복 → **체력 약 + 햇볕 ❌(보트 그늘) + 아이 만족 트리플 콤보**
+
+---
+
+## 5. 2025-2026 새 트렌드
+
+### 5-1. Da Nang Downtown(구 Asia Park) **2025년 9월 폐장 이슈** ⚠️
+- **상태**: 다낭 다운타운 테마파크는 2025.09.03 폐장 → 69층 복합 관광시설로 재개발 예정
+- **2026년 5월 영향**: 우리 여행 시점에는 **공사 중일 가능성 높음**. 한국 블로그에 아직 정보 없음, **일정에서 제외 권장**
+
+### 5-2. Son Tra Ocean Park (개발 중)
+- 손짜 반도에 개발 중인 럭셔리 숙박+워터파크+크루즈터미널+요트항+아쿠아리움+물쇼+테마라이드 복합 리조트
+- **2026년 5월 시점에는 개장 안 됨**
+
+### 5-3. 다낭 New Year Festival 2026 (12월 행사이지만 흐름 참고)
+- **2025.12.30~2026.01.01** Bach Dang 보행자 거리에서 5일 페스티벌
+- 5월 일정엔 영향 없지만, **다낭이 보행자 거리 + 한강 야간 콘텐츠를 본격 강화 중**임을 시사
+
+### 5-4. Bana Hills 케이블카 정책 변경 (2026년 적용)
+- 기존 "왕복 1회"에서 "유효일 동안 다회 탑승" 가능으로 변경
+- (우리는 바나힐 제외)
+
+### 5-5. Mikazuki 365 워터파크 (미카즈키 베이스 시 강력)
+- **상태**: 중부 베트남 최대 실내 워터파크. 연중 온수 + 인공 온천 + 파도풀 + 유수풀
+- **숨은 정보**: 한국 블로그는 "미카즈키=숙박"만 다루고, 워터파크 입장권 별도 판매(외부 손님 가능)는 잘 모름
+- **우리 가족 적합도**: ★★★★★ — 5/20-22 미카즈키 투숙 시 무료, 햇볕 ❌
+
+---
+
+## 6. 5세·9세가 좋아할 숨은 곳
+
+### 6-1. Helio Center (헬리오 센터·실내 키즈+나이트마켓 복합) ★★★★★
+- **한 줄 정의**: 35,000m² 복합 — Helio Kids(2-9세 전용 에듀테인먼트) + Helio Play(아케이드) + Night Market(주말 5:30-10:30PM) + Metiz Cinema
+- **왜 숨은 명소인지**: **2-9세 전용 시뮬레이션 교실 42개**가 있다는 사실 한국 블로그에 거의 안 알려짐
+- **위치/거리**: 1 Duong 2/9 Hai Ba, Hai Chau / 푸라마 차량 15분
+- **시간**: 평일 17:30-22:00, 주말/공휴일 08:00-22:30
+- **요금**: 약 10-20만 동(5천-1만원)
+- **우리 가족 적합도**: ★★★★★ — **5세는 키즈존, 9세는 아케이드, 부부는 야시장 식사 + 시원한 실내 + 야간** = **다낭에서 가장 강력한 가족 옵션**
+
+### 6-2. Art in Paradise 3D Museum (3D 트릭아트관) ★★★★
+- **한 줄 정의**: 베트남 최대 3D 트릭아트관, 4000m² 2층 9개 테마존
+- **위치/거리**: 시내 / 푸라마 차량 12분
+- **시간/요금**: 09:00-21:30 / 성인 20만 동(1만원), 어린이 10만 동
+- **우리 가족 적합도**: ★★★★ — 실내, 5세도 9세도 사진 찍느라 신남
+
+### 6-3. Vinpearl Aquarium Da Nang
+- **한 줄 정의**: Vincom Plaza 내부 아쿠아리움
+- **우리 가족 적합도**: ★★★ — 규모 작음, 1-1.5시간 짧은 코스로
+
+---
+
+## 7. 우리 가족 4박5일 적용 방향
+
+### 강력 추천 (한국에 잘 안 알려졌는데 가족에게 완벽)
+1. **Cam Thanh 바구니배 + Tra Que 채소마을 + An Bang 비치** → 호이안 풀데이의 진짜 코스 (3개 묶음, 햇볕은 보트/그늘로 회피)
+2. **Hai Van Sheep Hill Cafe + Lap An Lagoon** → 미카즈키 권역이면 반나절 드라이브 (양 + 일몰 라군 + 굴구이)
+3. **34 Tropical Cafe** → 인스타 + 5세 비주얼 충격
+4. **Helio Center** → 비 오거나 햇볕 강한 날 저녁 무적의 가족 옵션
+5. **Bach Dang Walking Street + 박미안 시장 Kem Bo** → 야간 평지 산책 + 디저트
+
+### 중간 추천 (시간 남으면)
+- Nguyen Van Thoai 거리 산책 + Cua Ngo 카페
+- Da Nang Fine Arts Museum (비 오는 날)
+- Wonderlust 카페 + 시내 쇼핑
+
+### 가성비 낮음 (제외 권장)
+- Cu Lao Cham 섬, Bach Ma 국립공원
+- Da Nang Downtown — 2025.09 폐장됨 ⚠️
+
+---
+
+## 8. 핵심 인사이트
+
+- **2024-25 신규 콘텐츠 3건**(34 Tropical Cafe, Bach Dang 보행자 거리, Nguyen Van Thoai 거리)이 한국 블로그에 거의 부재
+- **하이반 양 농장 카페 + 랍안 라군**은 미카즈키 베이스라면 한국에 없는 인생 동선
+- **Cam Thanh 바구니배는 5세 검증 완료**(구명조끼·바구니 1개당 성인2+아동1)
+- **Helio Kids는 2-9세 타깃 시뮬레이션 42개**라는 디테일이 한국에서 무명 → 두 자녀 만족 무적
+- **43 Factory → XLIII Coffee 리브랜딩**(2024) 정보 갱신 필요
+- **Da Nang Downtown(Asia Park) 2025.09 폐장** → 한국 블로그 정보 즉시 폐기 필요
+
+---
+
+## 출처
+
+- [Vietnam+ 보행자 거리 오픈](https://en.vietnamplus.vn/da-nangs-first-walking-street-opens-post288285.vnp)
+- [Novotel Top 5 Walking Streets](https://www.novotel-danang-premier.com/news/da-nang-night-market/)
+- [Danang Fantasticity 공식](https://danangfantasticity.com/en/discovery/top-new-instagrammable-spots-in-da-nang.html)
+- [VietnamPlus](https://en.vietnamplus.vn/top-new-instagrammable-spots-in-da-nang-post292188.vnp)
+- [Tripadvisor An Bang](https://www.tripadvisor.com/Attraction_Review-g298082-d6612712-Reviews-An_Bang_Beach-Hoi_An_Quang_Nam_Province.html)
+- [Roaming Crew Da Nang with Kids 2026](https://roamingcrew.com/da-nang-with-kids/)
+- [LaSiesta An Bang 가이드](https://lasiestaresorts.com/an-bang-beach.html)
+- [VinWonders Nam O](https://vinwonders.com/en/wonderpedia/news/nam-o-beach-da-nang/)
+- [Hoi An Day Trip Son Tra Beaches](https://hoiandaytrip.com/son-tra-peninsula-beaches/)
+- [Sprudge 43 Factory](https://sprudge.com/vietnam-inside-43-factory-coffee-roasters-stunning-da-nang-cafe-140742.html)
+- [XLIII Coffee 공식](https://xliiicoffee.com/en/location/xliii-coffee-da-nang/)
+- [TikTok 34 Tropical 리뷰](https://www.tiktok.com/@asianlife.fr/video/7461611473689660690)
+- [Trip.com Cua Ngo](https://www.trip.com/moments/poi-ca-ng-caf-147719663/)
+- [Cucinaluca Best Cafes 2026](https://cucinaluca.vn/best-cafes-in-da-nang/)
+- [Wonderlust 공식](https://wonderlust.vn/)
+- [Roots 공식](https://rootsplantbasedcafe.com/)
+- [Wanderlog Da Nang Ice Cream](https://wanderlog.com/list/geoCategory/50799/best-ice-cream-shops-in-da-nang)
+- [Hoi An Day Trip Kem Bo](https://hoiandaytrip.com/avocado-ice-cream-da-nang/)
+- [Airial An Thuong 가이드](https://airial.travel/attractions/vietnam/an-thuong-area-da-nang-vPI97EAT)
+- [Asia Lifestyle Magazine 2025](https://www.asialifestylemagazine.com/living-in-da-nang-5-reasons-its-vietnams-hottest-expat-destination-in-2025/)
+- [Tripadvisor Fine Arts Museum](https://www.tripadvisor.com/Attraction_Review-g298085-d12179215-Reviews-Da_Nang_Fine_Arts_Museum-Da_Nang.html)
+- [Tripadvisor Lap An](https://www.tripadvisor.com/Attraction_Review-g11923533-d17546777-Reviews-Lap_An_Lagoon-Lang_Co_Phu_Loc_District_Thua_Thien_Hue_Province.html)
+- [Furama Top 5 Hai Van Cafes](https://furamavietnam.com/top-5-scenic-cafes-on-hai-van-pass-da-nang-ideal-stopovers-for-your-journey/)
+- [Hanami Hon Da Thuyen](https://hanamihotel.com/en/hon-da-thuyen-cafe-at-hai-van-pass/)
+- [Vinpearl Tra Que 2026](https://vinpearl.com/en/tra-que-vegetable-village-hoi-an-an-ultimate-travel-guide)
+- [Hoi An Day Trip Cam Thanh](https://hoiandaytrip.com/cam-thanh-coconut-village-hoi-an/)
+- [Hoi An Basket Boats 공식](https://hoianbasketboats.com/)
+- [Helio Tripadvisor 2026](https://www.tripadvisor.com/Attraction_Review-g298085-d10530887-Reviews-Helio_Center-Da_Nang.html)
+- [Sun Paradise Top 11 Kids 2026](https://sunparadiseland.com/en/tin-tuc/top-11-kids-playgrounds-in-da-nang-in-2025-3158)
+- [Art in Paradise 공식](https://artinparadise.com.vn/)
+- [Hoi An Day Trip Da Nang Downtown 폐장](https://hoiandaytrip.com/da-nang-downtown-theme-park/)

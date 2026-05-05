@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>다낭 가족여행 · 2026.05.20 ~ 05.24</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  :root {
+    --bg: #fafaf7;
+    --panel: #ffffff;
+    --ink: #1c1c1e;
+    --ink-mute: #6b6b70;
+    --ink-soft: #9a9a9f;
+    --line: #e8e6e0;
+    --line-soft: #f1efe9;
+    --accent: #d4644a;
+    --d20: #e8a87c;
+    --d21: #65a3c8;
+    --d22: #6fb583;
+    --d23: #a86fb5;
+    --d24: #e8a233;
+    --shadow: 0 1px 3px rgba(0,0,0,0.04), 0 8px 24px rgba(0,0,0,0.06);
+  }
+  html, body {
+    margin: 0; padding: 0;
+    height: 100%;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Pretendard", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+    color: var(--ink);
+    background: var(--bg);
+    -webkit-font-smoothing: antialiased;
+    overscroll-behavior: none;
+  }
+
+  /* ============ APP LAYOUT ============ */
+  .app {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    grid-template-rows: 1fr;
+    height: 100vh;
+    overflow: hidden;
+    transition: grid-template-columns 0.25s ease;
+  }
+  .app.lnb-collapsed { grid-template-columns: 0 1fr; }
+
+  /* ============ LNB ============ */
+  .lnb {
+    background: var(--panel);
+    border-right: 1px solid var(--line);
+    overflow-y: auto;
+    overflow-x: hidden;
+    transition: opacity 0.2s;
+  }
+  .app.lnb-collapsed .lnb { opacity: 0; pointer-events: none; }
+  .lnb::-webkit-scrollbar { width: 5px; }
+  .lnb::-webkit-scrollbar-thumb { background: #d8d6d0; border-radius: 3px; }
+
+  .lnb-section { padding: 14px 16px; border-bottom: 1px solid var(--line-soft); }
+  .lnb-section:last-child { border-bottom: none; }
+  .lnb-title {
+    font-size: 16px; font-weight: 700;
+    margin: 0 0 4px;
+    letter-spacing: -0.01em;
+  }
+  .lnb-sub {
+    font-size: 11px;
+    color: var(--ink-mute);
+    line-height: 1.5;
+  }
+  .lnb-h {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--ink-soft);
+    margin: 0 0 8px;
+  }
+  .lnb-chips { display: flex; flex-wrap: wrap; gap: 4px; }
+  .chip {
+    font-size: 10px;
+    padding: 3px 7px;
+    background: #f3f1ec;
+    border-radius: 999px;
+    color: var(--ink-mute);
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  .lnb-list {
+    margin: 0; padding: 0;
+    list-style: none;
+    font-size: 11px;
+    color: var(--ink-mute);
+    line-height: 1.7;
+  }
+  .lnb-list li { padding-left: 10px; position: relative; }
+  .lnb-list li::before {
+    content: "·";
+    position: absolute;
+    left: 2px;
+    color: var(--ink-soft);
+  }
+
+  .lnb-info-row {
+    display: flex; justify-content: space-between;
+    font-size: 11px;
+    padding: 3px 0;
+    color: var(--ink-mute);
+  }
+  .lnb-info-row strong { color: var(--ink); font-weight: 600; }
+
+  /* ============ MAIN ============ */
+  .main {
+    display: grid;
+    grid-template-rows: auto 1fr 1fr;
+    min-width: 0;
+    min-height: 0;
+  }
+
+  /* ---- Tabs bar ---- */
+  .tabs-bar {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--line);
+    background: var(--panel);
+    overflow-x: auto;
+    flex-shrink: 0;
+  }
+  .tabs-bar::-webkit-scrollbar { height: 0; }
+
+  .lnb-toggle {
+    flex-shrink: 0;
+    width: 30px; height: 30px;
+    border-radius: 8px;
+    border: 1px solid var(--line);
+    background: var(--panel);
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--ink-mute);
+    font-size: 14px;
+    transition: background 0.15s;
+  }
+  .lnb-toggle:hover { background: #f3f1ec; }
+
+  .tabs {
+    display: flex; gap: 4px;
+    padding-left: 4px;
+  }
+  .tab {
+    padding: 6px 13px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s;
+    border: 1px solid var(--line);
+    background: var(--panel);
+    white-space: nowrap;
+    color: var(--ink-mute);
+    display: flex; align-items: center; gap: 6px;
+    font-variant-numeric: tabular-nums;
+  }
+  .tab:hover { background: #f7f5f0; }
+  .tab .tab-dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .tab.active {
+    background: var(--ink);
+    color: white;
+    border-color: var(--ink);
+  }
+  .tab.active .tab-dot { box-shadow: 0 0 0 2px rgba(255,255,255,0.25); }
+
+  /* ---- Timeline ---- */
+  .timeline-wrap {
+    background: var(--panel);
+    overflow-y: auto;
+    border-bottom: 1px solid var(--line);
+    -webkit-overflow-scrolling: touch;
+  }
+  .timeline-wrap::-webkit-scrollbar { width: 5px; }
+  .timeline-wrap::-webkit-scrollbar-thumb { background: #d8d6d0; border-radius: 3px; }
+
+  .day-block { margin: 0; }
+  .day-header-bar {
+    display: flex; align-items: center;
+    gap: 8px;
+    padding: 7px 14px;
+    background: linear-gradient(to right, var(--day-tint), transparent 60%);
+    border-bottom: 1px solid var(--line-soft);
+    position: sticky; top: 0;
+    z-index: 5;
+    backdrop-filter: blur(6px);
+  }
+  .day-dot {
+    width: 9px; height: 9px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .day-name {
+    font-size: 12px; font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+  .day-meta {
+    font-size: 11px;
+    color: var(--ink-mute);
+  }
+
+  .ti-row {
+    display: grid;
+    grid-template-columns: 50px 22px 1fr auto;
+    gap: 10px;
+    padding: 8px 14px;
+    align-items: center;
+    cursor: pointer;
+    border-bottom: 1px solid var(--line-soft);
+    transition: background 0.12s;
+    position: relative;
+  }
+  .ti-row::before {
+    content: "";
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 2px;
+    background: var(--day-color);
+    opacity: 0;
+  }
+  .ti-row:hover { background: #f9f7f1; }
+  .ti-row.active {
+    background: #fff7f1;
+  }
+  .ti-row.active::before { opacity: 1; }
+
+  .ti-time {
+    font-size: 11px;
+    color: var(--ink-mute);
+    font-variant-numeric: tabular-nums;
+    font-weight: 500;
+  }
+  .ti-icon {
+    font-size: 14px;
+    text-align: center;
+    line-height: 1;
+  }
+  .ti-content {
+    display: flex; align-items: center;
+    gap: 8px;
+    min-width: 0;
+    overflow: hidden;
+  }
+  .ti-title {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: -0.005em;
+    flex-shrink: 0;
+  }
+  .ti-desc {
+    font-size: 11.5px;
+    color: var(--ink-mute);
+    line-height: 1.3;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+  }
+  .ti-desc::before {
+    content: "·";
+    margin: 0 4px;
+    color: var(--ink-soft);
+  }
+  .ti-meta {
+    display: flex; align-items: center;
+    gap: 5px;
+    flex-shrink: 0;
+  }
+  .ti-tag {
+    font-size: 9px;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+  }
+  .tag-flight { background: #e8eef9; color: #3a5da3; }
+  .tag-hotel { background: #efe9f6; color: #6f4ea3; }
+  .tag-meal { background: #fbeee6; color: #c66e3e; }
+  .tag-activity { background: #e6f3ec; color: #4a8c6a; }
+  .tag-transport { background: #f1ecdf; color: #897045; }
+  .tag-spa { background: #fae3eb; color: #b04d72; }
+  .tag-event { background: #fdebda; color: #b87530; }
+
+  .ti-place {
+    font-size: 10.5px;
+    padding: 3px 8px 3px 4px;
+    background: #f3f1ec;
+    border-radius: 4px;
+    color: var(--ink-mute);
+    white-space: nowrap;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .ti-pin-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 17px;
+    height: 17px;
+    color: white;
+    font-size: 9.5px;
+    font-weight: 700;
+    border-radius: 4px;
+    padding: 0 4px;
+    font-variant-numeric: tabular-nums;
+    line-height: 1;
+  }
+
+  /* ---- Map ---- */
+  .map-wrap {
+    position: relative;
+    min-height: 0;
+    min-width: 0;
+    background: #e8eaed;
+  }
+  #map { width: 100%; height: 100%; }
+
+  .leaflet-popup-content-wrapper { border-radius: 10px; padding: 4px 8px; }
+  .leaflet-popup-content { margin: 8px 4px; font-size: 12px; line-height: 1.5; }
+  .popup-title { font-weight: 700; margin: 0 0 4px; font-size: 13px; }
+  .popup-meta { color: var(--ink-mute); font-size: 11px; }
+
+  .marker-pin {
+    width: 28px; height: 28px;
+    border-radius: 50% 50% 50% 0;
+    transform: rotate(-45deg);
+    border: 2px solid #fff;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .marker-pin > span {
+    transform: rotate(45deg);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+  }
+  .marker-name-tip {
+    background: rgba(255,255,255,0.97) !important;
+    border: 1px solid var(--line) !important;
+    padding: 2px 7px !important;
+    border-radius: 5px !important;
+    font-size: 10.5px !important;
+    font-weight: 600 !important;
+    color: var(--ink) !important;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12) !important;
+    white-space: nowrap !important;
+    margin-top: 6px !important;
+  }
+  .marker-name-tip::before { display: none !important; }
+  .leaflet-tooltip.marker-name-tip { backdrop-filter: blur(4px); }
+
+  .travel-time-label {
+    background: transparent !important;
+    border: none !important;
+    pointer-events: none;
+  }
+  .travel-time-pill {
+    display: inline-block;
+    background: rgba(255,255,255,0.96);
+    border: 1px solid var(--line);
+    padding: 2px 7px;
+    border-radius: 10px;
+    font-size: 9.5px;
+    font-weight: 600;
+    color: var(--ink-mute);
+    white-space: nowrap;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    transform: translate(-50%, -50%);
+    backdrop-filter: blur(4px);
+  }
+
+  .map-info {
+    position: absolute;
+    top: 12px; right: 12px;
+    background: rgba(255,255,255,0.96);
+    backdrop-filter: blur(6px);
+    padding: 8px 12px;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    font-size: 11px;
+    z-index: 500;
+    color: var(--ink-mute);
+    max-width: 220px;
+    line-height: 1.5;
+  }
+  .map-info strong { color: var(--ink); display: block; margin-bottom: 2px; font-size: 12px; }
+
+  /* ============ Responsive ============ */
+  @media (max-width: 1099px) {
+    .app { grid-template-columns: 220px 1fr; }
+    .ti-desc { display: none; }
+    .ti-row { grid-template-columns: 46px 20px 1fr auto; gap: 8px; padding: 7px 12px; }
+  }
+  @media (max-width: 800px) {
+    .app { grid-template-columns: 0 1fr; }
+    .app.lnb-collapsed { grid-template-columns: 0 1fr; }
+    .app.lnb-open { grid-template-columns: 240px 1fr; }
+    .lnb { box-shadow: 4px 0 12px rgba(0,0,0,0.08); }
+  }
+  @media (max-width: 600px) {
+    .main { grid-template-rows: auto 1fr 0.85fr; }
+    .ti-tag { display: none; }
+    .tabs { gap: 3px; }
+    .tab { padding: 5px 10px; font-size: 11px; }
+  }
+</style>
+</head>
+<body>
+<div class="app" id="app">
+  <!-- LNB -->
+  <aside class="lnb" id="lnb">
+    <div class="lnb-section">
+      <h1 class="lnb-title">🌴 다낭 가족여행</h1>
+      <div class="lnb-sub">
+        2026.05.20 (수) ~ 05.24 (일)<br>
+        4박 5일 · 부부 + 9세·5세 딸
+      </div>
+    </div>
+
+    <div class="lnb-section">
+      <div class="lnb-h">항공 · 숙소</div>
+      <div class="lnb-info-row"><span>가는편</span><strong>VN431</strong></div>
+      <div class="lnb-info-row"><span>오는편</span><strong>VJ878</strong></div>
+      <div class="lnb-info-row"><span>5/20–22</span><strong>미카즈키</strong></div>
+      <div class="lnb-info-row"><span>5/22–24</span><strong>푸라마</strong></div>
+    </div>
+
+    <div class="lnb-section">
+      <div class="lnb-h">핵심 결정</div>
+      <div class="lnb-chips">
+        <span class="chip">호이안 5/23</span>
+        <span class="chip">바나힐 패스</span>
+        <span class="chip">마사지 2회</span>
+        <span class="chip">레이트 체크아웃</span>
+      </div>
+    </div>
+
+    <div class="lnb-section">
+      <div class="lnb-h">일정 원칙</div>
+      <ul class="lnb-list">
+        <li>한낮 11–15시 실내 (UV 7–10)</li>
+        <li>외출은 아침·저녁 골든타임</li>
+        <li>5세 카시트 휴대 또는 차량 요청</li>
+        <li>음식: 현지식 → 4P's → 한식</li>
+        <li>여유롭게 · 합리적 예산</li>
+      </ul>
+    </div>
+
+    <div class="lnb-section">
+      <div class="lnb-h">예약 필요</div>
+      <ul class="lnb-list">
+        <li>공항 픽업 (5/20)</li>
+        <li>단독차량 (5/22, 5/23, 5/24)</li>
+        <li>트리스 스파 · 노아 스파</li>
+        <li>골든미트하우스 (카톡)</li>
+        <li>푸라마 레이트 체크아웃</li>
+      </ul>
+    </div>
+
+    <div class="lnb-section">
+      <div class="lnb-h">날짜별 색상</div>
+      <div style="display:flex; flex-direction:column; gap:5px; font-size:11px;">
+        <div style="display:flex; align-items:center; gap:7px;"><span style="width:9px;height:9px;border-radius:50%;background:#e8a87c"></span><span style="color:var(--ink-mute);">5/20 도착</span></div>
+        <div style="display:flex; align-items:center; gap:7px;"><span style="width:9px;height:9px;border-radius:50%;background:#65a3c8"></span><span style="color:var(--ink-mute);">5/21 워터파크</span></div>
+        <div style="display:flex; align-items:center; gap:7px;"><span style="width:9px;height:9px;border-radius:50%;background:#6fb583"></span><span style="color:var(--ink-mute);">5/22 이동·스파</span></div>
+        <div style="display:flex; align-items:center; gap:7px;"><span style="width:9px;height:9px;border-radius:50%;background:#a86fb5"></span><span style="color:var(--ink-mute);">5/23 호이안·불쇼</span></div>
+        <div style="display:flex; align-items:center; gap:7px;"><span style="width:9px;height:9px;border-radius:50%;background:#e8a233"></span><span style="color:var(--ink-mute);">5/24 마지막날</span></div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main">
+    <div class="tabs-bar">
+      <button class="lnb-toggle" id="lnbToggle" title="개요 패널 접기/펼치기">☰</button>
+      <div class="tabs" id="tabs"></div>
+    </div>
+
+    <div class="timeline-wrap" id="timelineWrap"></div>
+
+    <div class="map-wrap">
+      <div id="map"></div>
+      <div class="map-info" id="mapInfo">
+        <strong>전체 일정</strong>
+        13개 장소 · 5일 동선
+      </div>
+    </div>
+  </main>
+</div>
+
+<script>
+const PLACES = {
+  DAD: { name: "다낭 국제공항", short: "다낭공항", coords: [16.0439, 108.1989], detail: "5/20 13:50 도착 · 5/24 23:45 출발" },
+  MIKAZUKI: { name: "미카즈키 재팬 리조트", short: "미카즈키", coords: [16.1085, 108.1320], detail: "Xuan Thieu, Lien Chieu · 일본식 워터파크/온센, 한식당 입점" },
+  FURAMA: { name: "푸라마 리조트", short: "푸라마", coords: [16.0145, 108.2520], detail: "미케·논누억 비치 · 4개 풀 + 무료 키즈클럽 + 프라이빗 비치" },
+  HOIAN: { name: "호이안 올드타운", short: "호이안", coords: [15.8770, 108.3284], detail: "유네스코 세계유산 · 등불 야경, 소원배" },
+  DRAGON_BRIDGE: { name: "용다리 (불쇼)", short: "용다리", coords: [16.0612, 108.2275], detail: "한강 · 매주 금·토·일 21:00 불쇼·물쇼 · 무료" },
+  TREES_SPA: { name: "트리스 스파", short: "트리스", coords: [16.0790, 108.2350], detail: "527C Tran Hung Dao · 키즈 플레이 에어리어, 90분 690k동" },
+  NOAH_SPA: { name: "노아 스파", short: "노아", coords: [16.0795, 108.2425], detail: "Pham Van Dong · 픽업·짐보관 무료, 카톡 예약" },
+  GOLDEN_MEAT: { name: "골든미트하우스", short: "골든미트", coords: [16.0570, 108.2438], detail: "미케비치 도보 3분 · 한식 BBQ" },
+  PIZZA_4PS: { name: "피자 4P's", short: "4P's", coords: [16.0701, 108.2240], detail: "다낭 시내 · 화덕피자 (음식 거부 안전판)" },
+  SUM_MOI: { name: "씀모이 가든", short: "씀모이", coords: [16.0680, 108.2225], detail: "한시장 인근 · 반쎄오·쌀국수, 한국어 메뉴" },
+  SUN_WHEEL: { name: "선월드 원더스", short: "선휠", coords: [16.0368, 108.2298], detail: "야간 관람차 + 테마파크 · 16:30~22:00" },
+  HAN_RIVER_PIER: { name: "한강 크루즈 부두", short: "한강부두", coords: [16.0680, 108.2237], detail: "Bach Dang Street · 선셋 크루즈" },
+  HAN_MARKET: { name: "한시장", short: "한시장", coords: [16.0671, 108.2240], detail: "환전·기념품·야시장" }
+};
+
+const ITINERARY = [
+  {
+    day: "5/20", weekday: "수", colorHex: "#e8a87c", tint: "#fbe9d7",
+    title: "도착일 · 컨디션 회복",
+    items: [
+      { time: "13:50", icon: "🛬", title: "다낭 도착·픽업", place: "DAD", tag: "flight", desc: "VN431 · 입국심사·짐찾기 후 단독 밴 픽업" },
+      { time: "15:00", icon: "🏨", title: "미카즈키 체크인", place: "MIKAZUKI", tag: "hotel", desc: "얼리 체크인 사전 요청. 객실 휴식" },
+      { time: "19:00", icon: "🍱", title: "호텔 일식당 저녁", place: "MIKAZUKI", tag: "meal", desc: "첫날 무리 ❌ 도착 피로 회복" }
+    ]
+  },
+  {
+    day: "5/21", weekday: "목", colorHex: "#65a3c8", tint: "#dde9f1",
+    title: "미카즈키 풀데이 · 워터파크",
+    items: [
+      { time: "07:30", icon: "🥞", title: "호텔 조식", place: "MIKAZUKI", tag: "meal" },
+      { time: "09:00", icon: "🌊", title: "워터파크 365", place: "MIKAZUKI", tag: "activity", desc: "베트남 최대 실내 돔 · 햇볕·스콜 회피 OK" },
+      { time: "12:00", icon: "🍚", title: "한식당 점심 (워터파크 내)", place: "MIKAZUKI", tag: "meal", desc: "음식 거부 아이 안전판" },
+      { time: "13:30", icon: "🌊", title: "슬라이드·키즈풀", place: "MIKAZUKI", tag: "activity", desc: "또는 객실 낮잠" },
+      { time: "17:00", icon: "♨️", title: "온센 가족 입욕", place: "MIKAZUKI", tag: "activity", desc: "수영복 노천탕 · 5세도 OK" },
+      { time: "19:30", icon: "🍣", title: "호텔 저녁", place: "MIKAZUKI", tag: "meal" }
+    ]
+  },
+  {
+    day: "5/22", weekday: "금", colorHex: "#6fb583", tint: "#dfece4",
+    title: "이동일 · 트리스 스파 가족 마사지",
+    items: [
+      { time: "08:00", icon: "🥞", title: "조식", place: "MIKAZUKI", tag: "meal" },
+      { time: "09:00", icon: "🌅", title: "객실 풀·비치 산책", place: "MIKAZUKI", tag: "activity" },
+      { time: "11:00", icon: "🧳", title: "미카즈키 체크아웃", place: "MIKAZUKI", tag: "hotel" },
+      { time: "12:00", icon: "🚐", title: "단독차량으로 시내 이동", place: "MIKAZUKI", tag: "transport", desc: "짐 차에 싣고 시내 직행" },
+      { time: "13:00", icon: "🍝", title: "점심 — 피자 4P's", place: "PIZZA_4PS", tag: "meal", desc: "체크인 전 시내 점심" },
+      { time: "14:30", icon: "💆", title: "트리스 스파 가족 마사지", place: "TREES_SPA", tag: "spa", desc: "부부 90분 + 키즈 플레이 + 어린이 마사지" },
+      { time: "16:30", icon: "🏨", title: "푸라마 체크인", place: "FURAMA", tag: "hotel" },
+      { time: "18:30", icon: "🍽️", title: "호텔 저녁", place: "FURAMA", tag: "meal", desc: "마사지 후 가벼운 식사" }
+    ]
+  },
+  {
+    day: "5/23", weekday: "토", colorHex: "#a86fb5", tint: "#ebe1ee",
+    title: "✨ 메인 이벤트 · 호이안 + 용다리 불쇼",
+    items: [
+      { time: "08:00", icon: "🥞", title: "푸라마 조식", place: "FURAMA", tag: "meal" },
+      { time: "09:30", icon: "🏖️", title: "비치·풀 (이른 시간)", place: "FURAMA", tag: "activity", desc: "햇볕 약한 시간대 활용" },
+      { time: "12:00", icon: "🍜", title: "호텔/인근 점심", place: "FURAMA", tag: "meal" },
+      { time: "13:00", icon: "😴", title: "객실 휴식", place: "FURAMA", tag: "activity", desc: "한낮 더위 회피" },
+      { time: "17:00", icon: "🚐", title: "호이안으로 출발", place: "FURAMA", tag: "transport", desc: "한국어 가이드 + 카시트" },
+      { time: "18:00", icon: "🏮", title: "호이안 등불 야경", place: "HOIAN", tag: "event", desc: "올드타운 + 소원배 + 등불 거리" },
+      { time: "19:00", icon: "🍲", title: "호이안 저녁", place: "HOIAN", tag: "meal", desc: "현지 분짜·까오라우" },
+      { time: "20:30", icon: "🚐", title: "다낭 한강으로 복귀", place: "HOIAN", tag: "transport" },
+      { time: "21:00", icon: "🔥", title: "용다리 불쇼·물쇼", place: "DRAGON_BRIDGE", tag: "event", desc: "10~15분, 무료, 사랑의 부두 동쪽" },
+      { time: "22:00", icon: "🛌", title: "푸라마 복귀", place: "FURAMA", tag: "hotel" }
+    ]
+  },
+  {
+    day: "5/24", weekday: "일", colorHex: "#e8a233", tint: "#f9e7c8",
+    title: "마지막날 · 노아 스파 + 출국",
+    items: [
+      { time: "08:30", icon: "🥞", title: "푸라마 조식", place: "FURAMA", tag: "meal" },
+      { time: "09:30", icon: "🏖️", title: "풀·비치 (천천히)", place: "FURAMA", tag: "activity" },
+      { time: "12:00", icon: "🧳", title: "체크아웃 (18시까지 시도)", place: "FURAMA", tag: "hotel", desc: "레이트 체크아웃 협상, 안 되면 데이패스" },
+      { time: "12:30", icon: "🥗", title: "호텔 점심", place: "FURAMA", tag: "meal" },
+      { time: "13:30", icon: "💆", title: "노아 스파 가족 마사지", place: "NOAH_SPA", tag: "spa", desc: "부부 90분 + 어린이 60분 · 픽업·짐보관 무료" },
+      { time: "16:00", icon: "🚿", title: "푸라마 복귀, 샤워·짐 정리", place: "FURAMA", tag: "hotel" },
+      { time: "17:30", icon: "🚐", title: "시내 이동", place: "FURAMA", tag: "transport" },
+      { time: "18:00", icon: "🥩", title: "골든미트하우스 한식 저녁", place: "GOLDEN_MEAT", tag: "meal", desc: "삼겹살·갈비, 카톡 한국어 예약" },
+      { time: "19:30", icon: "🎡", title: "선월드 Sun Wheel 야간", place: "SUN_WHEEL", tag: "event", desc: "관람차 30분, 시원함" },
+      { time: "21:00", icon: "🔥", title: "용다리 불쇼 (보너스)", place: "DRAGON_BRIDGE", tag: "event", desc: "일요일도 운영" },
+      { time: "21:30", icon: "🚐", title: "공항으로 출발", place: "DRAGON_BRIDGE", tag: "transport" },
+      { time: "22:00", icon: "✈️", title: "다낭 공항 도착", place: "DAD", tag: "flight" },
+      { time: "23:45", icon: "🛫", title: "인천행 출발 (VJ878)", place: "DAD", tag: "flight", desc: "5/25 06:00 인천 도착" }
+    ]
+  }
+];
+
+// ==========================================================
+//   디자인 시스템 토큰 (design-system.md 참조)
+//   ITINERARY 배열에 colorHex/tint를 명시하지 않으면 여기서 자동 할당.
+// ==========================================================
+const DAY_COLORS = [
+  { hex: "#e8a87c", tint: "#fbe9d7" },  // Day 1 — 코랄
+  { hex: "#65a3c8", tint: "#dde9f1" },  // Day 2 — 블루
+  { hex: "#6fb583", tint: "#dfece4" },  // Day 3 — 그린
+  { hex: "#a86fb5", tint: "#ebe1ee" },  // Day 4 — 퍼플
+  { hex: "#e8a233", tint: "#f9e7c8" },  // Day 5 — 오렌지
+  { hex: "#5fb1ad", tint: "#dceae9" },  // Day 6 — 틸 (예비)
+  { hex: "#c87a7a", tint: "#f0d9d9" }   // Day 7 — 로즈 (예비)
+];
+
+const TAG_LABEL = {
+  flight: '항공', hotel: '숙소', meal: '식사', activity: '액티',
+  transport: '이동', spa: '스파', event: '이벤트'
+};
+
+// 두 장소 사이 이동 시간 (양방향 자동 매칭)
+const TRAVEL_TIMES = {
+  "DAD-MIKAZUKI": "🚐 25분",
+  "DAD-FURAMA": "🚐 20분",
+  "MIKAZUKI-PIZZA_4PS": "🚐 25분",
+  "MIKAZUKI-FURAMA": "🚐 30분",
+  "PIZZA_4PS-TREES_SPA": "🚐 10분",
+  "TREES_SPA-FURAMA": "🚐 15분",
+  "FURAMA-HOIAN": "🚐 30분",
+  "HOIAN-DRAGON_BRIDGE": "🚐 25분",
+  "DRAGON_BRIDGE-FURAMA": "🚐 15분",
+  "FURAMA-NOAH_SPA": "🚐 15분",
+  "FURAMA-GOLDEN_MEAT": "🚐 10분",
+  "GOLDEN_MEAT-SUN_WHEEL": "🚐 10분",
+  "SUN_WHEEL-DRAGON_BRIDGE": "🚐 5분",
+  "DRAGON_BRIDGE-DAD": "🚐 15분",
+  "FURAMA-PIZZA_4PS": "🚐 15분",
+  "FURAMA-DRAGON_BRIDGE": "🚐 15분"
+};
+function getTravelTime(from, to) {
+  return TRAVEL_TIMES[`${from}-${to}`] || TRAVEL_TIMES[`${to}-${from}`] || null;
+}
+
+// ----- 자동 컬러 할당: data에 colorHex/tint가 없으면 DAY_COLORS 순환으로 채움 -----
+ITINERARY.forEach((day, di) => {
+  const palette = DAY_COLORS[di % DAY_COLORS.length];
+  if (!day.colorHex) day.colorHex = palette.hex;
+  if (!day.tint) day.tint = palette.tint;
+});
+
+// ----- 데이터 검증: 누락/오류를 콘솔에 경고 -----
+function validateData() {
+  const issues = [];
+  const warnings = [];
+
+  // PLACES
+  Object.entries(PLACES).forEach(([key, place]) => {
+    if (!place.name) issues.push(`PLACES.${key}: name 누락`);
+    if (!place.short) issues.push(`PLACES.${key}: short 누락`);
+    if (place.short && place.short.length > 8) warnings.push(`PLACES.${key}.short "${place.short}" 8자 초과 — 지도 라벨 잘림 가능`);
+    if (!place.coords || place.coords.length !== 2) issues.push(`PLACES.${key}: coords 잘못됨`);
+    if (!place.detail) warnings.push(`PLACES.${key}: detail 누락`);
+  });
+
+  // ITINERARY
+  ITINERARY.forEach((day, di) => {
+    if (!day.day) issues.push(`Day[${di}]: day 누락`);
+    if (!day.weekday) issues.push(`Day[${di}]: weekday 누락`);
+    if (!day.title) warnings.push(`Day[${di}] (${day.day}): title 누락`);
+
+    day.items.forEach((it, ii) => {
+      const loc = `${day.day} item[${ii}]`;
+      if (!it.time) issues.push(`${loc}: time 누락`);
+      if (!it.title) issues.push(`${loc}: title 누락`);
+      if (it.title && it.title.length > 20) warnings.push(`${loc}.title "${it.title}" 길어요 — 한 줄 유지 어려움`);
+      if (!it.icon) warnings.push(`${loc}: icon 누락 (이모지 권장)`);
+      if (it.place && !PLACES[it.place]) issues.push(`${loc}: place "${it.place}" PLACES에 없음`);
+      if (it.tag && !TAG_LABEL[it.tag]) issues.push(`${loc}: 알 수 없는 tag "${it.tag}"`);
+      if (it.desc && it.desc.length > 40) warnings.push(`${loc}.desc 길어요 (${it.desc.length}자) — truncate 가능`);
+    });
+
+    // 인접 이동시간 누락 체크
+    let last = null;
+    day.items.forEach(it => {
+      if (!it.place) return;
+      if (it.place === last) return;
+      if (last && !getTravelTime(last, it.place)) {
+        warnings.push(`이동시간 누락: ${day.day} ${last} → ${it.place} (TRAVEL_TIMES에 추가 권장)`);
+      }
+      last = it.place;
+    });
+  });
+
+  if (issues.length === 0 && warnings.length === 0) {
+    console.log('%c✅ 일정 데이터 검증 통과', 'color: #4a8c6a; font-weight: 600;');
+  } else {
+    if (issues.length > 0) {
+      console.error('%c🚨 일정 데이터 오류 (' + issues.length + ')', 'color: #c43; font-weight: 700;');
+      issues.forEach(i => console.error('  ✗ ' + i));
+    }
+    if (warnings.length > 0) {
+      console.warn('%c⚠️ 일정 데이터 경고 (' + warnings.length + ')', 'color: #b87530; font-weight: 700;');
+      warnings.forEach(w => console.warn('  · ' + w));
+    }
+  }
+}
+validateData();
+
+// ============ MAP ============
+const map = L.map('map', {
+  center: [16.05, 108.23],
+  zoom: 12,
+  zoomControl: true,
+  preferCanvas: true
+});
+L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+  attribution: '© OpenStreetMap · © CARTO',
+  maxZoom: 19
+}).addTo(map);
+
+const markerLayer = L.layerGroup().addTo(map);
+const pathLayer = L.layerGroup().addTo(map);
+const placeMarkers = {};
+
+function makeIcon(color, label) {
+  return L.divIcon({
+    className: 'custom-marker',
+    html: `<div class="marker-pin" style="background:${color}"><span>${label}</span></div>`,
+    iconSize: [28, 38],
+    iconAnchor: [14, 36],
+    popupAnchor: [0, -32]
+  });
+}
+
+// ============ STATE ============
+let activeTab = 'all';
+let placeOrderMap = {}; // 현재 활성 탭 기준 핀 번호
+
+function getActiveDays() {
+  if (activeTab === 'all') return ITINERARY.map((d, i) => i);
+  return [parseInt(activeTab)];
+}
+
+// 활성 탭의 일정에서 unique 장소를 등장 순서대로 1, 2, 3... 부여
+function computePlaceOrder() {
+  const days = getActiveDays();
+  const order = {};
+  let counter = 0;
+  days.forEach(di => {
+    const day = ITINERARY[di];
+    let lastPlace = null;
+    day.items.forEach(it => {
+      if (!it.place) return;
+      if (it.place === lastPlace) return;
+      lastPlace = it.place;
+      if (!(it.place in order)) {
+        counter++;
+        order[it.place] = counter;
+      }
+    });
+  });
+  return order;
+}
+
+// ============ RENDER ============
+function renderTabs() {
+  const tabsEl = document.getElementById('tabs');
+  let html = `<button class="tab ${activeTab==='all'?'active':''}" data-tab="all">전체</button>`;
+  ITINERARY.forEach((day, di) => {
+    const isActive = activeTab === String(di);
+    html += `<button class="tab ${isActive?'active':''}" data-tab="${di}">
+      <span class="tab-dot" style="background:${day.colorHex}"></span>
+      ${day.day} ${day.weekday}
+    </button>`;
+  });
+  tabsEl.innerHTML = html;
+  tabsEl.querySelectorAll('.tab').forEach(el => {
+    el.addEventListener('click', () => {
+      activeTab = el.dataset.tab;
+      renderAll();
+    });
+  });
+}
+
+function renderTimeline() {
+  const wrap = document.getElementById('timelineWrap');
+  const days = getActiveDays();
+  let html = '';
+  days.forEach(di => {
+    const day = ITINERARY[di];
+    html += `<div class="day-block" style="--day-color:${day.colorHex}; --day-tint:${day.tint};">
+      <div class="day-header-bar">
+        <span class="day-dot" style="background:${day.colorHex}"></span>
+        <span class="day-name">${day.day} (${day.weekday})</span>
+        <span class="day-meta">${day.title}</span>
+      </div>`;
+    day.items.forEach((it, ii) => {
+      const place = PLACES[it.place];
+      const pinNum = placeOrderMap[it.place];
+      html += `<div class="ti-row" data-place="${it.place||''}" data-day="${di}" data-item="${ii}" style="--day-color:${day.colorHex};">
+        <div class="ti-time">${it.time}</div>
+        <div class="ti-icon">${it.icon}</div>
+        <div class="ti-content">
+          <span class="ti-title">${it.title}</span>
+          ${it.desc ? `<span class="ti-desc">${it.desc}</span>` : ''}
+        </div>
+        <div class="ti-meta">
+          ${it.tag ? `<span class="ti-tag tag-${it.tag}">${TAG_LABEL[it.tag]}</span>` : ''}
+          ${place ? `<span class="ti-place">${pinNum ? `<span class="ti-pin-num" style="background:${day.colorHex}">${pinNum}</span>` : '📍'} ${place.short}</span>` : ''}
+        </div>
+      </div>`;
+    });
+    html += `</div>`;
+  });
+  wrap.innerHTML = html;
+
+  wrap.querySelectorAll('.ti-row').forEach(el => {
+    el.addEventListener('click', () => {
+      wrap.querySelectorAll('.ti-row').forEach(e => e.classList.remove('active'));
+      el.classList.add('active');
+      const placeKey = el.dataset.place;
+      const place = PLACES[placeKey];
+      const marker = placeMarkers[placeKey];
+      if (place && marker) {
+        map.flyTo(place.coords, 14, { duration: 0.5 });
+        setTimeout(() => marker.openPopup(), 600);
+      }
+    });
+  });
+}
+
+function renderMap() {
+  markerLayer.clearLayers();
+  pathLayer.clearLayers();
+  Object.keys(placeMarkers).forEach(k => delete placeMarkers[k]);
+
+  const days = getActiveDays();
+  const placeUsage = {};
+
+  // 각 날짜별로 sequence 만들기 (연속 동일 장소 중복 제거). 핀 번호는 placeOrderMap 공유.
+  const dayPaths = days.map(di => {
+    const day = ITINERARY[di];
+    const points = [];
+    let lastPlace = null;
+    day.items.forEach(it => {
+      if (!it.place) return;
+      const p = PLACES[it.place];
+      if (!p) return;
+      if (it.place === lastPlace) {
+        if (placeUsage[it.place]) placeUsage[it.place].items.push({ day, item: it });
+        return;
+      }
+      lastPlace = it.place;
+      if (!placeUsage[it.place]) {
+        placeUsage[it.place] = { firstDay: day, items: [], order: placeOrderMap[it.place] };
+      }
+      placeUsage[it.place].items.push({ day, item: it });
+      points.push({ place: it.place, coords: p.coords });
+    });
+    return { day, points };
+  });
+
+  // 폴리라인 + 이동시간 라벨
+  dayPaths.forEach(({ day, points }) => {
+    if (points.length < 2) return;
+    const coords = points.map(p => p.coords);
+    L.polyline(coords, {
+      color: day.colorHex,
+      weight: 3,
+      opacity: 0.6,
+      dashArray: '6, 6',
+      lineCap: 'round'
+    }).addTo(pathLayer);
+
+    for (let i = 0; i < points.length - 1; i++) {
+      const time = getTravelTime(points[i].place, points[i+1].place);
+      if (!time) continue;
+      const mid = [
+        (points[i].coords[0] + points[i+1].coords[0]) / 2,
+        (points[i].coords[1] + points[i+1].coords[1]) / 2
+      ];
+      L.marker(mid, {
+        icon: L.divIcon({
+          className: 'travel-time-label',
+          html: `<span class="travel-time-pill">${time}</span>`,
+          iconSize: [1, 1],
+          iconAnchor: [0, 0]
+        }),
+        interactive: false
+      }).addTo(pathLayer);
+    }
+  });
+
+  // 마커 그리기 (순서 라벨 + 이름 툴팁)
+  Object.keys(placeUsage).forEach(pkey => {
+    const place = PLACES[pkey];
+    const usage = placeUsage[pkey];
+    const marker = L.marker(place.coords, {
+      icon: makeIcon(usage.firstDay.colorHex, String(usage.order)),
+      zIndexOffset: 100
+    });
+
+    // 영구 이름 툴팁
+    marker.bindTooltip(place.short, {
+      permanent: true,
+      direction: 'bottom',
+      offset: [0, -2],
+      className: 'marker-name-tip'
+    });
+
+    // 팝업 (상세)
+    const usedDays = [...new Set(usage.items.map(u => u.day.day))].join(", ");
+    const itemsHtml = usage.items.slice(0, 6).map(u =>
+      `<div style="margin:2px 0;font-size:11px;">${u.day.day} ${u.item.time} · ${u.item.title}</div>`).join('');
+    marker.bindPopup(`
+      <div class="popup-title">${usage.order}. ${place.name}</div>
+      <div class="popup-meta">${place.detail}</div>
+      <div style="margin-top:6px;border-top:1px solid #eee;padding-top:6px;">
+        <div style="font-size:10px;color:#888;margin-bottom:3px;">방문일: ${usedDays}</div>
+        ${itemsHtml}
+      </div>
+    `);
+    marker.addTo(markerLayer);
+    placeMarkers[pkey] = marker;
+  });
+
+  // fit
+  const allCoords = [];
+  dayPaths.forEach(({ points }) => points.forEach(p => allCoords.push(p.coords)));
+  if (allCoords.length > 0) {
+    map.fitBounds(allCoords, { padding: [60, 60], maxZoom: 13 });
+  }
+
+  // info
+  const info = document.getElementById('mapInfo');
+  if (activeTab === 'all') {
+    info.innerHTML = `<strong>전체 일정</strong>${Object.keys(placeUsage).length}개 장소 · 5일 동선`;
+  } else {
+    const day = ITINERARY[parseInt(activeTab)];
+    info.innerHTML = `<strong>${day.day} (${day.weekday})</strong>${day.title}`;
+  }
+}
+
+function renderAll() {
+  placeOrderMap = computePlaceOrder();
+  renderTabs();
+  renderTimeline();
+  renderMap();
+  setTimeout(() => map.invalidateSize(), 100);
+}
+
+renderAll();
+
+// ============ LNB Toggle ============
+const app = document.getElementById('app');
+const lnbToggle = document.getElementById('lnbToggle');
+let lnbCollapsed = false;
+function isMobile() { return window.innerWidth <= 800; }
+
+lnbToggle.addEventListener('click', () => {
+  if (isMobile()) {
+    app.classList.toggle('lnb-open');
+    app.classList.remove('lnb-collapsed');
+  } else {
+    lnbCollapsed = !lnbCollapsed;
+    if (lnbCollapsed) app.classList.add('lnb-collapsed');
+    else app.classList.remove('lnb-collapsed');
+  }
+  setTimeout(() => map.invalidateSize(), 280);
+});
+
+// Resize → re-fit map
+let resizeTimer;
+window.addEventListener('resize', () => {
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(() => {
+    map.invalidateSize();
+    renderMap();
+  }, 200);
+});
+</script>
+</body>
+</html>
