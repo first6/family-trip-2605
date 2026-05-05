@@ -112,8 +112,10 @@
 
   /* ============ MAIN ============ */
   .main {
+    --timeline-h: 1fr;
+    --map-h: 1fr;
     display: grid;
-    grid-template-rows: auto var(--timeline-h, 1fr) auto var(--map-h, 1fr);
+    grid-template-rows: auto var(--timeline-h) auto var(--map-h);
     min-width: 0;
     min-height: 0;
     transition: grid-template-rows 0.25s ease;
@@ -471,7 +473,7 @@
     .lnb { box-shadow: 4px 0 12px rgba(0,0,0,0.08); }
   }
   @media (max-width: 600px) {
-    .main { grid-template-rows: auto 1fr 0.85fr; }
+    .main { --map-h: 0.85fr; }
     .ti-tag { display: none; }
     .tabs { gap: 3px; }
     .tab { padding: 5px 10px; font-size: 11px; }
@@ -1052,6 +1054,14 @@ window.addEventListener('resize', () => {
     map.invalidateSize();
     renderMap();
   }, 200);
+});
+
+// Ensure map renders after full page load (GitHub Pages cold-load safety)
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    map.invalidateSize();
+    renderMap();
+  }, 50);
 });
 </script>
 </body>
