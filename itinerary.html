@@ -113,10 +113,67 @@
   /* ============ MAIN ============ */
   .main {
     display: grid;
-    grid-template-rows: auto 1fr 1fr;
+    grid-template-rows: auto var(--timeline-h, 1fr) auto var(--map-h, 1fr);
     min-width: 0;
     min-height: 0;
+    transition: grid-template-rows 0.25s ease;
   }
+  .main.timeline-collapsed { --timeline-h: 0fr; }
+  .main.map-collapsed { --map-h: 0fr; }
+
+  /* ---- Section toggles (timeline, map) ---- */
+  .section-toggle {
+    display: flex; align-items: center;
+    gap: 8px;
+    padding: 8px 14px;
+    background: var(--panel);
+    border: none;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--ink);
+    user-select: none;
+    flex-shrink: 0;
+    width: 100%;
+    text-align: left;
+    transition: background 0.15s;
+    font-family: inherit;
+  }
+  .section-toggle:hover { background: #f7f5f0; }
+  .section-toggle .chevron {
+    margin-left: auto;
+    font-size: 10px;
+    color: var(--ink-mute);
+    transition: transform 0.2s;
+  }
+  .section-toggle.collapsed .chevron { transform: rotate(-90deg); }
+  .section-toggle .badge {
+    font-size: 10px;
+    color: var(--ink-soft);
+    font-weight: 500;
+  }
+
+  .timeline-toggle {
+    flex-shrink: 0;
+    margin-left: auto;
+    width: 30px; height: 30px;
+    border-radius: 8px;
+    border: 1px solid var(--line);
+    background: var(--panel);
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--ink-mute);
+    font-size: 11px;
+    transition: background 0.15s;
+  }
+  .timeline-toggle:hover { background: #f3f1ec; }
+  .timeline-toggle .chev {
+    transition: transform 0.2s;
+    display: inline-block;
+  }
+  .main.timeline-collapsed .timeline-toggle .chev { transform: rotate(-90deg); }
 
   /* ---- Tabs bar ---- */
   .tabs-bar {
@@ -490,9 +547,16 @@
     <div class="tabs-bar">
       <button class="lnb-toggle" id="lnbToggle" title="개요 패널 접기/펼치기">☰</button>
       <div class="tabs" id="tabs"></div>
+      <button class="timeline-toggle" id="timelineToggle" title="일정 접기/펼치기"><span class="chev">▾</span></button>
     </div>
 
     <div class="timeline-wrap" id="timelineWrap"></div>
+
+    <button class="section-toggle" id="mapHeader" type="button">
+      <span>🗺️ 지도</span>
+      <span class="badge" id="mapHeaderBadge"></span>
+      <span class="chevron">▾</span>
+    </button>
 
     <div class="map-wrap">
       <div id="map"></div>
@@ -961,6 +1025,22 @@ lnbToggle.addEventListener('click', () => {
     if (lnbCollapsed) app.classList.add('lnb-collapsed');
     else app.classList.remove('lnb-collapsed');
   }
+  setTimeout(() => map.invalidateSize(), 280);
+});
+
+// ============ Section Toggle (Timeline / Map) ============
+const main = document.querySelector('.main');
+const timelineToggle = document.getElementById('timelineToggle');
+const mapHeader = document.getElementById('mapHeader');
+
+timelineToggle.addEventListener('click', () => {
+  main.classList.toggle('timeline-collapsed');
+  setTimeout(() => map.invalidateSize(), 280);
+});
+
+mapHeader.addEventListener('click', () => {
+  main.classList.toggle('map-collapsed');
+  mapHeader.classList.toggle('collapsed');
   setTimeout(() => map.invalidateSize(), 280);
 });
 
