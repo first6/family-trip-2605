@@ -1095,7 +1095,9 @@ const PLACES = {
   MORNING_GLORY: { name: "Morning Glory", short: "모닝글로리", coords: [15.8775, 108.3270], detail: "호이안 까오라우+화이트로즈, 영문 메뉴" },
   BANH_MI_PHUONG: { name: "반미 프엉", short: "반미프엉", coords: [15.8770, 108.3270], detail: "보뎅 인증 호이안 반미" },
   MARBLE_MTN: { name: "오행산 (Marble Mountains)", short: "오행산", coords: [16.0033, 108.2630], detail: "5개 봉우리 중 투이선, 엘리베이터" },
-  PINK_CATHEDRAL: { name: "다낭 핑크 성당", short: "핑크성당", coords: [16.0666, 108.2227], detail: "1923 프랑스풍 핑크 고딕" }
+  PINK_CATHEDRAL: { name: "다낭 핑크 성당", short: "핑크성당", coords: [16.0666, 108.2227], detail: "1923 프랑스풍 핑크 고딕" },
+  NAM_O: { name: "Nam O 비치", short: "남오비치", coords: [16.1180, 108.1090], detail: "미카즈키 도보 10분, 일몰 명소" },
+  HAI_VAN_SHEEP: { name: "Hai Van Sheep Hill Cafe", short: "양 농장카페", coords: [16.1980, 108.1310], detail: "양 농장 + 푸른 언덕 + 일몰, 미카즈키 30분" }
 };
 
 // ====== Plans (5 시나리오) ======
@@ -1179,7 +1181,16 @@ function commonDay21(extra=[]) {
 // ====== A. 휴식 ======
 ITINERARIES.A = [
   commonDay20(),
-  commonDay21(),
+  { day: "5/21", weekday: "목", title: "미카즈키 풀데이 — 호텔 100%",
+    items: [
+      { time: "07:30", icon: "🥞", title: "호텔 조식", place: "MIKAZUKI", tag: "meal" },
+      { time: "09:00", icon: "🌊", title: "워터파크 365 (오전 3시간)", place: "MIKAZUKI", tag: "activity", desc: "실내 돔, 햇볕 ❌" },
+      { time: "12:00", icon: "🍚", title: "워터파크 한식당 점심", place: "MIKAZUKI", tag: "meal" },
+      { time: "13:30", icon: "😴", title: "객실 낮잠 (1.5h)", place: "MIKAZUKI", tag: "activity", desc: "5세 컨디션 보존" },
+      { time: "15:00", icon: "🌊", title: "슬라이드·키즈풀", place: "MIKAZUKI", tag: "activity" },
+      { time: "17:00", icon: "♨️", title: "온센 가족 입욕", place: "MIKAZUKI", tag: "activity", desc: "수영복 노천탕" },
+      { time: "19:00", icon: "🍣", title: "호텔 일식당 저녁", place: "MIKAZUKI", tag: "meal" }
+    ]},
   { day: "5/22", weekday: "금", title: "이동 + 트리스 스파",
     items: [
       { time: "08:00", icon: "🥞", title: "조식", place: "MIKAZUKI", tag: "meal" },
@@ -1222,7 +1233,16 @@ ITINERARIES.A = [
 // ====== B. 문화·사찰 ======
 ITINERARIES.B = [
   commonDay20(),
-  commonDay21(),
+  { day: "5/21", weekday: "목", title: "미카즈키 + Zen Garden 명상",
+    items: [
+      { time: "07:30", icon: "🥞", title: "호텔 조식", place: "MIKAZUKI", tag: "meal" },
+      { time: "09:00", icon: "🌊", title: "워터파크 365 (오전 3시간)", place: "MIKAZUKI", tag: "activity" },
+      { time: "12:00", icon: "🍚", title: "워터파크 한식당 점심", place: "MIKAZUKI", tag: "meal" },
+      { time: "13:30", icon: "😴", title: "객실 낮잠", place: "MIKAZUKI", tag: "activity" },
+      { time: "15:30", icon: "🍵", title: "호텔 일본식 정원·다실 산책", place: "MIKAZUKI", tag: "activity", desc: "Zen Garden, 사찰 분위기 워밍업" },
+      { time: "17:00", icon: "♨️", title: "온센 가족 입욕", place: "MIKAZUKI", tag: "activity" },
+      { time: "19:00", icon: "🍣", title: "호텔 가이세키 저녁", place: "MIKAZUKI", tag: "meal", desc: "일본식 코스 디너" }
+    ]},
   { day: "5/22", weekday: "금", title: "이동 + 트리스 스파 + 린응사 일몰",
     items: [
       { time: "08:00", icon: "🥞", title: "조식", place: "MIKAZUKI", tag: "meal" },
@@ -1268,7 +1288,16 @@ ITINERARIES.B = [
 // ====== C. 호이안 풀데이 ======
 ITINERARIES.C = [
   commonDay20(),
-  commonDay21(),
+  { day: "5/21", weekday: "목", title: "미카즈키 — 5/23 풀데이 대비 컨디션 보존",
+    items: [
+      { time: "07:30", icon: "🥞", title: "호텔 조식", place: "MIKAZUKI", tag: "meal" },
+      { time: "09:00", icon: "🌊", title: "워터파크 (오전 짧게 2.5h)", place: "MIKAZUKI", tag: "activity", desc: "5/23 호이안 풀데이 대비, 짧게" },
+      { time: "11:30", icon: "🍚", title: "워터파크 한식당 이른 점심", place: "MIKAZUKI", tag: "meal" },
+      { time: "13:00", icon: "😴", title: "객실 긴 낮잠 (3h)", place: "MIKAZUKI", tag: "activity", desc: "체력 충전 핵심" },
+      { time: "16:00", icon: "🛋️", title: "풀사이드·라운지 휴식", place: "MIKAZUKI", tag: "activity" },
+      { time: "17:30", icon: "♨️", title: "온센 가볍게", place: "MIKAZUKI", tag: "activity" },
+      { time: "19:30", icon: "🍣", title: "호텔 가벼운 저녁", place: "MIKAZUKI", tag: "meal", desc: "내일 위해 일찍 취침" }
+    ]},
   { day: "5/22", weekday: "금", title: "이동 + 트리스 스파 + 휴식",
     items: [
       { time: "08:00", icon: "🥞", title: "조식", place: "MIKAZUKI", tag: "meal" },
@@ -1314,7 +1343,17 @@ ITINERARIES.C = [
 // ====== D. 카페·트렌드 ======
 ITINERARIES.D = [
   commonDay20(),
-  commonDay21(),
+  { day: "5/21", weekday: "목", title: "미카즈키 + Hai Van Sheep Hill 양 농장",
+    items: [
+      { time: "07:30", icon: "🥞", title: "호텔 조식", place: "MIKAZUKI", tag: "meal" },
+      { time: "09:00", icon: "🌊", title: "워터파크 (오전 3h)", place: "MIKAZUKI", tag: "activity" },
+      { time: "12:00", icon: "🍚", title: "워터파크 한식당 점심", place: "MIKAZUKI", tag: "meal" },
+      { time: "13:30", icon: "😴", title: "객실 낮잠", place: "MIKAZUKI", tag: "activity" },
+      { time: "15:30", icon: "🚐", title: "단독차량 — Hai Van Sheep Hill로", place: "MIKAZUKI", tag: "transport" },
+      { time: "16:00", icon: "🐑", title: "Hai Van Sheep Hill Cafe (양 농장)", place: "HAI_VAN_SHEEP", tag: "event", desc: "5세·9세 흥분, 일몰까지" },
+      { time: "18:30", icon: "🚐", title: "미카즈키 복귀", place: "HAI_VAN_SHEEP", tag: "transport" },
+      { time: "19:30", icon: "🍣", title: "호텔 저녁", place: "MIKAZUKI", tag: "meal" }
+    ]},
   { day: "5/22", weekday: "금", title: "이동 + 스파 + 34 Tropical 카페",
     items: [
       { time: "08:00", icon: "🥞", title: "조식", place: "MIKAZUKI", tag: "meal" },
@@ -1359,7 +1398,17 @@ ITINERARIES.D = [
 // ====== E. 균형 ======
 ITINERARIES.E = [
   commonDay20(),
-  commonDay21(),
+  { day: "5/21", weekday: "목", title: "미카즈키 + Nam O 일몰 산책",
+    items: [
+      { time: "07:30", icon: "🥞", title: "호텔 조식", place: "MIKAZUKI", tag: "meal" },
+      { time: "09:00", icon: "🌊", title: "워터파크 (오전 3h)", place: "MIKAZUKI", tag: "activity" },
+      { time: "12:00", icon: "🍚", title: "워터파크 한식당 점심", place: "MIKAZUKI", tag: "meal" },
+      { time: "13:30", icon: "😴", title: "객실 낮잠", place: "MIKAZUKI", tag: "activity" },
+      { time: "15:30", icon: "🌊", title: "슬라이드·키즈풀", place: "MIKAZUKI", tag: "activity" },
+      { time: "17:00", icon: "♨️", title: "온센 가족 입욕", place: "MIKAZUKI", tag: "activity" },
+      { time: "18:15", icon: "🌇", title: "Nam O 비치 일몰 산책 (도보 10분)", place: "NAM_O", tag: "event", desc: "어촌 + 빈티지 일몰" },
+      { time: "19:30", icon: "🍣", title: "호텔 저녁", place: "MIKAZUKI", tag: "meal" }
+    ]},
   { day: "5/22", weekday: "금", title: "이동 + 스파 + 린응사 일몰",
     items: [
       { time: "08:00", icon: "🥞", title: "조식", place: "MIKAZUKI", tag: "meal" },
