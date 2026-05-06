@@ -169,25 +169,36 @@
     font-weight: 500;
   }
 
-  .timeline-toggle {
+  .icon-toggle {
     flex-shrink: 0;
-    margin-left: auto;
-    width: 30px; height: 30px;
+    width: 32px; height: 32px;
     border-radius: 8px;
     border: 1px solid var(--line);
     background: var(--panel);
     cursor: pointer;
     display: flex; align-items: center; justify-content: center;
     color: var(--ink-mute);
-    font-size: 11px;
-    transition: background 0.15s;
+    font-size: 13px;
+    transition: all 0.15s;
+    font-family: inherit;
+    padding: 0;
   }
-  .timeline-toggle:hover { background: #f3f1ec; }
-  .timeline-toggle .chev {
+  .icon-toggle:hover { background: #f3f1ec; }
+  .icon-toggle.active {
+    background: var(--ink);
+    color: white;
+    border-color: var(--ink);
+  }
+  .icon-toggle .chev {
     transition: transform 0.2s;
     display: inline-block;
+    font-size: 11px;
   }
-  .main.timeline-collapsed .timeline-toggle .chev { transform: rotate(-90deg); }
+  #timelineToggle { margin-left: auto; }
+  .main.timeline-collapsed #timelineToggle .chev { transform: rotate(-90deg); }
+  .map-icon-toggle.collapsed {
+    opacity: 0.4;
+  }
 
   /* ---- Tabs bar ---- */
   .tabs-bar {
@@ -485,10 +496,13 @@
     .lnb { box-shadow: 4px 0 12px rgba(0,0,0,0.08); }
   }
   @media (max-width: 600px) {
-    .main { --map-h: 0.85fr; }
     .ti-tag { display: none; }
     .tabs { gap: 3px; }
     .tab { padding: 5px 10px; font-size: 11px; }
+    .mode-tab .mode-text { display: none; }
+    .mode-tab .mode-emoji { font-size: 14px; }
+    .mode-tab { padding: 6px 10px; }
+    .icon-toggle { width: 30px; height: 30px; font-size: 12px; }
   }
 
   /* ============ Mode Tabs (일정 / 후보) ============ */
@@ -740,9 +754,10 @@
   <main class="main mode-itinerary" id="mainEl">
     <div class="mode-bar">
       <button class="lnb-toggle" id="lnbToggle" title="개요 패널 접기/펼치기">☰</button>
-      <button class="mode-tab active" data-mode="itinerary">📅 일정</button>
-      <button class="mode-tab" data-mode="candidates">🎴 후보 카드</button>
-      <button class="timeline-toggle" id="timelineToggle" title="콘텐츠 접기/펼치기"><span class="chev">▾</span></button>
+      <button class="mode-tab active" data-mode="itinerary"><span class="mode-emoji">📅</span><span class="mode-text">일정</span></button>
+      <button class="mode-tab" data-mode="candidates"><span class="mode-emoji">🎴</span><span class="mode-text">후보 카드</span></button>
+      <button class="icon-toggle" id="timelineToggle" title="콘텐츠 접기/펼치기"><span class="chev">▾</span></button>
+      <button class="icon-toggle map-icon-toggle" id="mapToggleBtn" title="지도 접기/펼치기">🗺️</button>
     </div>
 
     <section class="timeline-section">
@@ -756,12 +771,6 @@
       <div class="cat-bar" id="catBar"></div>
       <div class="candidates-wrap" id="candidatesWrap"></div>
     </section>
-
-    <button class="section-toggle" id="mapHeader" type="button">
-      <span>🗺️ 지도</span>
-      <span class="badge" id="mapHeaderBadge"></span>
-      <span class="chevron">▾</span>
-    </button>
 
     <div class="map-wrap">
       <div id="map"></div>
@@ -1243,16 +1252,16 @@ lnbToggle.addEventListener('click', () => {
 // ============ Section Toggle (Timeline / Map) ============
 const main = document.querySelector('.main');
 const timelineToggle = document.getElementById('timelineToggle');
-const mapHeader = document.getElementById('mapHeader');
+const mapToggleBtn = document.getElementById('mapToggleBtn');
 
 timelineToggle.addEventListener('click', () => {
   main.classList.toggle('timeline-collapsed');
   setTimeout(() => map.invalidateSize(), 280);
 });
 
-mapHeader.addEventListener('click', () => {
+mapToggleBtn.addEventListener('click', () => {
   main.classList.toggle('map-collapsed');
-  mapHeader.classList.toggle('collapsed');
+  mapToggleBtn.classList.toggle('collapsed');
   setTimeout(() => map.invalidateSize(), 280);
 });
 
