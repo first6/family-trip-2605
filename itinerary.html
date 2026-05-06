@@ -426,6 +426,11 @@
     border: 2px solid #fff;
     box-shadow: 0 2px 6px rgba(0,0,0,0.25);
     display: flex; align-items: center; justify-content: center;
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+  }
+  .marker-pin.highlight {
+    transform: rotate(-45deg) scale(1.45);
+    box-shadow: 0 0 0 4px rgba(255,255,255,0.6), 0 5px 14px rgba(0,0,0,0.45);
   }
   .marker-pin > span {
     transform: rotate(45deg);
@@ -1551,6 +1556,8 @@ function renderCandidates() {
       const card = cards.find(c => c.id === el.dataset.cid);
       if (card) showCardDetail(card);
     });
+    el.addEventListener('mouseenter', () => highlightMarker(el.dataset.cid, true));
+    el.addEventListener('mouseleave', () => highlightMarker(el.dataset.cid, false));
   });
 }
 
@@ -1635,6 +1642,26 @@ function showCardDetail(card) {
 
 function hideCardDetail() {
   candidatesSection.classList.remove('show-detail');
+  // 지도를 카테고리 전체 영역으로 복원
+  fitToActiveCategory();
+}
+
+function fitToActiveCategory() {
+  const cards = CARDS_BY_CAT[activeCategory] || [];
+  const allCoords = cards.filter(c => c.coords).map(c => c.coords);
+  if (allCoords.length > 0) {
+    map.fitBounds(allCoords, { padding: [60, 60], maxZoom: 14 });
+  }
+}
+
+function highlightMarker(cardId, on) {
+  const m = candidateMarkers[cardId];
+  if (!m) return;
+  m.setZIndexOffset(on ? 1000 : 0);
+  const el = m.getElement && m.getElement();
+  if (!el) return;
+  const pin = el.querySelector('.marker-pin');
+  if (pin) pin.classList.toggle('highlight', on);
 }
 
 detailBackBtn.addEventListener('click', () => {
