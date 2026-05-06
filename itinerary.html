@@ -1573,10 +1573,6 @@ function showCardDetail(card) {
   detailCatPill.style.background = cat.color;
   detailCatPill.textContent = `${cat.icon} ${cat.name}`;
 
-  const img = card.image
-    ? `<div class="detail-image" style="background-image:url('${card.image}');"></div>`
-    : `<div class="detail-image" style="background:${cat.color}33; font-size:64px;">${cat.icon}</div>`;
-
   const githubUrl = `https://github.com/first6/family-trip-2605/blob/main/4-candidates/${encodeURIComponent(cat.file)}`;
 
   // 풀 마크다운 → HTML (marked.js)
@@ -1588,7 +1584,6 @@ function showCardDetail(card) {
   }
 
   detailContent.innerHTML = `
-    ${img}
     <div class="detail-body">
       <div class="detail-id">${card.id}</div>
       <h2 class="detail-title">${card.name}</h2>
