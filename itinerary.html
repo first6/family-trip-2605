@@ -88,6 +88,50 @@
     font-weight: 500;
     white-space: nowrap;
   }
+  .plan-tabs {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 10px;
+  }
+  .plan-tab {
+    flex: 1;
+    padding: 7px 4px;
+    border-radius: 8px;
+    border: 1px solid var(--line);
+    background: var(--panel);
+    cursor: pointer;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--ink-mute);
+    text-align: center;
+    font-family: inherit;
+    transition: all 0.15s;
+    line-height: 1.2;
+  }
+  .plan-tab:hover { background: #f7f5f0; }
+  .plan-tab.active {
+    background: var(--plan-color, var(--ink));
+    color: white;
+    border-color: var(--plan-color, var(--ink));
+  }
+  .plan-tab .pname { display: block; font-weight: 700; font-size: 11.5px; }
+  .plan-tab .picon { display: block; font-size: 13px; margin-bottom: 1px; }
+  .plan-features {
+    background: #f9f7f1;
+    border-radius: 8px;
+    padding: 10px 12px;
+    font-size: 11px;
+    line-height: 1.6;
+    color: var(--ink-mute);
+  }
+  .plan-features .summary {
+    font-weight: 600;
+    color: var(--ink);
+    font-size: 11.5px;
+    margin-bottom: 6px;
+  }
+  .plan-features ul { margin: 0; padding-left: 14px; }
+  .plan-features li { margin: 1px 0; }
   .lnb-list {
     margin: 0; padding: 0;
     list-style: none;
@@ -931,6 +975,12 @@
     </div>
 
     <div class="lnb-section">
+      <div class="lnb-h">일정 안 선택</div>
+      <div class="plan-tabs" id="planTabs"></div>
+      <div class="plan-features" id="planFeatures"></div>
+    </div>
+
+    <div class="lnb-section">
       <div class="lnb-h">핵심 결정</div>
       <div class="lnb-chips">
         <span class="chip">호이안 5/23</span>
@@ -1027,10 +1077,62 @@ const PLACES = {
   SUM_MOI: { name: "씀모이 가든", short: "씀모이", coords: [16.0680, 108.2225], detail: "한시장 인근 · 반쎄오·쌀국수, 한국어 메뉴" },
   SUN_WHEEL: { name: "선월드 원더스", short: "선휠", coords: [16.0368, 108.2298], detail: "야간 관람차 + 테마파크 · 16:30~22:00" },
   HAN_RIVER_PIER: { name: "한강 크루즈 부두", short: "한강부두", coords: [16.0680, 108.2237], detail: "Bach Dang Street · 선셋 크루즈" },
-  HAN_MARKET: { name: "한시장", short: "한시장", coords: [16.0671, 108.2240], detail: "환전·기념품·야시장" }
+  HAN_MARKET: { name: "한시장", short: "한시장", coords: [16.0671, 108.2240], detail: "환전·기념품·야시장" },
+  LINH_UNG: { name: "린응 사원", short: "린응사", coords: [16.1035, 108.2920], detail: "67m 해수관음상, 베트남 최대, 무료 · 일몰 명소" },
+  BACH_DANG: { name: "박당 보행자 거리", short: "박당", coords: [16.0680, 108.2240], detail: "2024 오픈 강변 보행자거리, 야간 산책" },
+  AN_BANG: { name: "An Bang Beach", short: "An Bang", coords: [15.9085, 108.3340], detail: "호이안 인근 한적 비치 + 비치카페" },
+  CAM_THANH: { name: "Cam Thanh 코코넛마을", short: "코코넛마을", coords: [15.8950, 108.3450], detail: "둥근 바구니배 + 게잡이, 5세 검증" },
+  HELIO_CENTER: { name: "Helio Center", short: "Helio", coords: [16.0428, 108.2225], detail: "키즈+아케이드+야시장 복합, 가족 무적" },
+  TROPICAL_34: { name: "34 Tropical Café", short: "34 Tropical", coords: [16.0540, 108.2160], detail: "정글 컨셉, 폭포·코이연못·동굴" }
 };
 
-const ITINERARY = [
+// ====== Plans (3 시나리오) ======
+const PLANS = {
+  A: {
+    name: '휴식',
+    icon: '😌',
+    color: '#65a3c8',
+    summary: '현재 일정 — 가족 컨디션 100% 보호',
+    features: [
+      '🏨 호텔 위주, 외출 최소화',
+      '💆 마사지 2회 (트리스 + 노아)',
+      '🏮 호이안 저녁 야경 (5/23)',
+      '🔥 용다리 불쇼 (5/23 + 5/24)',
+      '👶 5세 부담 거의 없음',
+    ],
+  },
+  B: {
+    name: '균형',
+    icon: '⚖️',
+    color: '#6fb583',
+    summary: '핵심 추가 — 일몰·야경 임팩트 강화',
+    features: [
+      '🛕 린응사 67m 관음상 (5/22 일몰)',
+      '🌃 박당 보행자거리 야간 (5/24)',
+      '☕ 34 Tropical Café (5/24 한낮 카페)',
+      '🏮 호이안 + 🔥 용다리 (그대로)',
+      '👶 5세 부담 약간 ↑ (관리 가능)',
+    ],
+  },
+  C: {
+    name: '풍성',
+    icon: '✨',
+    color: '#d4644a',
+    summary: '최대 임팩트 — 호이안 풀데이 + Helio',
+    features: [
+      '🛕 린응사 + 🌃 박당 (균형안 포함)',
+      '🌴 An Bang Beach (5/23 낮)',
+      '🥥 Cam Thanh 바구니배 (5/23)',
+      '🎮 Helio Center (5/24 한낮 가족 무적)',
+      '⚠️ 5세 부담 ↑↑ (체력 관리 필수)',
+    ],
+  },
+};
+let activePlan = 'A';
+
+const ITINERARIES = {};
+
+ITINERARIES.A = [
   {
     day: "5/20", weekday: "수", colorHex: "#e8a87c", tint: "#fbe9d7",
     title: "도착일 · 컨디션 회복",
@@ -1104,6 +1206,67 @@ const ITINERARY = [
   }
 ];
 
+// ====== Plan B: 균형 (린응사 + 박당 + 34 Tropical) ======
+ITINERARIES.B = JSON.parse(JSON.stringify(ITINERARIES.A));
+// 5/22 — 발 담그기 → 린응사 일몰
+ITINERARIES.B[2].title = "이동일 · 트리스 스파 + 린응사 일몰";
+ITINERARIES.B[2].items = ITINERARIES.B[2].items.filter(it => it.title !== '비치 발 담그기 + 풀사이드');
+ITINERARIES.B[2].items.splice(7, 0,
+  { time: "17:00", icon: "🛕", title: "린응 사원 (해수관음상)", place: "LINH_UNG", tag: "event", desc: "67m 관음상 + 다낭 만 일몰. 어깨·무릎 가리는 옷" },
+  { time: "18:30", icon: "🚐", title: "푸라마 복귀", place: "FURAMA", tag: "transport" }
+);
+ITINERARIES.B[2].items = ITINERARIES.B[2].items.map(it =>
+  it.time === '18:30' && it.title === '호텔 저녁' ? { ...it, time: '19:30' } : it
+);
+// 5/24 — 골든미트 후 박당 + 34 Tropical 추가
+ITINERARIES.B[4].title = "마지막날 · 노아 스파 + 박당 야간";
+const idxC34 = ITINERARIES.B[4].items.findIndex(it => it.title.includes('호텔 정원'));
+if (idxC34 >= 0) {
+  ITINERARIES.B[4].items.splice(idxC34 + 1, 0,
+    { time: "11:30", icon: "☕", title: "34 Tropical Café (정글 컨셉)", place: "TROPICAL_34", tag: "activity", desc: "한낮 시원한 실내, 5세 비주얼 충격" }
+  );
+}
+const idxBSun = ITINERARIES.B[4].items.findIndex(it => it.title.includes('Sun Wheel'));
+if (idxBSun >= 0) {
+  ITINERARIES.B[4].items.splice(idxBSun, 0,
+    { time: "19:00", icon: "🌃", title: "박당 보행자 거리 산책", place: "BACH_DANG", tag: "event", desc: "2024 오픈 강변 거리, 야간 라이브·노점" }
+  );
+  ITINERARIES.B[4].items = ITINERARIES.B[4].items.map(it =>
+    it.title.includes('Sun Wheel') ? { ...it, time: '20:00' } : it
+  );
+}
+
+// ====== Plan C: 풍성 (B + 호이안 풀데이 + Helio) ======
+ITINERARIES.C = JSON.parse(JSON.stringify(ITINERARIES.B));
+// 5/23 — 호이안 풀데이로 확장
+ITINERARIES.C[3].title = "✨ 호이안 풀데이 — An Bang + 바구니배 + 야경";
+ITINERARIES.C[3].items = [
+  { time: "08:30", icon: "🥞", title: "푸라마 조식", place: "FURAMA", tag: "meal" },
+  { time: "10:00", icon: "🚐", title: "호이안으로 출발", place: "FURAMA", tag: "transport", desc: "한국어 가이드 + 카시트" },
+  { time: "10:45", icon: "🌴", title: "An Bang Beach + 비치카페 점심", place: "AN_BANG", tag: "event", desc: "5세 안전 비치, The DeckHouse 점심" },
+  { time: "13:30", icon: "🥥", title: "Cam Thanh 바구니배 + 게잡이", place: "CAM_THANH", tag: "event", desc: "둥근 보트, 1시간, 구명조끼 제공" },
+  { time: "15:00", icon: "🛋️", title: "호이안 카페·휴식", place: "HOIAN", tag: "activity", desc: "한낮 더위 회피" },
+  { time: "17:30", icon: "🏮", title: "호이안 등불 야경 + 소원배", place: "HOIAN", tag: "event", desc: "올드타운 + 소원배 + 등불 거리" },
+  { time: "19:00", icon: "🍲", title: "호이안 저녁", place: "HOIAN", tag: "meal", desc: "Morning Glory · 까오라우" },
+  { time: "20:30", icon: "🚐", title: "다낭 한강으로 복귀", place: "HOIAN", tag: "transport" },
+  { time: "21:00", icon: "🔥", title: "용다리 불쇼·물쇼", place: "DRAGON_BRIDGE", tag: "event", desc: "10~15분, 무료" },
+  { time: "22:00", icon: "🛌", title: "푸라마 복귀", place: "FURAMA", tag: "hotel" }
+];
+// 5/24 — Helio Center 추가 (한낮)
+const idxCSun = ITINERARIES.C[4].items.findIndex(it => it.title.includes('Sun Wheel'));
+if (idxCSun >= 0) {
+  ITINERARIES.C[4].items.splice(idxCSun, 0,
+    { time: "19:00", icon: "🎮", title: "Helio Center (키즈+야시장)", place: "HELIO_CENTER", tag: "event", desc: "5세 키즈존 + 9세 아케이드 + 부부 야시장" }
+  );
+  // Sun Wheel을 박당과 합쳐 시간 조정
+  ITINERARIES.C[4].items = ITINERARIES.C[4].items.map(it =>
+    it.title.includes('박당') ? { ...it, time: '20:30' } :
+    it.title.includes('Sun Wheel') ? { ...it, time: '20:00' } : it
+  );
+}
+
+let ITINERARY = ITINERARIES[activePlan];
+
 // ==========================================================
 //   디자인 시스템 토큰 (design-system.md 참조)
 //   ITINERARY 배열에 colorHex/tint를 명시하지 않으면 여기서 자동 할당.
@@ -1154,11 +1317,16 @@ function getTravelTime(from, to) {
 }
 
 // ----- 자동 컬러 할당: data에 colorHex/tint가 없으면 DAY_COLORS 순환으로 채움 -----
-ITINERARY.forEach((day, di) => {
-  const palette = DAY_COLORS[di % DAY_COLORS.length];
-  if (!day.colorHex) day.colorHex = palette.hex;
-  if (!day.tint) day.tint = palette.tint;
-});
+function applyDayColors(arr) {
+  arr.forEach((day, di) => {
+    const palette = DAY_COLORS[di % DAY_COLORS.length];
+    if (!day.colorHex) day.colorHex = palette.hex;
+    if (!day.tint) day.tint = palette.tint;
+  });
+}
+applyDayColors(ITINERARIES.A);
+applyDayColors(ITINERARIES.B);
+applyDayColors(ITINERARIES.C);
 
 // ----- 데이터 검증: 누락/오류를 콘솔에 경고 -----
 function validateData() {
@@ -1460,6 +1628,32 @@ function renderAll() {
   renderMap();
   setTimeout(() => map.invalidateSize(), 100);
 }
+
+// ====== Plan Selector ======
+function renderPlanTabs() {
+  const tabsEl = document.getElementById('planTabs');
+  const featEl = document.getElementById('planFeatures');
+  tabsEl.innerHTML = Object.entries(PLANS).map(([k, p]) => `
+    <button class="plan-tab ${k === activePlan ? 'active' : ''}" data-plan="${k}" style="--plan-color:${p.color};">
+      <span class="picon">${p.icon}</span><span class="pname">${k}.${p.name}</span>
+    </button>
+  `).join('');
+  const p = PLANS[activePlan];
+  featEl.innerHTML = `
+    <div class="summary">${p.icon} ${p.name} — ${p.summary}</div>
+    <ul>${p.features.map(f => `<li>${f}</li>`).join('')}</ul>
+  `;
+  tabsEl.querySelectorAll('.plan-tab').forEach(el => {
+    el.addEventListener('click', () => {
+      activePlan = el.dataset.plan;
+      ITINERARY = ITINERARIES[activePlan];
+      activeTab = 'all';
+      renderPlanTabs();
+      renderAll();
+    });
+  });
+}
+renderPlanTabs();
 
 renderAll();
 
