@@ -434,6 +434,21 @@
     align-items: center;
     gap: 5px;
   }
+  .ti-card-link {
+    font-size: 10px;
+    padding: 3px 7px;
+    background: var(--accent);
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    border: none;
+    font-weight: 700;
+    font-family: inherit;
+    white-space: nowrap;
+    transition: opacity 0.15s;
+    line-height: 1;
+  }
+  .ti-card-link:hover { opacity: 0.85; }
   .ti-pin-num {
     display: inline-flex;
     align-items: center;
@@ -1661,6 +1676,7 @@ function renderTimeline() {
     day.items.forEach((it, ii) => {
       const place = PLACES[it.place];
       const pinNum = placeOrderMap[it.place];
+      const cardId = PLACE_TO_CARD[it.place];
       html += `<div class="ti-row" data-place="${it.place||''}" data-day="${di}" data-item="${ii}" style="--day-color:${day.colorHex};">
         <div class="ti-time">${it.time}</div>
         <div class="ti-icon">${it.icon}</div>
@@ -1670,6 +1686,7 @@ function renderTimeline() {
         </div>
         <div class="ti-meta">
           ${it.tag ? `<span class="ti-tag tag-${it.tag}">${TAG_LABEL[it.tag]}</span>` : ''}
+          ${cardId ? `<button class="ti-card-link" data-card-id="${cardId}" title="후보카드 상세 보기">📄 ${cardId}</button>` : ''}
           ${place ? `<span class="ti-place">${pinNum ? `<span class="ti-pin-num" style="background:${day.colorHex}">${pinNum}</span>` : '📍'} ${place.short}</span>` : ''}
         </div>
       </div>`;
@@ -1679,7 +1696,9 @@ function renderTimeline() {
   wrap.innerHTML = html;
 
   wrap.querySelectorAll('.ti-row').forEach(el => {
-    el.addEventListener('click', () => {
+    el.addEventListener('click', (ev) => {
+      // 카드 링크 버튼 클릭은 별도 처리
+      if (ev.target.closest('.ti-card-link')) return;
       wrap.querySelectorAll('.ti-row').forEach(e => e.classList.remove('active'));
       el.classList.add('active');
       const placeKey = el.dataset.place;
@@ -1691,6 +1710,32 @@ function renderTimeline() {
       }
     });
   });
+
+  // 카드 링크 클릭 → 후보 모드 + 카드 상세
+  wrap.querySelectorAll('.ti-card-link').forEach(btn => {
+    btn.addEventListener('click', (ev) => {
+      ev.stopPropagation();
+      const cid = btn.dataset.cardId;
+      openCardFromTimeline(cid);
+    });
+  });
+}
+
+function openCardFromTimeline(cardId) {
+  const card = findCardById(cardId);
+  if (!card) return;
+  cameFromTimeline = true;
+  // 후보 모드로 전환 (mode-tab 클릭 시뮬레이션)
+  const candTab = document.querySelector('.mode-tab[data-mode="candidates"]');
+  if (candTab && currentMode !== 'candidates') candTab.click();
+  // 카테고리 전환
+  setTimeout(() => {
+    activeCategory = card.cat;
+    renderCatBar();
+    renderCandidates();
+    renderCandidateMarkers();
+    setTimeout(() => showCardDetail(card), 50);
+  }, 50);
 }
 
 function renderMap() {
@@ -1875,9 +1920,28 @@ mapToggleBtn.addEventListener('click', () => {
   setTimeout(() => map.invalidateSize(), 280);
 });
 
+// ============ Place → Card mapping (timeline → 후보카드 상세) ============
+const PLACE_TO_CARD = {
+  LINH_UNG: '2.1', MARBLE_MTN: '2.2', PINK_CATHEDRAL: '2.3',
+  CAM_THANH: '3.4', TRA_QUE: '3.5', THANH_HA: '3.6',
+  CONG_CAPHE: '4.1', COCONUT_HOUSE: '4.5', TROPICAL_34: '4.7',
+  CUA_NGO: '4.8', KEM_BO: '4.12',
+  MADAME_LAN: '5.1', MI_QUANG_1A: '5.3', BUN_CHA_CA_109: '5.5',
+  MORNING_GLORY: '5.8', BANH_MI_PHUONG: '5.10', PIZZA_4PS: '5.14',
+  GOLDEN_MEAT: '5.18',
+  DRAGON_BRIDGE: '6.1', SUN_WHEEL: '6.3', HELIO_CENTER: '6.4',
+  BACH_DANG: '6.8', HAN_RIVER_PIER: '6.11',
+  HAN_MARKET: '7.5',
+  AN_BANG: '1.5', NAM_O: '1.3',
+};
+function findCardById(cid) {
+  return CANDIDATE_DATA.cards.find(c => c.id === cid);
+}
+
 // ============ Mode Toggle (Itinerary / Candidates) ============
 let currentMode = 'itinerary';
 let activeCategory = '1';
+let cameFromTimeline = false;
 const candidateMarkerLayer = L.layerGroup();
 const candidateMarkers = {};
 
@@ -2046,6 +2110,12 @@ function hideCardDetail() {
   candidatesSection.classList.remove('show-detail');
   // 지도를 카테고리 전체 영역으로 복원
   fitToActiveCategory();
+  // 일정 모드에서 들어왔으면 일정 모드로 복귀
+  if (cameFromTimeline) {
+    cameFromTimeline = false;
+    const itinTab = document.querySelector('.mode-tab[data-mode="itinerary"]');
+    if (itinTab && currentMode !== 'itinerary') itinTab.click();
+  }
 }
 
 function fitToActiveCategory() {
