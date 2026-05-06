@@ -996,7 +996,6 @@
         <li>한낮 11–15시 실내 (UV 7–10)</li>
         <li>외출은 아침·저녁 골든타임</li>
         <li>5세 카시트 휴대 또는 차량 요청</li>
-        <li>음식: 현지식 → 4P's → 한식</li>
         <li>여유롭게 · 합리적 예산</li>
       </ul>
     </div>
@@ -1083,187 +1082,323 @@ const PLACES = {
   AN_BANG: { name: "An Bang Beach", short: "An Bang", coords: [15.9085, 108.3340], detail: "호이안 인근 한적 비치 + 비치카페" },
   CAM_THANH: { name: "Cam Thanh 코코넛마을", short: "코코넛마을", coords: [15.8950, 108.3450], detail: "둥근 바구니배 + 게잡이, 5세 검증" },
   HELIO_CENTER: { name: "Helio Center", short: "Helio", coords: [16.0428, 108.2225], detail: "키즈+아케이드+야시장 복합, 가족 무적" },
-  TROPICAL_34: { name: "34 Tropical Café", short: "34 Tropical", coords: [16.0540, 108.2160], detail: "정글 컨셉, 폭포·코이연못·동굴" }
+  TROPICAL_34: { name: "34 Tropical Café", short: "34 Tropical", coords: [16.0540, 108.2160], detail: "정글 컨셉, 폭포·코이연못·동굴" },
+  TRA_QUE: { name: "Tra Que 채소마을", short: "짜께", coords: [15.8980, 108.3260], detail: "농부복+물주기+물소, 호이안 인근" },
+  THANH_HA: { name: "Thanh Ha 도자기마을", short: "도자기", coords: [15.8855, 108.3050], detail: "물레 체험 + 호각 도자기, 5세 인기" },
+  CONG_CAPHE: { name: "콩카페", short: "콩카페", coords: [16.0688, 108.2237], detail: "코코넛 커피 원조" },
+  CUA_NGO: { name: "Cua Ngo 카페", short: "Cua Ngo", coords: [16.0540, 108.2455], detail: "모로코 컨셉, 미케 인근" },
+  COCONUT_HOUSE: { name: "The Coconut House", short: "코코넛하우스", coords: [16.0490, 108.2440], detail: "코코넛 디저트 + 커피" },
+  KEM_BO: { name: "Kem Bo 아보카도 아이스크림", short: "Kem Bo", coords: [16.0210, 108.2475], detail: "30년 노포, 푸라마 도보 7분" },
+  MADAME_LAN: { name: "Madame Lân", short: "마담란", coords: [16.0795, 108.2230], detail: "베트남 중부 정통, 한국어 사이트" },
+  MI_QUANG_1A: { name: "Mi Quang 1A", short: "미꽝1A", coords: [16.0680, 108.2240], detail: "미꽝 미슐랭 빕구르망" },
+  BUN_CHA_CA_109: { name: "Bun Cha Ca 109", short: "분짜까109", coords: [16.0610, 108.2200], detail: "다낭 어묵국수 미슐랭" },
+  MORNING_GLORY: { name: "Morning Glory", short: "모닝글로리", coords: [15.8775, 108.3270], detail: "호이안 까오라우+화이트로즈, 영문 메뉴" },
+  BANH_MI_PHUONG: { name: "반미 프엉", short: "반미프엉", coords: [15.8770, 108.3270], detail: "보뎅 인증 호이안 반미" },
+  MARBLE_MTN: { name: "오행산 (Marble Mountains)", short: "오행산", coords: [16.0033, 108.2630], detail: "5개 봉우리 중 투이선, 엘리베이터" },
+  PINK_CATHEDRAL: { name: "다낭 핑크 성당", short: "핑크성당", coords: [16.0666, 108.2227], detail: "1923 프랑스풍 핑크 고딕" }
 };
 
-// ====== Plans (3 시나리오) ======
+// ====== Plans (5 시나리오) ======
 const PLANS = {
   A: {
-    name: '휴식',
-    icon: '😌',
-    color: '#65a3c8',
-    summary: '현재 일정 — 가족 컨디션 100% 보호',
+    name: '휴식', icon: '😌', color: '#65a3c8',
+    summary: '호텔 위주, 외출 최소. 마사지·호이안 야경·용다리만.',
     features: [
-      '🏨 호텔 위주, 외출 최소화',
-      '💆 마사지 2회 (트리스 + 노아)',
-      '🏮 호이안 저녁 야경 (5/23)',
-      '🔥 용다리 불쇼 (5/23 + 5/24)',
-      '👶 5세 부담 거의 없음',
+      '호텔 풀활용 + 마사지 2회',
+      '호이안 1회 (저녁만), 용다리 불쇼',
+      '5세 부담 거의 없음, 부부 회복',
     ],
   },
   B: {
-    name: '균형',
-    icon: '⚖️',
-    color: '#6fb583',
-    summary: '핵심 추가 — 일몰·야경 임팩트 강화',
+    name: '문화·사찰', icon: '🛕', color: '#a86fb5',
+    summary: '린응사·핑크성당·오행산. 다낭의 종교·역사 명소.',
     features: [
-      '🛕 린응사 67m 관음상 (5/22 일몰)',
-      '🌃 박당 보행자거리 야간 (5/24)',
-      '☕ 34 Tropical Café (5/24 한낮 카페)',
-      '🏮 호이안 + 🔥 용다리 (그대로)',
-      '👶 5세 부담 약간 ↑ (관리 가능)',
+      '린응사 67m 관음상 일몰 (5/22)',
+      '핑크성당 + 오행산 (엘리베이터)',
+      '9세 호기심·아내 사진 만족',
     ],
   },
   C: {
-    name: '풍성',
-    icon: '✨',
-    color: '#d4644a',
-    summary: '최대 임팩트 — 호이안 풀데이 + Helio',
+    name: '호이안 풀데이', icon: '🏮', color: '#d4644a',
+    summary: '5/23 호이안 하루 통째 — An Bang + Cam Thanh + 등불.',
     features: [
-      '🛕 린응사 + 🌃 박당 (균형안 포함)',
-      '🌴 An Bang Beach (5/23 낮)',
-      '🥥 Cam Thanh 바구니배 (5/23)',
-      '🎮 Helio Center (5/24 한낮 가족 무적)',
-      '⚠️ 5세 부담 ↑↑ (체력 관리 필수)',
+      'An Bang Beach + The DeckHouse',
+      'Cam Thanh 바구니배 + 짜께 채소마을',
+      '호이안 매력 100%, 5세 활동량 ↑',
+    ],
+  },
+  D: {
+    name: '카페·트렌드', icon: '☕', color: '#a87a4d',
+    summary: '34 Tropical·콩카페·박당. 인스타·MZ 코스.',
+    features: [
+      '34 Tropical 정글 컨셉 + Cua Ngo 모로코',
+      'Kem Bo 아보카도 아이스크림',
+      '박당 보행자거리 야간 산책',
+    ],
+  },
+  E: {
+    name: '균형', icon: '⚖️', color: '#6fb583',
+    summary: '사찰·해변·카페·가족 체험을 골고루 한 번씩.',
+    features: [
+      '린응사 + Cam Thanh + 34 Tropical + Helio',
+      '호이안 야경 + 용다리 + 마사지 2회',
+      '5세 부담 적당, 가족 모두 만족',
     ],
   },
 };
 let activePlan = 'A';
-
 const ITINERARIES = {};
 
-ITINERARIES.A = [
-  {
-    day: "5/20", weekday: "수", colorHex: "#e8a87c", tint: "#fbe9d7",
-    title: "도착일 · 컨디션 회복",
+// 공통 골격 — 5/20 도착, 5/21 미카즈키 워터파크, 5/22 체크아웃·이동·트리스, 5/24 출국
+function commonDay20(extra=[]) {
+  return {
+    day: "5/20", weekday: "수", title: "도착일",
     items: [
-      { time: "13:50", icon: "🛬", title: "다낭 도착·픽업", place: "DAD", tag: "flight", desc: "VN431 · 입국심사·짐찾기 후 단독 밴 픽업" },
-      { time: "15:00", icon: "🏨", title: "미카즈키 체크인", place: "MIKAZUKI", tag: "hotel", desc: "얼리 체크인 사전 요청. 객실 휴식" },
-      { time: "19:00", icon: "🍱", title: "호텔 일식당 저녁", place: "MIKAZUKI", tag: "meal", desc: "첫날 무리 ❌ 도착 피로 회복" }
+      { time: "13:50", icon: "🛬", title: "다낭 도착·픽업", place: "DAD", tag: "flight", desc: "VN431" },
+      { time: "15:00", icon: "🏨", title: "미카즈키 체크인", place: "MIKAZUKI", tag: "hotel" },
+      ...extra,
+      { time: "19:00", icon: "🍱", title: "호텔 일식당 저녁", place: "MIKAZUKI", tag: "meal" }
     ]
-  },
-  {
-    day: "5/21", weekday: "목", colorHex: "#65a3c8", tint: "#dde9f1",
-    title: "미카즈키 풀데이 · 워터파크",
+  };
+}
+function commonDay21(extra=[]) {
+  return {
+    day: "5/21", weekday: "목", title: "미카즈키 풀데이",
     items: [
       { time: "07:30", icon: "🥞", title: "호텔 조식", place: "MIKAZUKI", tag: "meal" },
-      { time: "09:00", icon: "🌊", title: "워터파크 365", place: "MIKAZUKI", tag: "activity", desc: "베트남 최대 실내 돔 · 햇볕·스콜 회피 OK" },
-      { time: "12:00", icon: "🍚", title: "한식당 점심 (워터파크 내)", place: "MIKAZUKI", tag: "meal", desc: "음식 거부 아이 안전판" },
-      { time: "13:30", icon: "🌊", title: "슬라이드·키즈풀", place: "MIKAZUKI", tag: "activity", desc: "또는 객실 낮잠" },
-      { time: "17:00", icon: "♨️", title: "온센 가족 입욕", place: "MIKAZUKI", tag: "activity", desc: "수영복 노천탕 · 5세도 OK" },
+      { time: "09:00", icon: "🌊", title: "워터파크 365 (실내 돔)", place: "MIKAZUKI", tag: "activity" },
+      { time: "12:00", icon: "🍚", title: "워터파크 한식당 점심", place: "MIKAZUKI", tag: "meal" },
+      { time: "13:30", icon: "🌊", title: "슬라이드·키즈풀", place: "MIKAZUKI", tag: "activity" },
+      { time: "17:00", icon: "♨️", title: "온센 가족 입욕", place: "MIKAZUKI", tag: "activity" },
+      ...extra,
       { time: "19:30", icon: "🍣", title: "호텔 저녁", place: "MIKAZUKI", tag: "meal" }
     ]
-  },
-  {
-    day: "5/22", weekday: "금", colorHex: "#6fb583", tint: "#dfece4",
-    title: "이동일 · 트리스 스파 가족 마사지",
+  };
+}
+
+// ====== A. 휴식 ======
+ITINERARIES.A = [
+  commonDay20(),
+  commonDay21(),
+  { day: "5/22", weekday: "금", title: "이동 + 트리스 스파",
     items: [
       { time: "08:00", icon: "🥞", title: "조식", place: "MIKAZUKI", tag: "meal" },
-      { time: "09:00", icon: "🌅", title: "객실 풀·비치 산책", place: "MIKAZUKI", tag: "activity" },
       { time: "11:00", icon: "🧳", title: "미카즈키 체크아웃", place: "MIKAZUKI", tag: "hotel" },
-      { time: "12:00", icon: "🚐", title: "단독차량으로 시내 이동", place: "MIKAZUKI", tag: "transport", desc: "짐 차에 싣고 시내 직행" },
-      { time: "13:00", icon: "🍝", title: "점심 — 피자 4P's", place: "PIZZA_4PS", tag: "meal", desc: "체크인 전 시내 점심" },
-      { time: "14:30", icon: "💆", title: "트리스 스파 가족 마사지", place: "TREES_SPA", tag: "spa", desc: "부부 90분 + 키즈 플레이 + 어린이 마사지" },
+      { time: "12:00", icon: "🚐", title: "단독차량으로 시내 이동", place: "MIKAZUKI", tag: "transport" },
+      { time: "13:00", icon: "🍝", title: "점심 — Madame Lân", place: "MADAME_LAN", tag: "meal" },
+      { time: "14:30", icon: "💆", title: "트리스 스파 가족 마사지", place: "TREES_SPA", tag: "spa" },
       { time: "16:30", icon: "🏨", title: "푸라마 체크인", place: "FURAMA", tag: "hotel" },
-      { time: "17:00", icon: "🦶", title: "비치 발 담그기 + 풀사이드", place: "FURAMA", tag: "activity", desc: "본격 수영 ❌, 가볍게 30~40분. 5세는 무릎 깊이만" },
-      { time: "18:30", icon: "🍽️", title: "호텔 저녁", place: "FURAMA", tag: "meal", desc: "마사지 후 가벼운 식사" }
-    ]
-  },
-  {
-    day: "5/23", weekday: "토", colorHex: "#a86fb5", tint: "#ebe1ee",
-    title: "✨ 메인 이벤트 · 호이안 + 용다리 불쇼",
+      { time: "17:00", icon: "🦶", title: "비치 발 담그기·풀사이드", place: "FURAMA", tag: "activity" },
+      { time: "18:30", icon: "🍽️", title: "호텔 저녁", place: "FURAMA", tag: "meal" }
+    ]},
+  { day: "5/23", weekday: "토", title: "호이안 야경 + 용다리 불쇼",
     items: [
-      { time: "08:30", icon: "🥞", title: "푸라마 조식 (천천히)", place: "FURAMA", tag: "meal" },
-      { time: "10:00", icon: "🛋️", title: "호텔 라운지·정원 산책", place: "FURAMA", tag: "activity", desc: "수영 ❌, 호이안 저녁 대비 컨디션 보존" },
-      { time: "12:00", icon: "🍜", title: "호텔/인근 점심", place: "FURAMA", tag: "meal" },
-      { time: "13:00", icon: "😴", title: "객실 낮잠·휴식", place: "FURAMA", tag: "activity", desc: "한낮 더위 회피, 호이안 저녁 외출 대비" },
-      { time: "17:00", icon: "🚐", title: "호이안으로 출발", place: "FURAMA", tag: "transport", desc: "한국어 가이드 + 카시트" },
-      { time: "18:00", icon: "🏮", title: "호이안 등불 야경", place: "HOIAN", tag: "event", desc: "올드타운 + 소원배 + 등불 거리" },
-      { time: "19:00", icon: "🍲", title: "호이안 저녁", place: "HOIAN", tag: "meal", desc: "현지 분짜·까오라우" },
-      { time: "20:30", icon: "🚐", title: "다낭 한강으로 복귀", place: "HOIAN", tag: "transport" },
-      { time: "21:00", icon: "🔥", title: "용다리 불쇼·물쇼", place: "DRAGON_BRIDGE", tag: "event", desc: "10~15분, 무료, 사랑의 부두 동쪽" },
+      { time: "08:30", icon: "🥞", title: "푸라마 조식", place: "FURAMA", tag: "meal" },
+      { time: "10:30", icon: "🛋️", title: "호텔 정원·라운지 휴식", place: "FURAMA", tag: "activity" },
+      { time: "12:30", icon: "🍜", title: "호텔 점심", place: "FURAMA", tag: "meal" },
+      { time: "14:00", icon: "😴", title: "객실 낮잠", place: "FURAMA", tag: "activity" },
+      { time: "17:00", icon: "🚐", title: "호이안으로 출발", place: "FURAMA", tag: "transport" },
+      { time: "18:00", icon: "🏮", title: "호이안 등불 야경 + 소원배", place: "HOIAN", tag: "event" },
+      { time: "19:00", icon: "🍲", title: "Morning Glory 저녁", place: "MORNING_GLORY", tag: "meal" },
+      { time: "20:30", icon: "🚐", title: "다낭 한강 복귀", place: "HOIAN", tag: "transport" },
+      { time: "21:00", icon: "🔥", title: "용다리 불쇼", place: "DRAGON_BRIDGE", tag: "event" },
       { time: "22:00", icon: "🛌", title: "푸라마 복귀", place: "FURAMA", tag: "hotel" }
-    ]
-  },
-  {
-    day: "5/24", weekday: "일", colorHex: "#e8a233", tint: "#f9e7c8",
-    title: "마지막날 · 노아 스파 + 출국",
+    ]},
+  { day: "5/24", weekday: "일", title: "노아 스파 + 출국",
+    items: [
+      { time: "09:00", icon: "🥞", title: "푸라마 조식", place: "FURAMA", tag: "meal" },
+      { time: "12:00", icon: "🧳", title: "체크아웃 (레이트 시도)", place: "FURAMA", tag: "hotel" },
+      { time: "12:30", icon: "🥗", title: "호텔 점심", place: "FURAMA", tag: "meal" },
+      { time: "13:30", icon: "💆", title: "노아 스파 가족 마사지", place: "NOAH_SPA", tag: "spa" },
+      { time: "16:00", icon: "🚿", title: "푸라마 복귀·짐 정리", place: "FURAMA", tag: "hotel" },
+      { time: "18:00", icon: "🥩", title: "골든미트하우스 저녁", place: "GOLDEN_MEAT", tag: "meal" },
+      { time: "20:00", icon: "🚶", title: "한강 산책", place: "HAN_RIVER_PIER", tag: "activity" },
+      { time: "21:00", icon: "🔥", title: "용다리 불쇼 (보너스)", place: "DRAGON_BRIDGE", tag: "event" },
+      { time: "21:30", icon: "🚐", title: "공항으로 출발", place: "DRAGON_BRIDGE", tag: "transport" },
+      { time: "23:45", icon: "🛫", title: "인천행 출발 (VJ878)", place: "DAD", tag: "flight" }
+    ]}
+];
+
+// ====== B. 문화·사찰 ======
+ITINERARIES.B = [
+  commonDay20(),
+  commonDay21(),
+  { day: "5/22", weekday: "금", title: "이동 + 트리스 스파 + 린응사 일몰",
+    items: [
+      { time: "08:00", icon: "🥞", title: "조식", place: "MIKAZUKI", tag: "meal" },
+      { time: "11:00", icon: "🧳", title: "미카즈키 체크아웃", place: "MIKAZUKI", tag: "hotel" },
+      { time: "12:00", icon: "🚐", title: "단독차량으로 시내 이동", place: "MIKAZUKI", tag: "transport" },
+      { time: "13:00", icon: "🍝", title: "점심 — Mi Quang 1A", place: "MI_QUANG_1A", tag: "meal" },
+      { time: "14:30", icon: "💆", title: "트리스 스파 가족 마사지", place: "TREES_SPA", tag: "spa" },
+      { time: "16:30", icon: "🏨", title: "푸라마 체크인 + 짐만", place: "FURAMA", tag: "hotel" },
+      { time: "17:00", icon: "🛕", title: "린응사 (67m 관음상 + 일몰)", place: "LINH_UNG", tag: "event" },
+      { time: "19:00", icon: "🍽️", title: "호텔 저녁", place: "FURAMA", tag: "meal" }
+    ]},
+  { day: "5/23", weekday: "토", title: "핑크성당 + 호이안 야경 + 용다리",
+    items: [
+      { time: "08:30", icon: "🥞", title: "푸라마 조식", place: "FURAMA", tag: "meal" },
+      { time: "09:30", icon: "⛪", title: "핑크성당 사진", place: "PINK_CATHEDRAL", tag: "event" },
+      { time: "10:30", icon: "🛍️", title: "한시장 산책", place: "HAN_MARKET", tag: "activity" },
+      { time: "12:00", icon: "🍜", title: "Bun Cha Ca 109 점심", place: "BUN_CHA_CA_109", tag: "meal" },
+      { time: "13:30", icon: "🛋️", title: "푸라마 객실 낮잠", place: "FURAMA", tag: "activity" },
+      { time: "17:00", icon: "🚐", title: "호이안으로 출발", place: "FURAMA", tag: "transport" },
+      { time: "18:00", icon: "🏮", title: "호이안 등불 + 소원배", place: "HOIAN", tag: "event" },
+      { time: "19:00", icon: "🍲", title: "Morning Glory 저녁", place: "MORNING_GLORY", tag: "meal" },
+      { time: "20:30", icon: "🚐", title: "다낭 복귀", place: "HOIAN", tag: "transport" },
+      { time: "21:00", icon: "🔥", title: "용다리 불쇼", place: "DRAGON_BRIDGE", tag: "event" },
+      { time: "22:00", icon: "🛌", title: "푸라마 복귀", place: "FURAMA", tag: "hotel" }
+    ]},
+  { day: "5/24", weekday: "일", title: "오행산 + 노아 스파 + 출국",
+    items: [
+      { time: "07:30", icon: "🥞", title: "푸라마 조식 (이른)", place: "FURAMA", tag: "meal" },
+      { time: "08:30", icon: "🏔️", title: "오행산 (엘리베이터, 1시간)", place: "MARBLE_MTN", tag: "event", desc: "도보 X — 엘리베이터로 동굴+전망대만" },
+      { time: "11:00", icon: "🛋️", title: "푸라마 복귀·휴식", place: "FURAMA", tag: "activity" },
+      { time: "12:00", icon: "🧳", title: "체크아웃 (레이트 시도)", place: "FURAMA", tag: "hotel" },
+      { time: "12:30", icon: "🥗", title: "호텔 점심", place: "FURAMA", tag: "meal" },
+      { time: "13:30", icon: "💆", title: "노아 스파", place: "NOAH_SPA", tag: "spa" },
+      { time: "16:00", icon: "🚿", title: "푸라마·짐 정리", place: "FURAMA", tag: "hotel" },
+      { time: "18:00", icon: "🥩", title: "골든미트하우스 저녁", place: "GOLDEN_MEAT", tag: "meal" },
+      { time: "19:30", icon: "🎡", title: "선월드 Sun Wheel", place: "SUN_WHEEL", tag: "event" },
+      { time: "21:00", icon: "🔥", title: "용다리 불쇼", place: "DRAGON_BRIDGE", tag: "event" },
+      { time: "22:00", icon: "🚐", title: "공항으로 출발", place: "DRAGON_BRIDGE", tag: "transport" },
+      { time: "23:45", icon: "🛫", title: "인천행 (VJ878)", place: "DAD", tag: "flight" }
+    ]}
+];
+
+// ====== C. 호이안 풀데이 ======
+ITINERARIES.C = [
+  commonDay20(),
+  commonDay21(),
+  { day: "5/22", weekday: "금", title: "이동 + 트리스 스파 + 휴식",
+    items: [
+      { time: "08:00", icon: "🥞", title: "조식", place: "MIKAZUKI", tag: "meal" },
+      { time: "11:00", icon: "🧳", title: "미카즈키 체크아웃", place: "MIKAZUKI", tag: "hotel" },
+      { time: "12:00", icon: "🚐", title: "단독차량으로 시내", place: "MIKAZUKI", tag: "transport" },
+      { time: "13:00", icon: "🍝", title: "Madame Lân 점심", place: "MADAME_LAN", tag: "meal" },
+      { time: "14:30", icon: "💆", title: "트리스 스파 가족 마사지", place: "TREES_SPA", tag: "spa" },
+      { time: "16:30", icon: "🏨", title: "푸라마 체크인", place: "FURAMA", tag: "hotel" },
+      { time: "17:00", icon: "🦶", title: "비치 발 담그기", place: "FURAMA", tag: "activity" },
+      { time: "18:30", icon: "🍽️", title: "호텔 저녁 (내일 풀데이 대비)", place: "FURAMA", tag: "meal" }
+    ]},
+  { day: "5/23", weekday: "토", title: "✨ 호이안 풀데이 — An Bang + 바구니배 + 야경",
+    items: [
+      { time: "08:30", icon: "🥞", title: "푸라마 조식", place: "FURAMA", tag: "meal" },
+      { time: "09:30", icon: "🚐", title: "호이안으로 출발 (단독 차량)", place: "FURAMA", tag: "transport" },
+      { time: "10:15", icon: "🌴", title: "An Bang Beach + The DeckHouse", place: "AN_BANG", tag: "event" },
+      { time: "12:30", icon: "🍴", title: "비치카페 점심", place: "AN_BANG", tag: "meal" },
+      { time: "14:00", icon: "🌾", title: "Tra Que 채소마을 농사 체험", place: "TRA_QUE", tag: "event" },
+      { time: "15:30", icon: "🥥", title: "Cam Thanh 바구니배 + 게잡이", place: "CAM_THANH", tag: "event" },
+      { time: "17:00", icon: "🛋️", title: "호이안 카페 휴식", place: "HOIAN", tag: "activity" },
+      { time: "18:00", icon: "🏮", title: "호이안 등불 + 소원배", place: "HOIAN", tag: "event" },
+      { time: "19:00", icon: "🍲", title: "Morning Glory 저녁", place: "MORNING_GLORY", tag: "meal" },
+      { time: "20:30", icon: "🚐", title: "다낭 복귀", place: "HOIAN", tag: "transport" },
+      { time: "21:00", icon: "🔥", title: "용다리 불쇼", place: "DRAGON_BRIDGE", tag: "event" },
+      { time: "22:00", icon: "🛌", title: "푸라마 복귀 (피곤)", place: "FURAMA", tag: "hotel" }
+    ]},
+  { day: "5/24", weekday: "일", title: "노아 스파 + 마지막 호이안 음식",
     items: [
       { time: "09:00", icon: "🥞", title: "푸라마 조식 (천천히)", place: "FURAMA", tag: "meal" },
-      { time: "10:30", icon: "🛋️", title: "호텔 정원·풀사이드 음료", place: "FURAMA", tag: "activity", desc: "수영 ❌, 노아 스파 전 가볍게 시간" },
-      { time: "12:00", icon: "🧳", title: "체크아웃 (18시까지 시도)", place: "FURAMA", tag: "hotel", desc: "레이트 체크아웃 협상, 안 되면 데이패스" },
+      { time: "10:30", icon: "🛋️", title: "호텔 휴식 (어제 피로 회복)", place: "FURAMA", tag: "activity" },
+      { time: "12:00", icon: "🧳", title: "체크아웃 (레이트)", place: "FURAMA", tag: "hotel" },
       { time: "12:30", icon: "🥗", title: "호텔 점심", place: "FURAMA", tag: "meal" },
-      { time: "13:30", icon: "💆", title: "노아 스파 가족 마사지", place: "NOAH_SPA", tag: "spa", desc: "부부 90분 + 어린이 60분 · 픽업·짐보관 무료" },
-      { time: "16:00", icon: "🚿", title: "푸라마 복귀, 샤워·짐 정리", place: "FURAMA", tag: "hotel" },
-      { time: "17:30", icon: "🚐", title: "시내 이동", place: "FURAMA", tag: "transport" },
-      { time: "18:00", icon: "🥩", title: "골든미트하우스 한식 저녁", place: "GOLDEN_MEAT", tag: "meal", desc: "삼겹살·갈비, 카톡 한국어 예약" },
-      { time: "19:30", icon: "🎡", title: "선월드 Sun Wheel 야간", place: "SUN_WHEEL", tag: "event", desc: "관람차 30분, 시원함" },
-      { time: "21:00", icon: "🔥", title: "용다리 불쇼 (보너스)", place: "DRAGON_BRIDGE", tag: "event", desc: "일요일도 운영" },
-      { time: "21:30", icon: "🚐", title: "공항으로 출발", place: "DRAGON_BRIDGE", tag: "transport" },
-      { time: "22:00", icon: "✈️", title: "다낭 공항 도착", place: "DAD", tag: "flight" },
-      { time: "23:45", icon: "🛫", title: "인천행 출발 (VJ878)", place: "DAD", tag: "flight", desc: "5/25 06:00 인천 도착" }
-    ]
-  }
+      { time: "13:30", icon: "💆", title: "노아 스파", place: "NOAH_SPA", tag: "spa" },
+      { time: "16:00", icon: "🚿", title: "푸라마·짐 정리", place: "FURAMA", tag: "hotel" },
+      { time: "18:00", icon: "🥩", title: "골든미트 저녁 (한식)", place: "GOLDEN_MEAT", tag: "meal" },
+      { time: "19:30", icon: "🎡", title: "Sun Wheel 야간", place: "SUN_WHEEL", tag: "event" },
+      { time: "21:00", icon: "🔥", title: "용다리 불쇼", place: "DRAGON_BRIDGE", tag: "event" },
+      { time: "22:00", icon: "🚐", title: "공항으로", place: "DRAGON_BRIDGE", tag: "transport" },
+      { time: "23:45", icon: "🛫", title: "인천행 (VJ878)", place: "DAD", tag: "flight" }
+    ]}
 ];
 
-// ====== Plan B: 균형 (린응사 + 박당 + 34 Tropical) ======
-ITINERARIES.B = JSON.parse(JSON.stringify(ITINERARIES.A));
-// 5/22 — 발 담그기 → 린응사 일몰
-ITINERARIES.B[2].title = "이동일 · 트리스 스파 + 린응사 일몰";
-ITINERARIES.B[2].items = ITINERARIES.B[2].items.filter(it => it.title !== '비치 발 담그기 + 풀사이드');
-ITINERARIES.B[2].items.splice(7, 0,
-  { time: "17:00", icon: "🛕", title: "린응 사원 (해수관음상)", place: "LINH_UNG", tag: "event", desc: "67m 관음상 + 다낭 만 일몰. 어깨·무릎 가리는 옷" },
-  { time: "18:30", icon: "🚐", title: "푸라마 복귀", place: "FURAMA", tag: "transport" }
-);
-ITINERARIES.B[2].items = ITINERARIES.B[2].items.map(it =>
-  it.time === '18:30' && it.title === '호텔 저녁' ? { ...it, time: '19:30' } : it
-);
-// 5/24 — 골든미트 후 박당 + 34 Tropical 추가
-ITINERARIES.B[4].title = "마지막날 · 노아 스파 + 박당 야간";
-const idxC34 = ITINERARIES.B[4].items.findIndex(it => it.title.includes('호텔 정원'));
-if (idxC34 >= 0) {
-  ITINERARIES.B[4].items.splice(idxC34 + 1, 0,
-    { time: "11:30", icon: "☕", title: "34 Tropical Café (정글 컨셉)", place: "TROPICAL_34", tag: "activity", desc: "한낮 시원한 실내, 5세 비주얼 충격" }
-  );
-}
-const idxBSun = ITINERARIES.B[4].items.findIndex(it => it.title.includes('Sun Wheel'));
-if (idxBSun >= 0) {
-  ITINERARIES.B[4].items.splice(idxBSun, 0,
-    { time: "19:00", icon: "🌃", title: "박당 보행자 거리 산책", place: "BACH_DANG", tag: "event", desc: "2024 오픈 강변 거리, 야간 라이브·노점" }
-  );
-  ITINERARIES.B[4].items = ITINERARIES.B[4].items.map(it =>
-    it.title.includes('Sun Wheel') ? { ...it, time: '20:00' } : it
-  );
-}
-
-// ====== Plan C: 풍성 (B + 호이안 풀데이 + Helio) ======
-ITINERARIES.C = JSON.parse(JSON.stringify(ITINERARIES.B));
-// 5/23 — 호이안 풀데이로 확장
-ITINERARIES.C[3].title = "✨ 호이안 풀데이 — An Bang + 바구니배 + 야경";
-ITINERARIES.C[3].items = [
-  { time: "08:30", icon: "🥞", title: "푸라마 조식", place: "FURAMA", tag: "meal" },
-  { time: "10:00", icon: "🚐", title: "호이안으로 출발", place: "FURAMA", tag: "transport", desc: "한국어 가이드 + 카시트" },
-  { time: "10:45", icon: "🌴", title: "An Bang Beach + 비치카페 점심", place: "AN_BANG", tag: "event", desc: "5세 안전 비치, The DeckHouse 점심" },
-  { time: "13:30", icon: "🥥", title: "Cam Thanh 바구니배 + 게잡이", place: "CAM_THANH", tag: "event", desc: "둥근 보트, 1시간, 구명조끼 제공" },
-  { time: "15:00", icon: "🛋️", title: "호이안 카페·휴식", place: "HOIAN", tag: "activity", desc: "한낮 더위 회피" },
-  { time: "17:30", icon: "🏮", title: "호이안 등불 야경 + 소원배", place: "HOIAN", tag: "event", desc: "올드타운 + 소원배 + 등불 거리" },
-  { time: "19:00", icon: "🍲", title: "호이안 저녁", place: "HOIAN", tag: "meal", desc: "Morning Glory · 까오라우" },
-  { time: "20:30", icon: "🚐", title: "다낭 한강으로 복귀", place: "HOIAN", tag: "transport" },
-  { time: "21:00", icon: "🔥", title: "용다리 불쇼·물쇼", place: "DRAGON_BRIDGE", tag: "event", desc: "10~15분, 무료" },
-  { time: "22:00", icon: "🛌", title: "푸라마 복귀", place: "FURAMA", tag: "hotel" }
+// ====== D. 카페·트렌드 ======
+ITINERARIES.D = [
+  commonDay20(),
+  commonDay21(),
+  { day: "5/22", weekday: "금", title: "이동 + 스파 + 34 Tropical 카페",
+    items: [
+      { time: "08:00", icon: "🥞", title: "조식", place: "MIKAZUKI", tag: "meal" },
+      { time: "11:00", icon: "🧳", title: "미카즈키 체크아웃", place: "MIKAZUKI", tag: "hotel" },
+      { time: "12:00", icon: "🚐", title: "단독차량으로 시내", place: "MIKAZUKI", tag: "transport" },
+      { time: "13:00", icon: "🍔", title: "점심 — Burger Bros", place: "PIZZA_4PS", tag: "meal" },
+      { time: "14:30", icon: "💆", title: "트리스 스파 마사지", place: "TREES_SPA", tag: "spa" },
+      { time: "16:30", icon: "🏨", title: "푸라마 체크인", place: "FURAMA", tag: "hotel" },
+      { time: "17:30", icon: "☕", title: "34 Tropical Café (정글 컨셉)", place: "TROPICAL_34", tag: "activity" },
+      { time: "19:30", icon: "🍽️", title: "호텔 저녁", place: "FURAMA", tag: "meal" }
+    ]},
+  { day: "5/23", weekday: "토", title: "카페 호핑 + 호이안 야경",
+    items: [
+      { time: "09:00", icon: "🥞", title: "푸라마 조식", place: "FURAMA", tag: "meal" },
+      { time: "10:30", icon: "☕", title: "콩카페 코코넛 커피", place: "CONG_CAPHE", tag: "activity" },
+      { time: "11:30", icon: "🕌", title: "Cua Ngo Cafe (모로코 컨셉)", place: "CUA_NGO", tag: "activity" },
+      { time: "13:00", icon: "🍝", title: "Pizza 4P's 점심", place: "PIZZA_4PS", tag: "meal" },
+      { time: "14:30", icon: "🛋️", title: "푸라마 객실 낮잠", place: "FURAMA", tag: "activity" },
+      { time: "17:00", icon: "🚐", title: "호이안 출발", place: "FURAMA", tag: "transport" },
+      { time: "18:00", icon: "🏮", title: "호이안 등불 + 소원배", place: "HOIAN", tag: "event" },
+      { time: "19:00", icon: "🥖", title: "반미 프엉 저녁", place: "BANH_MI_PHUONG", tag: "meal" },
+      { time: "20:30", icon: "🚐", title: "다낭 복귀", place: "HOIAN", tag: "transport" },
+      { time: "21:00", icon: "🔥", title: "용다리 불쇼", place: "DRAGON_BRIDGE", tag: "event" },
+      { time: "22:00", icon: "🛌", title: "푸라마 복귀", place: "FURAMA", tag: "hotel" }
+    ]},
+  { day: "5/24", weekday: "일", title: "노아 스파 + Kem Bo + 박당 야간",
+    items: [
+      { time: "09:00", icon: "🥞", title: "푸라마 조식", place: "FURAMA", tag: "meal" },
+      { time: "10:30", icon: "🥑", title: "Kem Bo 아보카도 아이스크림", place: "KEM_BO", tag: "activity" },
+      { time: "12:00", icon: "🧳", title: "체크아웃 (레이트)", place: "FURAMA", tag: "hotel" },
+      { time: "12:30", icon: "🥗", title: "호텔 점심", place: "FURAMA", tag: "meal" },
+      { time: "13:30", icon: "💆", title: "노아 스파", place: "NOAH_SPA", tag: "spa" },
+      { time: "16:00", icon: "🚿", title: "푸라마·짐 정리", place: "FURAMA", tag: "hotel" },
+      { time: "18:00", icon: "🥩", title: "골든미트 저녁", place: "GOLDEN_MEAT", tag: "meal" },
+      { time: "19:30", icon: "🌃", title: "박당 보행자 거리 야간", place: "BACH_DANG", tag: "event" },
+      { time: "21:00", icon: "🔥", title: "용다리 불쇼", place: "DRAGON_BRIDGE", tag: "event" },
+      { time: "22:00", icon: "🚐", title: "공항으로", place: "DRAGON_BRIDGE", tag: "transport" },
+      { time: "23:45", icon: "🛫", title: "인천행 (VJ878)", place: "DAD", tag: "flight" }
+    ]}
 ];
-// 5/24 — Helio Center 추가 (한낮)
-const idxCSun = ITINERARIES.C[4].items.findIndex(it => it.title.includes('Sun Wheel'));
-if (idxCSun >= 0) {
-  ITINERARIES.C[4].items.splice(idxCSun, 0,
-    { time: "19:00", icon: "🎮", title: "Helio Center (키즈+야시장)", place: "HELIO_CENTER", tag: "event", desc: "5세 키즈존 + 9세 아케이드 + 부부 야시장" }
-  );
-  // Sun Wheel을 박당과 합쳐 시간 조정
-  ITINERARIES.C[4].items = ITINERARIES.C[4].items.map(it =>
-    it.title.includes('박당') ? { ...it, time: '20:30' } :
-    it.title.includes('Sun Wheel') ? { ...it, time: '20:00' } : it
-  );
-}
+
+// ====== E. 균형 ======
+ITINERARIES.E = [
+  commonDay20(),
+  commonDay21(),
+  { day: "5/22", weekday: "금", title: "이동 + 스파 + 린응사 일몰",
+    items: [
+      { time: "08:00", icon: "🥞", title: "조식", place: "MIKAZUKI", tag: "meal" },
+      { time: "11:00", icon: "🧳", title: "미카즈키 체크아웃", place: "MIKAZUKI", tag: "hotel" },
+      { time: "12:00", icon: "🚐", title: "단독차량으로 시내", place: "MIKAZUKI", tag: "transport" },
+      { time: "13:00", icon: "🍝", title: "Madame Lân 점심", place: "MADAME_LAN", tag: "meal" },
+      { time: "14:30", icon: "💆", title: "트리스 스파", place: "TREES_SPA", tag: "spa" },
+      { time: "16:30", icon: "🏨", title: "푸라마 체크인 + 짐만", place: "FURAMA", tag: "hotel" },
+      { time: "17:00", icon: "🛕", title: "린응사 일몰", place: "LINH_UNG", tag: "event" },
+      { time: "19:00", icon: "🍽️", title: "호텔 저녁", place: "FURAMA", tag: "meal" }
+    ]},
+  { day: "5/23", weekday: "토", title: "호이안 (오후) + Cam Thanh + 야경",
+    items: [
+      { time: "09:00", icon: "🥞", title: "푸라마 조식", place: "FURAMA", tag: "meal" },
+      { time: "10:30", icon: "🛋️", title: "호텔 휴식·라운지", place: "FURAMA", tag: "activity" },
+      { time: "12:30", icon: "🍜", title: "호텔/인근 점심", place: "FURAMA", tag: "meal" },
+      { time: "14:30", icon: "🚐", title: "호이안으로 출발 (오후)", place: "FURAMA", tag: "transport" },
+      { time: "15:30", icon: "🥥", title: "Cam Thanh 바구니배", place: "CAM_THANH", tag: "event" },
+      { time: "17:30", icon: "🏮", title: "호이안 등불 + 소원배", place: "HOIAN", tag: "event" },
+      { time: "19:00", icon: "🍲", title: "Morning Glory 저녁", place: "MORNING_GLORY", tag: "meal" },
+      { time: "20:30", icon: "🚐", title: "다낭 복귀", place: "HOIAN", tag: "transport" },
+      { time: "21:00", icon: "🔥", title: "용다리 불쇼", place: "DRAGON_BRIDGE", tag: "event" },
+      { time: "22:00", icon: "🛌", title: "푸라마 복귀", place: "FURAMA", tag: "hotel" }
+    ]},
+  { day: "5/24", weekday: "일", title: "34 Tropical + 노아 스파 + Helio",
+    items: [
+      { time: "09:00", icon: "🥞", title: "푸라마 조식", place: "FURAMA", tag: "meal" },
+      { time: "10:30", icon: "☕", title: "34 Tropical Café (정글)", place: "TROPICAL_34", tag: "activity" },
+      { time: "12:00", icon: "🧳", title: "체크아웃 (레이트)", place: "FURAMA", tag: "hotel" },
+      { time: "12:30", icon: "🥗", title: "호텔 점심", place: "FURAMA", tag: "meal" },
+      { time: "13:30", icon: "💆", title: "노아 스파", place: "NOAH_SPA", tag: "spa" },
+      { time: "16:00", icon: "🚿", title: "푸라마·짐 정리", place: "FURAMA", tag: "hotel" },
+      { time: "17:30", icon: "🎮", title: "Helio Center (키즈+야시장)", place: "HELIO_CENTER", tag: "event" },
+      { time: "19:30", icon: "🥩", title: "골든미트 저녁", place: "GOLDEN_MEAT", tag: "meal" },
+      { time: "21:00", icon: "🔥", title: "용다리 불쇼", place: "DRAGON_BRIDGE", tag: "event" },
+      { time: "22:00", icon: "🚐", title: "공항으로", place: "DRAGON_BRIDGE", tag: "transport" },
+      { time: "23:45", icon: "🛫", title: "인천행 (VJ878)", place: "DAD", tag: "flight" }
+    ]}
+];
 
 let ITINERARY = ITINERARIES[activePlan];
 
