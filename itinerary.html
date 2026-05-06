@@ -478,6 +478,174 @@
     .tabs { gap: 3px; }
     .tab { padding: 5px 10px; font-size: 11px; }
   }
+
+  /* ============ Mode Tabs (일정 / 후보) ============ */
+  .mode-bar {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 8px 14px;
+    border-bottom: 1px solid var(--line);
+    background: var(--panel);
+    flex-shrink: 0;
+  }
+  .mode-tab {
+    flex: 1;
+    padding: 8px 14px;
+    border-radius: 8px;
+    border: 1px solid var(--line);
+    background: var(--panel);
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--ink-mute);
+    display: flex; align-items: center; justify-content: center;
+    gap: 6px;
+    font-family: inherit;
+    transition: all 0.15s;
+    white-space: nowrap;
+  }
+  .mode-tab:hover { background: #f7f5f0; }
+  .mode-tab.active {
+    background: var(--ink);
+    color: white;
+    border-color: var(--ink);
+  }
+
+  /* ============ Candidates ============ */
+  .candidates-wrap {
+    background: var(--bg);
+    overflow-y: auto;
+    border-bottom: 1px solid var(--line);
+    -webkit-overflow-scrolling: touch;
+    display: none;
+  }
+  .candidates-wrap::-webkit-scrollbar { width: 5px; }
+  .candidates-wrap::-webkit-scrollbar-thumb { background: #d8d6d0; border-radius: 3px; }
+  .main.mode-candidates .timeline-wrap { display: none; }
+  .main.mode-candidates .candidates-wrap { display: block; }
+  .main.mode-candidates .tabs-bar { display: none; }
+  .main.mode-itinerary .cat-bar { display: none; }
+
+  .cat-bar {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 8px 14px;
+    border-bottom: 1px solid var(--line);
+    background: var(--panel);
+    overflow-x: auto;
+    flex-shrink: 0;
+  }
+  .cat-bar::-webkit-scrollbar { height: 0; }
+  .cat-chip {
+    padding: 6px 12px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s;
+    border: 1px solid var(--line);
+    background: var(--panel);
+    white-space: nowrap;
+    color: var(--ink-mute);
+    display: inline-flex; align-items: center; gap: 6px;
+    font-family: inherit;
+  }
+  .cat-chip:hover { background: #f7f5f0; }
+  .cat-chip.active {
+    background: var(--cat-color, var(--ink));
+    color: white;
+    border-color: var(--cat-color, var(--ink));
+  }
+  .cat-chip .badge {
+    font-size: 9.5px;
+    background: rgba(0,0,0,0.08);
+    padding: 1px 6px;
+    border-radius: 999px;
+    font-weight: 600;
+  }
+  .cat-chip.active .badge { background: rgba(255,255,255,0.25); }
+
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 10px;
+    padding: 14px;
+  }
+  .cand-card {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.15s;
+    display: flex; flex-direction: column;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+  }
+  .cand-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    border-color: var(--cat-color, var(--accent));
+  }
+  .cand-card.active {
+    border-color: var(--cat-color, var(--accent));
+    box-shadow: 0 0 0 2px var(--cat-color, var(--accent));
+  }
+  .cand-img {
+    width: 100%;
+    aspect-ratio: 16/10;
+    background: #e8eae5 center/cover no-repeat;
+    position: relative;
+  }
+  .cand-pin {
+    position: absolute;
+    top: 8px; left: 8px;
+    background: rgba(255,255,255,0.95);
+    color: var(--ink);
+    font-size: 11px; font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 999px;
+    backdrop-filter: blur(6px);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+    border-left: 3px solid var(--cat-color, var(--accent));
+  }
+  .cand-rating {
+    position: absolute;
+    bottom: 8px; right: 8px;
+    background: rgba(0,0,0,0.7);
+    color: white;
+    font-size: 10px;
+    padding: 3px 7px;
+    border-radius: 999px;
+    backdrop-filter: blur(4px);
+  }
+  .cand-body { padding: 10px 12px 12px; flex: 1; display: flex; flex-direction: column; }
+  .cand-title {
+    font-size: 13px;
+    font-weight: 700;
+    margin: 0 0 4px;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+  }
+  .cand-summary {
+    font-size: 11.5px;
+    color: var(--ink-mute);
+    line-height: 1.4;
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  @media (max-width: 600px) {
+    .card-grid { grid-template-columns: 1fr 1fr; gap: 8px; padding: 10px; }
+    .cand-title { font-size: 12px; }
+    .cand-summary { font-size: 10.5px; }
+    .cat-chip { padding: 5px 10px; font-size: 11px; }
+  }
 </style>
 </head>
 <body>
@@ -545,14 +713,22 @@
   </aside>
 
   <!-- MAIN -->
-  <main class="main">
-    <div class="tabs-bar">
+  <main class="main mode-itinerary" id="mainEl">
+    <div class="mode-bar">
       <button class="lnb-toggle" id="lnbToggle" title="개요 패널 접기/펼치기">☰</button>
+      <button class="mode-tab active" data-mode="itinerary">📅 일정</button>
+      <button class="mode-tab" data-mode="candidates">🎴 후보 카드</button>
+    </div>
+
+    <div class="tabs-bar">
       <div class="tabs" id="tabs"></div>
       <button class="timeline-toggle" id="timelineToggle" title="일정 접기/펼치기"><span class="chev">▾</span></button>
     </div>
 
+    <div class="cat-bar" id="catBar"></div>
+
     <div class="timeline-wrap" id="timelineWrap"></div>
+    <div class="candidates-wrap" id="candidatesWrap"></div>
 
     <button class="section-toggle" id="mapHeader" type="button">
       <span>🗺️ 지도</span>
@@ -678,6 +854,13 @@ const TAG_LABEL = {
   flight: '항공', hotel: '숙소', meal: '식사', activity: '액티',
   transport: '이동', spa: '스파', event: '이벤트'
 };
+
+// ===== Candidate Data (78 cards across 7 categories) =====
+const CANDIDATE_DATA = {"categories": [{"id": "1","name": "자연·해변","icon": "🌊","color": "#6fa8c8","file": "1-자연·해변.md"},{"id": "2","name": "사찰·문화","icon": "🛕","color": "#a86fb5","file": "2-사찰·문화.md"},{"id": "3","name": "체험","icon": "🎨","color": "#e8a233","file": "3-체험.md"},{"id": "4","name": "카페·디저트","icon": "☕","color": "#a87a4d","file": "4-카페·디저트.md"},{"id": "5","name": "식당","icon": "🍽️","color": "#c66e3e","file": "5-식당.md"},{"id": "6","name": "야간·엔터","icon": "🌃","color": "#5fb1ad","file": "6-야간·엔터.md"},{"id": "7","name": "쇼핑·시장","icon": "🛍️","color": "#897045","file": "7-쇼핑·시장.md"}],"cards": [{"id": "1.1","cat": "1","name": "미케 비치","rating": 3,"summary": "세계 6대 해변, 다낭의 얼굴","image": "https://raw.githubusercontent.com/first6/family-trip-2605/main/assets/img/My_Khe_Beach__Da_Nang__Vietnam.jpg","coords": [16.061,108.2455]},{"id": "1.2","cat": "1","name": "논누억 비치","rating": 3,"summary": "푸라마 앞 한적·고급 해변","image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Non_nuoc_Basket_boats.jpg/960px-Non_nuoc_Basket_boats.jpg","coords": [16.0145,108.252]},{"id": "1.3","cat": "1","name": "남오 비치","rating": 3,"summary": "미카즈키 인근 어촌 + 일몰 명소","image": "https://raw.githubusercontent.com/first6/family-trip-2605/main/assets/img/Coracles_in_Da_Nang_1.jpg","coords": [16.118,108.109]},{"id": "1.4","cat": "1","name": "손짜 반도 드라이브","rating": 3,"summary": "\"원숭이산\" + 67m 관음상","image": "https://raw.githubusercontent.com/first6/family-trip-2605/main/assets/img/Ban_dao_Son_Tra.jpg","coords": [16.1106,108.2945]},{"id": "1.5","cat": "1","name": "An Bang Beach ⭐","rating": 3,"summary": "\"베트남에서 가장 안전한 영유아 비치 중 하나\"","image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/2024-11-23_An_Bang_Beach_in_Hoi_An_in_November.jpg/960px-2024-11-23_An_Bang_Beach_in_Hoi_An_in_November.jpg","coords": [15.9085,108.334]},{"id": "1.6","cat": "1","name": "Bai But / Bai Rang","rating": 3,"summary": "손짜반도 동쪽 사면의 백사장·터키블루 코브","image": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Bai_Bien_Tai_Quan_Son_Tra.jpg/960px-Bai_Bien_Tai_Quan_Son_Tra.jpg","coords": [16.11,108.301]},{"id": "1.7","cat": "1","name": "Lap An 라군","rating": 3,"summary": "800ha 거대 기수 라군 + 일몰 인스타 명소","image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Lang_Co_lagoon%2C_Lap_An_lagoon%2C_Vietnam.jpg/960px-Lang_Co_lagoon%2C_Lap_An_lagoon%2C_Vietnam.jpg","coords": [16.231,108.075]},{"id": "1.8","cat": "1","name": "한 강 산책로","rating": 3,"summary": "다낭 시내 야경 산책의 황금 동선","image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Han_River_Bridge_in_Vietnam_Night_View.jpg/960px-Han_River_Bridge_in_Vietnam_Night_View.jpg","coords": [16.0671,108.224]},{"id": "2.1","cat": "2","name": "린응 사원","rating": 3,"summary": "베트남 최대 67m 해수관음상 — 다낭의 영적 랜드마크","image": "https://upload.wikimedia.org/wikipedia/commons/9/91/Linh_Ung_Pagoda.jpg","coords": [16.1035,108.292]},{"id": "2.2","cat": "2","name": "오행산","rating": 3,"summary": "5개 봉우리·동굴·계단 — 다낭 대표 산악 사찰","image": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Da_Nang_-_coastal_view_from_Marble_Mountains_Mar_2024_01.jpg/960px-Da_Nang_-_coastal_view_from_Marble_Mountains_Mar_2024_01.jpg","coords": [16.0033,108.263]},{"id": "2.3","cat": "2","name": "다낭 핑크 성당","rating": 3,"summary": "1923년 프랑스 식민지 시대 핑크 고딕 — 다낭 No.1 포토존","image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Da_Nang_Cathedral_-_Da_Nang%2C_Vietnam_-_DSC02464.JPG/960px-Da_Nang_Cathedral_-_Da_Nang%2C_Vietnam_-_DSC02464.JPG","coords": [16.0666,108.2227]},{"id": "2.4","cat": "2","name": "참 박물관","rating": 3,"summary": "참파 왕국 1500년 조각 컬렉션 — 세계 최대급","image": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Vietnam_-_Da_nang_-_Mus%C3%A9e_de_la_sculpture_Cham_%2822%29.JPG/960px-Vietnam_-_Da_nang_-_Mus%C3%A9e_de_la_sculpture_Cham_%2822%29.JPG","coords": [16.0612,108.2235]},{"id": "2.5","cat": "2","name": "다낭 행정센터","rating": 3,"summary": "166m 옥수수 빌딩 + 시청 시계탑 — 야경 인증 정도","image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Trung_t%C3%A2m_H%C3%A0nh_ch%C3%ADnh_%C4%90%C3%A0_N%E1%BA%B5ng.jpeg/960px-Trung_t%C3%A2m_H%C3%A0nh_ch%C3%ADnh_%C4%90%C3%A0_N%E1%BA%B5ng.jpeg","coords": [16.0683,108.221]},{"id": "2.6","cat": "2","name": "팝람 사원","rating": 3,"summary": "다낭 시내 한복판의 조용한 1934년 사찰","image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Phap_Lam_Pagoda_statue.jpg/960px-Phap_Lam_Pagoda_statue.jpg","coords": [16.056,108.223]},{"id": "3.1","cat": "3","name": "아오자이 입고 사진","rating": 3,"summary": "베트남 전통의상 + 노란 벽 골목 = 가족 인생샷","image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Hanhdeptrai242-hoi-an-da-nang-2024.jpg/960px-Hanhdeptrai242-hoi-an-da-nang-2024.jpg","coords": [15.877,108.3284]},{"id": "3.2","cat": "3","name": "호이안 등불 만들기","rating": 3,"summary": "3세부터 가능, 한국까지 가져갈 수 있는 손수 만든 기념품","image": "https://upload.wikimedia.org/wikipedia/commons/c/cf/Hoi_An_lanterns.jpg","coords": [15.8772,108.3297]},{"id": "3.3","cat": "3","name": "소원배 + 양초 띄우기","rating": 3,"summary": "호이안 가면 무조건 = 정찰제·짧고 강렬·5세 베스트","image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Boats_with_lanterns_on_the_Thu_Bon_river_IMG_3864.jpg/960px-Boats_with_lanterns_on_the_Thu_Bon_river_IMG_3864.jpg","coords": [15.877,108.3284]},{"id": "3.4","cat": "3","name": "Cam Thanh 코코넛 마을 바구니배 ⭐","rating": 3,"summary": "5세 검증, 구명조끼 필수, 호이안 가면 무조건","image": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Basket_Boat_and_the_Bamboo_forest_%28Unsplash%29.jpg/960px-Basket_Boat_and_the_Bamboo_forest_%28Unsplash%29.jpg","coords": [15.895,108.345]},{"id": "3.5","cat": "3","name": "Tra Que 채소마을 농사 체험","rating": 3,"summary": "2024 UN 세계 최고 관광마을 — 농부복+물주기+물소+허브 체험","image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Vegetables_in_Tr%C3%A0_Qu%E1%BA%BF_1.jpg/960px-Vegetables_in_Tr%C3%A0_Qu%E1%BA%BF_1.jpg","coords": [15.898,108.326]},{"id": "3.6","cat": "3","name": "Thanh Ha 도자기마을","rating": 3,"summary": "5세도 물레 OK + 동물 모양 호각 = 한국 가져갈 기념품","image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/B%C3%A1t_Tr%C3%A0ng_DSC_0098.JPG/960px-B%C3%A1t_Tr%C3%A0ng_DSC_0098.JPG","coords": [15.8855,108.305]},{"id": "3.7","cat": "3","name": "호이안 요리 클래스","rating": 3,"summary": "3~4시간, 5세 ✗ — 9세만 가능 (단독 활동)","image": "https://upload.wikimedia.org/wikipedia/commons/6/6a/Cooking_class%2C_Hoi_An_%2846366000532%29.jpg","coords": [15.878,108.327]},{"id": "3.8","cat": "3","name": "호이안 메모리스 쇼","rating": 3,"summary": "세계 최대 야외 시각예술 공연 — 500명 배우 + 2.5만㎡ 무대","image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Hoian_Memories_Show.jpg/960px-Hoian_Memories_Show.jpg","coords": [15.888,108.338]},{"id": "4.1","cat": "4","name": "Cong Caphe","rating": 3,"summary": "코코넛 커피의 원조 — 베트남 카페 1순위","image": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Vietnamese_coffee_with_milk_and_ice.jpg/960px-Vietnamese_coffee_with_milk_and_ice.jpg","coords": [16.0688,108.2237]},{"id": "4.2","cat": "4","name": "XLIII Coffee","rating": 3,"summary": "다낭 1순위 스페셜티 커피 — 정적·미니멀","image": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/VN_drip_coffee_on_table.jpg/960px-VN_drip_coffee_on_table.jpg","coords": [16.022,108.253]},{"id": "4.3","cat": "4","name": "Highlands Coffee","rating": 3,"summary": "베트남 스타벅스 — 시내 10곳+, 가성비 최고","image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Highlands_Coffee_%C4%90%C3%A0_N%E1%BA%B5ng_City.jpg/960px-Highlands_Coffee_%C4%90%C3%A0_N%E1%BA%B5ng_City.jpg","coords": [16.07,108.2245]},{"id": "4.4","cat": "4","name": "The Local Beans","rating": 3,"summary": "다낭 코코넛 커피 베스트 (콩카페보다 진하다)","image": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Vietnamese_coffee_with_milk_and_ice.jpg/960px-Vietnamese_coffee_with_milk_and_ice.jpg","coords": [16.064,108.221]},{"id": "4.5","cat": "4","name": "The Coconut House","rating": 3,"summary": "코코넛 디저트 + 커피 — \"환장\" 평이 5세도 OK","image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Long_Beach_Coffee_Bar_Da_Nang.JPG/960px-Long_Beach_Coffee_Bar_Da_Nang.JPG","coords": [16.049,108.244]},{"id": "4.6","cat": "4","name": "La Bicicleta Coffee","rating": 3,"summary": "에그커피 다낭 베스트 — 민트색 외관","image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Egg_Coffee_at_Cafe_Gi%E1%BA%A3ng%2C_H%C3%A0_N%E1%BB%99i%2C_Vietnam.jpg/960px-Egg_Coffee_at_Cafe_Gi%E1%BA%A3ng%2C_H%C3%A0_N%E1%BB%99i%2C_Vietnam.jpg","coords": [16.0405,108.2455]},{"id": "4.7","cat": "4","name": "34 Tropical Café ⭐ NEW","rating": 3,"summary": "2024 정글 컨셉 카페 — \"비주얼 충격\"","image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Long_Beach_Coffee_Bar_Da_Nang.JPG/960px-Long_Beach_Coffee_Bar_Da_Nang.JPG","coords": [16.054,108.216]},{"id": "4.8","cat": "4","name": "Cua Ngo Cafe","rating": 3,"summary": "모로코 컨셉 — 미케 인근 인스타 핫스팟","image": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/VN_drip_coffee_on_table.jpg/960px-VN_drip_coffee_on_table.jpg","coords": [16.054,108.2455]},{"id": "4.9","cat": "4","name": "Nóc Rooftop Café","rating": 3,"summary": "활주로 뷰 — 비행기 이착륙 코앞","image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Long_Beach_Coffee_Bar_Da_Nang.JPG/960px-Long_Beach_Coffee_Bar_Da_Nang.JPG","coords": [16.05,108.198]},{"id": "4.10","cat": "4","name": "Wonderlust Coffee","rating": 3,"summary": "솔티드 커피 + 핸드메이드 기념품 숍","image": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/VN_drip_coffee_on_table.jpg/960px-VN_drip_coffee_on_table.jpg","coords": [16.067,108.224]},{"id": "4.11","cat": "4","name": "Roots Plant-Based Café","rating": 3,"summary": "비건 카페 — 5세 거부 안전 (스무디 보울)","image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Long_Beach_Coffee_Bar_Da_Nang.JPG/960px-Long_Beach_Coffee_Bar_Da_Nang.JPG","coords": [16.041,108.247]},{"id": "4.12","cat": "4","name": "Kem Bo Co Van","rating": 3,"summary": "30년 노포 아보카도 아이스크림 — 푸라마 도보권","image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Long_Beach_Coffee_Bar_Da_Nang.JPG/960px-Long_Beach_Coffee_Bar_Da_Nang.JPG","coords": [16.021,108.2475]},{"id": "4.13","cat": "4","name": "Sapa Rooftop","rating": 3,"summary": "야경 루프탑 칵테일 — 부부 둘만의 1시간","image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Han_River_Bridge_in_Vietnam_Night_View.jpg/960px-Han_River_Bridge_in_Vietnam_Night_View.jpg","coords": [16.07,108.2255]},{"id": "4.14","cat": "4","name": "Reaching Out Tea House","rating": 3,"summary": "호이안 청각장애인 운영 침묵 카페 — 의미 있는 30분","image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/HoiAn_OldStreet.jpg/960px-HoiAn_OldStreet.jpg","coords": [15.877,108.329]},{"id": "5.1","cat": "5","name": "마담란","rating": 3,"summary": "중부 정통 풀세트 + 한국어 사이트 + 강변 — \"1순위\" 결정 카드","image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/B%C3%A1nh_X%C3%A8o_in_Saigon_2.jpg/800px-B%C3%A1nh_X%C3%A8o_in_Saigon_2.jpg","coords": [16.0795,108.223]},{"id": "5.2","cat": "5","name": "쩐","rating": 3,"summary": "후에·중부식 12종 모듬 한 상 차림","image": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Nem_r%C3%A1n_%2814394275546%29.jpg/800px-Nem_r%C3%A1n_%2814394275546%29.jpg","coords": [16.07,108.2237]},{"id": "5.3","cat": "5","name": "미꽝 1A","rating": 3,"summary": "미꽝 미슐랭 빕구르망 + 한시장 도보 5분 + 1인 2,400원","image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Mi_Quang%2C_Pho_Hong_Phuc%2C_Sai_Gon%2C_Vietnam.JPG/800px-Mi_Quang%2C_Pho_Hong_Phuc%2C_Sai_Gon%2C_Vietnam.JPG","coords": [16.068,108.224]},{"id": "5.4","cat": "5","name": "미꽝 바무어","rating": 3,"summary": "미꽝 + 미케 비치 인근 + 푸라마에서 가까움","image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Vietnamese_food%2C_Mi_Quang%2C_Da_Nang.jpg/800px-Vietnamese_food%2C_Mi_Quang%2C_Da_Nang.jpg","coords": [16.056,108.247]},{"id": "5.5","cat": "5","name": "분짜까 109","rating": 3,"summary": "분짜까 어묵국수 미슐랭 + \"안전한 향신료 약한 국수\" + 1인 1,500원","image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/B%C3%BAn_ch%E1%BA%A3_c%C3%A1.jpg/800px-B%C3%BAn_ch%E1%BA%A3_c%C3%A1.jpg","coords": [16.061,108.22]},{"id": "5.6","cat": "5","name": "반쎄오 바즈엉","rating": 3,"summary": "반쎄오 미슐랭 + 골목 끝 노포 시장 분위기","image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Banh_xeo_-_panoramio.jpg/800px-Banh_xeo_-_panoramio.jpg","coords": [16.048,108.207]},{"id": "5.7","cat": "5","name": "퍼홍","rating": 3,"summary": "다낭 3대 쌀국수 + 승무원 단골 + 한국어 메뉴","image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Pho-Beef-Noodles-2008.jpg/800px-Pho-Beef-Noodles-2008.jpg","coords": [16.068,108.221]},{"id": "5.8","cat": "5","name": "모닝글로리 오리지널","rating": 3,"summary": "까오라우 + 화이트로즈 한 자리 + 호이안 올드타운 한복판","image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Cao_l%E1%BA%A7u_2.jpg/800px-Cao_l%E1%BA%A7u_2.jpg","coords": [15.8775,108.327]},{"id": "5.9","cat": "5","name": "화이트로즈 원조","rating": 3,"summary": "호이안 모든 식당의 화이트로즈가 여기서 만들어진다","image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/White_rose_dumplings_in_Hoi_An.jpg/800px-White_rose_dumplings_in_Hoi_An.jpg","coords": [15.8765,108.328]},{"id": "5.10","cat": "5","name": "반미 프엉","rating": 3,"summary": "앤서니 보뎅 인증 \"호이안 No.1 반미\"","image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Banh_mi_thit_at_Bahn_Mi_Tay_Ho.jpg/800px-Banh_mi_thit_at_Bahn_Mi_Tay_Ho.jpg","coords": [15.877,108.327]},{"id": "5.11","cat": "5","name": "마담 칸 — 반미 퀸","rating": 3,"summary": "반미 프엉 대안 + 줄 짧음 + Tripadvisor 4.7점","image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Banh_mi_op_la.jpg/800px-Banh_mi_op_la.jpg","coords": [15.878,108.3275]},{"id": "5.12","cat": "5","name": "까오라우 탄","rating": 3,"summary": "까오라우 노포 + 1인 2천원","image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Cao_lau_-_Hoi_An_-_Vietnam.jpg/800px-Cao_lau_-_Hoi_An_-_Vietnam.jpg","coords": [15.8775,108.3275]},{"id": "5.13","cat": "5","name": "망고망고","rating": 3,"summary": "호이안 강뷰 + 베트남·양식 퓨전 + 부부 데이트","image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Hoi_An_Riverfront_at_night.jpg/800px-Hoi_An_Riverfront_at_night.jpg","coords": [15.8773,108.3265]},{"id": "5.14","cat": "5","name": "피자 4P's 인도차이나","rating": 3,"summary": "베트남 No.1 일본식 화덕피자 + ⭐안전 1순위","image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Pizza_in_a_brick_oven.jpg/800px-Pizza_in_a_brick_oven.jpg","coords": [16.07,108.224]},{"id": "5.15","cat": "5","name": "버거브로스","rating": 3,"summary": "다낭 1위 일본인 셰프 수제버거 + An Thượng","image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Cheeseburger.jpg/800px-Cheeseburger.jpg","coords": [16.041,108.247]},{"id": "5.16","cat": "5","name": "올리비아스 프라임 스테이크하우스","rating": 3,"summary": "부부 데이트 + 와규·USDA 프라임 + 인도차이나 몰","image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Beef_steak_at_Salt_restaurant.jpg/800px-Beef_steak_at_Salt_restaurant.jpg","coords": [16.07,108.224]},{"id": "5.17","cat": "5","name": "에이프런업 쿠킹스쿨","rating": 3,"summary": "9세 쿠킹클래스 + An Thượng + 시장 투어 + 점심 결합","image": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Vietnamese_cooking_class.jpg/800px-Vietnamese_cooking_class.jpg","coords": [16.041,108.247]},{"id": "5.18","cat": "5","name": "골든미트하우스","rating": 3,"summary": "미케 도보 3분 + 카톡 한국어 예약 + Tripadvisor 27위","image": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Korean.cuisine-Galbi-01.jpg/800px-Korean.cuisine-Galbi-01.jpg","coords": [16.057,108.2438]},{"id": "5.19","cat": "5","name": "예가식당","rating": 3,"summary": "소고기국밥 단일 + 1인 6,500원 + An Thượng","image": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/Korean_soup-Yukgaejang-01.jpg/800px-Korean_soup-Yukgaejang-01.jpg","coords": [16.0405,108.246]},{"id": "5.20","cat": "5","name": "서울가든","rating": 3,"summary": "숯불 BBQ + 와규·소갈비 + 미케 + 단체 패키지 단골","image": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Korean_barbecue-Pork_belly-01.jpg/800px-Korean_barbecue-Pork_belly-01.jpg","coords": [16.049,108.247]},{"id": "5.21","cat": "5","name": "미트플러스","rating": 3,"summary": "2+2, 4+4 콤보 + 양념갈비 + 미케","image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Korean.cuisine-Yangnyeom_galbi-01.jpg/800px-Korean.cuisine-Yangnyeom_galbi-01.jpg","coords": [16.048,108.2475]},{"id": "6.1","cat": "6","name": "용다리 불쇼","rating": 3,"summary": "다낭의 시그니처. 토·일 21:00 10분간 불·물쇼","image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/Da_Nang_Dragon_Bridge_%28II%29.jpg/960px-Da_Nang_Dragon_Bridge_%28II%29.jpg","coords": [16.0612,108.2275]},{"id": "6.2","cat": "6","name": "사랑의 부두","rating": 3,"summary": "하트 가로등 + 잉어용상 분수 — 용다리 불쇼 사전 명당","image": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Han_River_at_night_-_Da_Nang%2C_Vietnam_-_DSC02111.JPG/960px-Han_River_at_night_-_Da_Nang%2C_Vietnam_-_DSC02111.JPG","coords": [16.068,108.2237]},{"id": "6.3","cat": "6","name": "선월드 Sun Wheel + 아시아파크","rating": 3,"summary": "115m 대관람차 + 아시아 10개국 테마존 + 키즈존","image": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Sun_World_Asia_Park%2C_Da_Nang_%2849374305713%29.jpg/960px-Sun_World_Asia_Park%2C_Da_Nang_%2849374305713%29.jpg","coords": [16.0368,108.2298]},{"id": "6.4","cat": "6","name": "Helio Center ⭐","rating": 3,"summary": "35,000m² 키즈+아케이드+야시장 복합 — 다낭 시내 \"무적\"","image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Da_Nang_Night_Panorama_01.jpg/960px-Da_Nang_Night_Panorama_01.jpg","coords": [16.0428,108.2225]},{"id": "6.5","cat": "6","name": "헬리오 야시장","rating": 3,"summary": "헬리오 센터 옆 정찰제 야시장 + 라이브 공연","image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Han_River_walkway_at_night_-_Da_Nang%2C_Vietnam_-_DSC02131.JPG/960px-Han_River_walkway_at_night_-_Da_Nang%2C_Vietnam_-_DSC02131.JPG","coords": [16.0428,108.2225]},{"id": "6.6","cat": "6","name": "손짜 야시장","rating": 3,"summary": "용다리 동쪽 직결 — 해산물 + 불쇼 명당 보너스","image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Da_Nang_International_Fireworks_Festival_DIFF_Dragon_Bridge_Han_River_night_skyline_Vietnam.jpg/960px-Da_Nang_International_Fireworks_Festival_DIFF_Dragon_Bridge_Han_River_night_skyline_Vietnam.jpg","coords": [16.0625,108.228]},{"id": "6.7","cat": "6","name": "An Thuong 야시장","rating": 3,"summary": "푸라마 도보권 작은 로컬 야시장 + 미케 비치 옆","image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Han_River_Bridge_in_Vietnam_Night_View.jpg/960px-Han_River_Bridge_in_Vietnam_Night_View.jpg","coords": [16.041,108.247]},{"id": "6.8","cat": "6","name": "Bach Dang Walking Street ⭐","rating": 3,"summary": "2024년 6월 신규 오픈 — 1.2km 한강 동안 보행자 천국","image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Han_River_walkway_at_night_-_Da_Nang%2C_Vietnam_-_DSC02112.JPG/960px-Han_River_walkway_at_night_-_Da_Nang%2C_Vietnam_-_DSC02112.JPG","coords": [16.068,108.224]},{"id": "6.9","cat": "6","name": "APEC 파크","rating": 3,"summary": "한강변 곡면 유리돔 야간 사진 명소","image": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Dragon_Bridge_at_night_3.jpg/960px-Dragon_Bridge_at_night_3.jpg","coords": [16.068,108.2237]},{"id": "6.10","cat": "6","name": "Sky 36","rating": 3,"summary": "베트남 최고층 루프탑 — 부부 한정 (5세 ❌)","image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Dragon_Bridge_at_night_%28Danang%29_-_DSC02093.JPG/960px-Dragon_Bridge_at_night_%28Danang%29_-_DSC02093.JPG","coords": [16.07,108.224]},{"id": "6.11","cat": "6","name": "한강 선셋·야경 크루즈","rating": 3,"summary": "45분 한강 야경 + 참파춤 공연 + 용다리 불쇼 옵션","image": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Han_River_at_night_-_Da_Nang%2C_Vietnam_-_DSC02111.JPG/960px-Han_River_at_night_-_Da_Nang%2C_Vietnam_-_DSC02111.JPG","coords": [16.068,108.2237]},{"id": "6.12","cat": "6","name": "호이안 메모리스 쇼","rating": 3,"summary": "500명 출연 25,000m² 야외 대공연 — 베트남 최대 라이브쇼","image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/Hoi_An_lanterns_at_night.jpg/960px-Hoi_An_lanterns_at_night.jpg","coords": [15.88,108.35]},{"id": "6.1","cat": "6","name": "용다리 불쇼** = 확정","rating": 3,"summary": "","image": "","coords": [16.0612,108.2275]},{"id": "7.1","cat": "7","name": "롯데마트 다낭","rating": 3,"summary": "다낭 쇼핑 최강 — 정찰가 + 5층 키즈존 + 짐보관 + 한국식품","image": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/K-Market%2C_Ecopark_%282018%29.jpg/960px-K-Market%2C_Ecopark_%282018%29.jpg","coords": [16.071,108.221]},{"id": "7.2","cat": "7","name": "빈컴 플라자","rating": 3,"summary": "시내 가족 종합 쇼핑몰 — 아이스링크·미니볼링·CGV","image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/Streetmarket_Da_Nang_Vietnam.jpg/960px-Streetmarket_Da_Nang_Vietnam.jpg","coords": [16.066,108.22]},{"id": "7.3","cat": "7","name": "K-마켓 팜반동점","rating": 3,"summary": "24시간 한인 마트 — 한식 비상시 SOS","image": "https://upload.wikimedia.org/wikipedia/commons/6/66/Fabric_in_Han_Market_-_Da_Nang%2C_Vietnam_-_DSC02377.JPG","coords": [16.068,108.244]},{"id": "7.4","cat": "7","name": "GO! 다낭","rating": 3,"summary": "현지인 가성비 마트 — 롯데보다 저렴","image": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Han_Market_Da_Nang.JPG/960px-Han_Market_Da_Nang.JPG","coords": [16.0445,108.2145]},{"id": "7.5","cat": "7","name": "한 시장","rating": 3,"summary": "다낭 대표 재래시장 — 흥정의 성지, 아오자이 맞춤","image": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Han_Market_Da_Nang.JPG/960px-Han_Market_Da_Nang.JPG","coords": [16.0671,108.224]},{"id": "7.6","cat": "7","name": "콘 시장","rating": 3,"summary": "진짜 로컬 시장 — 외국인 거의 없음","image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Con_Market_at_sunset.jpg/960px-Con_Market_at_sunset.jpg","coords": [16.0617,108.2197]},{"id": "7.7","cat": "7","name": "호이안 야시장","rating": 3,"summary": "등불·라탄백 천국 — 호이안 최고의 야간 쇼핑","image": "https://upload.wikimedia.org/wikipedia/commons/2/28/Hoi_An_lanterns_at_night.jpg","coords": [15.877,108.329]},{"id": "7.8","cat": "7","name": "Pharmacity 약국","rating": 3,"summary": "베트남 발삼·Tiger Balm·Soffell 정찰가 구매","image": "https://upload.wikimedia.org/wikipedia/commons/c/ca/Tiger_Balm_--_The_Must-have_for_the_Travelling_Chinese_%285938106027%29.jpg","coords": [16.068,108.224]}]};
+const CAT_BY_ID = Object.fromEntries(CANDIDATE_DATA.categories.map(c => [c.id, c]));
+const CARDS_BY_CAT = CANDIDATE_DATA.cards.reduce((acc, c) => {
+  (acc[c.cat] = acc[c.cat] || []).push(c); return acc;
+}, {});
 
 // 두 장소 사이 이동 시간 (양방향 자동 매칭)
 const TRAVEL_TIMES = {
@@ -1044,6 +1227,139 @@ mapHeader.addEventListener('click', () => {
   main.classList.toggle('map-collapsed');
   mapHeader.classList.toggle('collapsed');
   setTimeout(() => map.invalidateSize(), 280);
+});
+
+// ============ Mode Toggle (Itinerary / Candidates) ============
+let currentMode = 'itinerary';
+let activeCategory = '1';
+const candidateMarkerLayer = L.layerGroup();
+const candidateMarkers = {};
+
+function makeCatIcon(color, label) {
+  return L.divIcon({
+    className: 'custom-marker',
+    html: `<div class="marker-pin" style="background:${color}"><span>${label}</span></div>`,
+    iconSize: [28, 38],
+    iconAnchor: [14, 36],
+    popupAnchor: [0, -32]
+  });
+}
+
+function renderCatBar() {
+  const bar = document.getElementById('catBar');
+  let html = '';
+  CANDIDATE_DATA.categories.forEach(c => {
+    const count = (CARDS_BY_CAT[c.id] || []).length;
+    const isActive = c.id === activeCategory;
+    html += `<button class="cat-chip ${isActive?'active':''}" data-cat="${c.id}" style="--cat-color:${c.color};">
+      <span>${c.icon}</span><span>${c.name}</span><span class="badge">${count}</span>
+    </button>`;
+  });
+  bar.innerHTML = html;
+  bar.querySelectorAll('.cat-chip').forEach(el => {
+    el.addEventListener('click', () => {
+      activeCategory = el.dataset.cat;
+      renderCatBar();
+      renderCandidates();
+      renderCandidateMarkers();
+    });
+  });
+}
+
+function renderCandidates() {
+  const wrap = document.getElementById('candidatesWrap');
+  const cat = CAT_BY_ID[activeCategory];
+  const cards = CARDS_BY_CAT[activeCategory] || [];
+  let html = `<div class="card-grid" style="--cat-color:${cat.color};">`;
+  cards.forEach(card => {
+    const stars = '★'.repeat(card.rating);
+    const imgBg = card.image
+      ? `background-image:url('${card.image}'); background-color:#ddd;`
+      : `background:${cat.color}33; display:flex; align-items:center; justify-content:center;`;
+    const imgInner = card.image ? '' : `<span style="font-size:36px;">${cat.icon}</span>`;
+    html += `<div class="cand-card" data-cid="${card.id}" style="--cat-color:${cat.color};">
+      <div class="cand-img" style="${imgBg}">
+        ${imgInner}
+        <span class="cand-pin" style="border-left-color:${cat.color};">${card.id}</span>
+        <span class="cand-rating">${stars}</span>
+      </div>
+      <div class="cand-body">
+        <h4 class="cand-title">${card.name}</h4>
+        <p class="cand-summary">${card.summary || ''}</p>
+      </div>
+    </div>`;
+  });
+  html += `</div>`;
+  wrap.innerHTML = html;
+  wrap.querySelectorAll('.cand-card').forEach(el => {
+    el.addEventListener('click', () => {
+      wrap.querySelectorAll('.cand-card').forEach(e => e.classList.remove('active'));
+      el.classList.add('active');
+      const card = cards.find(c => c.id === el.dataset.cid);
+      if (card && card.coords) {
+        map.flyTo(card.coords, 15, { duration: 0.5 });
+        const m = candidateMarkers[card.id];
+        if (m) setTimeout(() => m.openPopup(), 600);
+      }
+    });
+  });
+}
+
+function renderCandidateMarkers() {
+  candidateMarkerLayer.clearLayers();
+  Object.keys(candidateMarkers).forEach(k => delete candidateMarkers[k]);
+  const cat = CAT_BY_ID[activeCategory];
+  const cards = CARDS_BY_CAT[activeCategory] || [];
+  const allCoords = [];
+  cards.forEach(card => {
+    if (!card.coords) return;
+    const m = L.marker(card.coords, { icon: makeCatIcon(cat.color, card.id.split('.')[1]) });
+    m.bindTooltip(card.name, {
+      permanent: false, direction: 'top',
+      offset: [0, -32], className: 'marker-name-tip'
+    });
+    const stars = '★'.repeat(card.rating);
+    m.bindPopup(`
+      <div class="popup-title">${card.id}. ${card.name}</div>
+      <div class="popup-meta">${stars} ${cat.icon} ${cat.name}</div>
+      ${card.summary ? `<div style="margin-top:6px;font-size:11px;line-height:1.4;">${card.summary}</div>` : ''}
+    `);
+    m.addTo(candidateMarkerLayer);
+    candidateMarkers[card.id] = m;
+    allCoords.push(card.coords);
+  });
+  if (allCoords.length > 0) {
+    map.fitBounds(allCoords, { padding: [60, 60], maxZoom: 14 });
+  }
+  document.getElementById('mapInfo').innerHTML =
+    `<strong>${cat.icon} ${cat.name}</strong>${cards.length}개 후보 · 카드 클릭 → 지도 이동`;
+}
+
+document.querySelectorAll('.mode-tab').forEach(el => {
+  el.addEventListener('click', () => {
+    const mode = el.dataset.mode;
+    if (mode === currentMode) return;
+    currentMode = mode;
+    document.querySelectorAll('.mode-tab').forEach(e => e.classList.toggle('active', e.dataset.mode === mode));
+    main.classList.toggle('mode-itinerary', mode === 'itinerary');
+    main.classList.toggle('mode-candidates', mode === 'candidates');
+    if (mode === 'candidates') {
+      map.removeLayer(markerLayer);
+      map.removeLayer(pathLayer);
+      map.addLayer(candidateMarkerLayer);
+      renderCatBar();
+      renderCandidates();
+      renderCandidateMarkers();
+    } else {
+      map.removeLayer(candidateMarkerLayer);
+      map.addLayer(markerLayer);
+      map.addLayer(pathLayer);
+      renderMap();
+      document.getElementById('mapInfo').innerHTML =
+        `<strong>전체 일정</strong>${Object.keys(placeMarkers).length}개 장소 · 5일 동선`;
+    }
+    setTimeout(() => map.invalidateSize(), 280);
+  });
 });
 
 // Resize → re-fit map
