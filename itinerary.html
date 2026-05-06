@@ -112,16 +112,28 @@
 
   /* ============ MAIN ============ */
   .main {
-    --timeline-h: 1fr;
-    --map-h: 1fr;
-    display: grid;
-    grid-template-rows: auto var(--timeline-h) auto var(--map-h);
+    display: flex;
+    flex-direction: column;
     min-width: 0;
     min-height: 0;
-    transition: grid-template-rows 0.25s ease;
+    height: 100%;
   }
-  .main.timeline-collapsed { --timeline-h: 0fr; }
-  .main.map-collapsed { --map-h: 0fr; }
+  .content-section {
+    flex: 1 1 0;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  .map-wrap {
+    flex: 1 1 0;
+    min-height: 0;
+    position: relative;
+    background: #e8eaed;
+    overflow: hidden;
+  }
+  .main.timeline-collapsed .content-section { flex: 0 0 0; height: 0; }
+  .main.map-collapsed .map-wrap { flex: 0 0 0; height: 0; }
 
   /* ---- Section toggles (timeline, map) ---- */
   .section-toggle {
@@ -513,19 +525,27 @@
   }
 
   /* ============ Candidates ============ */
-  .candidates-wrap {
-    background: var(--bg);
-    overflow-y: auto;
-    border-bottom: 1px solid var(--line);
-    -webkit-overflow-scrolling: touch;
-    display: none;
+  .timeline-section, .candidates-section {
+    flex: 1 1 0;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
   }
+  .main.mode-itinerary .candidates-section { display: none; }
+  .main.mode-candidates .timeline-section { display: none; }
+  .main.timeline-collapsed .timeline-section,
+  .main.timeline-collapsed .candidates-section { flex: 0 0 0; height: 0; overflow: hidden; }
+
+  .timeline-wrap, .candidates-wrap {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .candidates-wrap { background: var(--bg); }
   .candidates-wrap::-webkit-scrollbar { width: 5px; }
   .candidates-wrap::-webkit-scrollbar-thumb { background: #d8d6d0; border-radius: 3px; }
-  .main.mode-candidates .timeline-wrap { display: none; }
-  .main.mode-candidates .candidates-wrap { display: block; }
-  .main.mode-candidates .tabs-bar { display: none; }
-  .main.mode-itinerary .cat-bar { display: none; }
 
   .cat-bar {
     display: flex;
@@ -536,6 +556,10 @@
     background: var(--panel);
     overflow-x: auto;
     flex-shrink: 0;
+    position: sticky;
+    top: 0;
+    z-index: 30;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.04);
   }
   .cat-bar::-webkit-scrollbar { height: 0; }
   .cat-chip {
@@ -718,17 +742,20 @@
       <button class="lnb-toggle" id="lnbToggle" title="개요 패널 접기/펼치기">☰</button>
       <button class="mode-tab active" data-mode="itinerary">📅 일정</button>
       <button class="mode-tab" data-mode="candidates">🎴 후보 카드</button>
+      <button class="timeline-toggle" id="timelineToggle" title="콘텐츠 접기/펼치기"><span class="chev">▾</span></button>
     </div>
 
-    <div class="tabs-bar">
-      <div class="tabs" id="tabs"></div>
-      <button class="timeline-toggle" id="timelineToggle" title="일정 접기/펼치기"><span class="chev">▾</span></button>
-    </div>
+    <section class="timeline-section">
+      <div class="tabs-bar">
+        <div class="tabs" id="tabs"></div>
+      </div>
+      <div class="timeline-wrap" id="timelineWrap"></div>
+    </section>
 
-    <div class="cat-bar" id="catBar"></div>
-
-    <div class="timeline-wrap" id="timelineWrap"></div>
-    <div class="candidates-wrap" id="candidatesWrap"></div>
+    <section class="candidates-section">
+      <div class="cat-bar" id="catBar"></div>
+      <div class="candidates-wrap" id="candidatesWrap"></div>
+    </section>
 
     <button class="section-toggle" id="mapHeader" type="button">
       <span>🗺️ 지도</span>
