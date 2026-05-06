@@ -684,6 +684,140 @@
     .cand-summary { font-size: 10.5px; }
     .cat-chip { padding: 5px 10px; font-size: 11px; }
   }
+
+  /* ============ Card Detail View ============ */
+  .detail-view {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-y: auto;
+    background: var(--bg);
+    display: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  .candidates-section.show-detail .candidates-wrap { display: none; }
+  .candidates-section.show-detail .cat-bar { display: none; }
+  .candidates-section.show-detail .detail-view { display: block; }
+
+  .detail-back {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background: var(--panel);
+    padding: 9px 12px;
+    border-bottom: 1px solid var(--line);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+  .detail-back-btn {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 7px 12px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ink);
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-family: inherit;
+    transition: background 0.15s;
+  }
+  .detail-back-btn:hover { background: #f3f1ec; }
+  .detail-cat-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 999px;
+    color: white;
+  }
+  .detail-image {
+    width: 100%;
+    aspect-ratio: 16/10;
+    background: #ddd center/cover no-repeat;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .detail-body { padding: 16px 18px 30px; }
+  .detail-title {
+    font-size: 22px;
+    font-weight: 700;
+    margin: 0 0 6px;
+    letter-spacing: -0.01em;
+    line-height: 1.25;
+  }
+  .detail-id {
+    font-size: 12px;
+    color: var(--ink-soft);
+    font-weight: 500;
+    letter-spacing: 0.04em;
+  }
+  .detail-rating {
+    font-size: 16px;
+    color: #d4644a;
+    margin: 8px 0 12px;
+    letter-spacing: 2px;
+  }
+  .detail-summary {
+    font-size: 14px;
+    color: var(--ink);
+    line-height: 1.6;
+    margin: 0 0 18px;
+  }
+  .detail-info {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 14px 16px;
+    margin-bottom: 14px;
+  }
+  .detail-info-row {
+    display: flex;
+    font-size: 12px;
+    padding: 5px 0;
+    color: var(--ink-mute);
+    border-bottom: 1px solid var(--line-soft);
+  }
+  .detail-info-row:last-child { border-bottom: none; }
+  .detail-info-row .label { width: 80px; flex-shrink: 0; font-weight: 600; }
+  .detail-info-row .value { color: var(--ink); flex: 1; }
+  .detail-actions {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 16px;
+  }
+  .detail-action-btn {
+    flex: 1 1 calc(50% - 4px);
+    min-width: 130px;
+    padding: 11px 14px;
+    border-radius: 10px;
+    border: 1px solid var(--line);
+    background: var(--panel);
+    cursor: pointer;
+    font-size: 12.5px;
+    font-weight: 600;
+    text-decoration: none;
+    color: var(--ink);
+    text-align: center;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    font-family: inherit;
+    transition: all 0.15s;
+  }
+  .detail-action-btn:hover { background: #f3f1ec; }
+  .detail-action-btn.primary {
+    background: var(--ink);
+    color: white;
+    border-color: var(--ink);
+  }
+  .detail-action-btn.primary:hover { background: #000; }
 </style>
 </head>
 <body>
@@ -770,6 +904,13 @@
     <section class="candidates-section">
       <div class="cat-bar" id="catBar"></div>
       <div class="candidates-wrap" id="candidatesWrap"></div>
+      <div class="detail-view" id="detailView">
+        <div class="detail-back">
+          <button class="detail-back-btn" id="detailBackBtn">← 뒤로</button>
+          <span class="detail-cat-pill" id="detailCatPill"></span>
+        </div>
+        <div id="detailContent"></div>
+      </div>
     </section>
 
     <div class="map-wrap">
@@ -1295,6 +1436,10 @@ function renderCatBar() {
   bar.querySelectorAll('.cat-chip').forEach(el => {
     el.addEventListener('click', () => {
       activeCategory = el.dataset.cat;
+      // 상세 보기 중이면 닫고 카테고리 전환
+      if (typeof candidatesSection !== 'undefined' && candidatesSection.classList.contains('show-detail')) {
+        candidatesSection.classList.remove('show-detail');
+      }
       renderCatBar();
       renderCandidates();
       renderCandidateMarkers();
@@ -1329,17 +1474,108 @@ function renderCandidates() {
   wrap.innerHTML = html;
   wrap.querySelectorAll('.cand-card').forEach(el => {
     el.addEventListener('click', () => {
-      wrap.querySelectorAll('.cand-card').forEach(e => e.classList.remove('active'));
-      el.classList.add('active');
       const card = cards.find(c => c.id === el.dataset.cid);
-      if (card && card.coords) {
-        map.flyTo(card.coords, 15, { duration: 0.5 });
-        const m = candidateMarkers[card.id];
-        if (m) setTimeout(() => m.openPopup(), 600);
-      }
+      if (card) showCardDetail(card);
     });
   });
 }
+
+// ============ Card Detail View ============
+const candidatesSection = document.querySelector('.candidates-section');
+const detailContent = document.getElementById('detailContent');
+const detailCatPill = document.getElementById('detailCatPill');
+const detailBackBtn = document.getElementById('detailBackBtn');
+
+function showCardDetail(card) {
+  const cat = CAT_BY_ID[card.cat];
+  const stars = '★'.repeat(card.rating) + '☆'.repeat(Math.max(0, 5-card.rating));
+  detailCatPill.style.background = cat.color;
+  detailCatPill.textContent = `${cat.icon} ${cat.name}`;
+
+  const img = card.image
+    ? `<div class="detail-image" style="background-image:url('${card.image}');"></div>`
+    : `<div class="detail-image" style="background:${cat.color}33; font-size:64px;">${cat.icon}</div>`;
+
+  const githubUrl = `https://github.com/first6/family-trip-2605/blob/main/4-candidates/${encodeURIComponent(cat.file)}`;
+
+  detailContent.innerHTML = `
+    ${img}
+    <div class="detail-body">
+      <div class="detail-id">${card.id}</div>
+      <h2 class="detail-title">${card.name}</h2>
+      <div class="detail-rating">${stars}</div>
+      <p class="detail-summary">${card.summary || ''}</p>
+      <div class="detail-info">
+        <div class="detail-info-row"><span class="label">📂 카테고리</span><span class="value">${cat.icon} ${cat.name}</span></div>
+        <div class="detail-info-row"><span class="label">⭐ 적합도</span><span class="value">${stars} (${card.rating}/5)</span></div>
+        <div class="detail-info-row"><span class="label">📍 좌표</span><span class="value">${card.coords[0].toFixed(4)}, ${card.coords[1].toFixed(4)}</span></div>
+      </div>
+      <div class="detail-actions">
+        <button class="detail-action-btn primary" id="detailMapBtn">🗺️ 지도에서 보기</button>
+        <a class="detail-action-btn" href="${githubUrl}" target="_blank" rel="noopener">📄 풀 카드 보기</a>
+      </div>
+    </div>
+  `;
+
+  candidatesSection.classList.add('show-detail');
+
+  // 지도로 줌 + 팝업
+  if (card.coords) {
+    map.flyTo(card.coords, 15, { duration: 0.5 });
+    const m = candidateMarkers[card.id];
+    if (m) setTimeout(() => m.openPopup(), 600);
+  }
+
+  // history state — 모바일 뒤로가기 통합
+  if (history.state?.cardId !== card.id) {
+    history.pushState({ cardDetail: true, cardId: card.id }, '', '');
+  }
+
+  // 지도 보기 버튼
+  document.getElementById('detailMapBtn').addEventListener('click', () => {
+    if (card.coords) {
+      map.flyTo(card.coords, 16, { duration: 0.5 });
+      const m = candidateMarkers[card.id];
+      if (m) setTimeout(() => m.openPopup(), 500);
+      // 지도 닫혀있으면 펼치기
+      if (main.classList.contains('map-collapsed')) {
+        main.classList.remove('map-collapsed');
+        document.getElementById('mapToggleBtn').classList.remove('collapsed');
+        setTimeout(() => map.invalidateSize(), 280);
+      }
+    }
+  });
+
+  // 상세 진입 시 스크롤 맨 위로
+  document.getElementById('detailView').scrollTop = 0;
+}
+
+function hideCardDetail() {
+  candidatesSection.classList.remove('show-detail');
+}
+
+detailBackBtn.addEventListener('click', () => {
+  if (history.state?.cardDetail) {
+    history.back();
+  } else {
+    hideCardDetail();
+  }
+});
+
+// 브라우저·모바일 뒤로가기
+window.addEventListener('popstate', () => {
+  if (candidatesSection.classList.contains('show-detail')) {
+    hideCardDetail();
+  }
+});
+
+// ESC 키로 뒤로가기
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && candidatesSection.classList.contains('show-detail')) {
+    if (history.state?.cardDetail) history.back();
+    else hideCardDetail();
+  }
+});
 
 function renderCandidateMarkers() {
   candidateMarkerLayer.clearLayers();
@@ -1379,6 +1615,8 @@ document.querySelectorAll('.mode-tab').forEach(el => {
     document.querySelectorAll('.mode-tab').forEach(e => e.classList.toggle('active', e.dataset.mode === mode));
     main.classList.toggle('mode-itinerary', mode === 'itinerary');
     main.classList.toggle('mode-candidates', mode === 'candidates');
+    // 모드 전환 시 상세 닫기
+    candidatesSection.classList.remove('show-detail');
     if (mode === 'candidates') {
       map.removeLayer(markerLayer);
       map.removeLayer(pathLayer);
