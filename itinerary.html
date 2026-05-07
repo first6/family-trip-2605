@@ -805,6 +805,18 @@
     border-radius: 4px;
     font-weight: 700;
   }
+  .prep-link-btn {
+    font-size: 10.5px;
+    background: #eef2f7;
+    color: #4a6c8a;
+    border: 1px solid #d4dce6;
+    padding: 1px 7px;
+    border-radius: 999px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background 0.12s;
+  }
+  .prep-link-btn:hover { background: #dde6f0; }
 
   .timeline-wrap, .candidates-wrap {
     flex: 1 1 auto;
@@ -1755,18 +1767,21 @@ function findCardById(cid) {
   return CANDIDATE_DATA.cards.find(c => c.id === cid);
 }
 
+// ============ 준비물 상세 가이드 (link로 연결) ============
+const PREP_DETAIL = {"esim": {"title": "🌐 eSIM 신청 가이드", "md": "# 🌐 eSIM 신청 가이드\n\n> 5/20 출국 전 부부 폰 2개에 베트남 eSIM 설치. 9세 폰은 카톡만 쓰고 부모 폰 핫스팟으로 연결, 5세는 폰 없음.\n\n## 📌 추천 상품\n\n| 상품 | 기간 | 가격(2개) | 특징 |\n|---|---|---|---|\n| **Holafly Vietnam 무제한** | 5일 | 약 6만원 | 무제한, 한국어 채팅 지원 |\n| Airalo Vietnam (KKday) | 5일/10GB | 약 3~4만원 | 저렴, 데이터 한도 있음 |\n\n→ 가족여행 사진·영상 업로드 많을 것이므로 **Holafly 무제한 2개** 추천.\n\n## 우리 가족 셋업\n\n- 아빠 폰: Holafly 메인 → 데이터·핫스팟 호스트\n- 엄마 폰: Holafly 메인 → 사진 업로드·지도 검색\n- 9세 폰: 한국 통신사 데이터 OFF, 카톡만 사용 (엄마/아빠 핫스팟 연결)\n- 한국 번호 유지: 듀얼심 모드로 한국 SIM은 **음성·SMS만**, 데이터는 eSIM\n\n---\n\n### 1. 사이트 접속 & 상품 선택\n\n- Holafly: https://esim.holafly.com/ → 국가 \"Vietnam\" → 5일 무제한 선택\n- Airalo: https://www.airalo.com/ → \"Vietnam\" → 원하는 데이터량 선택\n- KKday(Airalo 대행): https://www.kkday.com/ko 검색 \"베트남 eSIM\"\n\n### 2. 결제\n\n- 신용카드/페이팔로 결제 (Holafly는 약 $35 / Airalo는 $9~15)\n- 부부 폰 2개 구매 시 별개 주문으로 2번 결제 (eSIM은 1폰 1코드)\n\n### 3. QR 코드 수령\n\n- 결제 후 5~10분 내 등록 메일로 QR 발송\n- 메일 본문 또는 PDF 첨부에 QR 포함 → **출력하지 말고 다른 기기·PC에서 띄워두기** (자기 폰으로 자기 QR 못 찍음)\n\n### 4. eSIM 설치 (5/19 권장 — 출국 전날)\n\n**iPhone**\n1. 설정 → 셀룰러 → \"eSIM 추가\" → \"QR 코드 사용\"\n2. 다른 기기 화면의 QR 스캔\n3. 회선 이름 \"Vietnam\" 등으로 설정\n4. **데이터 회선**: Vietnam (eSIM)\n5. **기본 회선** (전화·문자): 한국 SIM 유지\n6. 한국 SIM \"데이터 로밍 끄기\" 확인\n\n**Android (갤럭시)**\n1. 설정 → 연결 → SIM 관리 → \"eSIM 추가\"\n2. QR 스캔 → 프로필 다운로드\n3. 모바일 데이터: eSIM(Vietnam) 선택\n4. 통화·메시지: 한국 SIM 유지\n\n### 5. 활성화 시점\n\n- Holafly: QR 스캔하는 순간 활성화 카운트다운 시작 (5일)\n- **출국 당일 5/20 새벽~출발 직전에 스캔** → 한국 도착일 5/25까지 커버\n- 비행기 모드 ON 상태에서 활성화 → 다낭 공항 도착 후 OFF만 하면 자동 연결\n\n## ✅ 체크리스트\n\n- [ ] D-7 (5/13): Holafly 또는 Airalo 부부 2개 구매\n- [ ] D-1 (5/19): QR을 PC/태블릿에 띄워두기\n- [ ] D-Day (5/20 아침): 부부 폰 2개에 eSIM 설치\n- [ ] 출국 게이트: 데이터 회선이 Vietnam인지 확인\n- [ ] 다낭 도착: 비행기 모드 OFF → 자동 연결 확인\n- [ ] 9세 폰: 한국 데이터 OFF, Wi-Fi/핫스팟 연결 테스트\n\n## 🔗 출처\n\n- Holafly Vietnam: https://esim.holafly.com/\n- Airalo Vietnam: https://www.airalo.com/\n- KKday eSIM: https://www.kkday.com/ko\n\n## ⚠️ 주의\n\n- **활성화 시점**: Holafly는 QR 스캔 즉시 5일 카운트다운. 한국에서 너무 일찍 스캔하면 다낭 마지막 날 끊긴다. 5/20 출발 당일 권장.\n- **카카오톡 인증 번호**: 한국 번호로 SMS 인증 시 한국 SIM 음성/SMS가 살아있어야 함. eSIM 단독 사용 X, **반드시 듀얼심**.\n- **데이터 우선순위**: iPhone은 \"셀룰러 데이터\" 선택을 Vietnam(eSIM)으로 명시. 자동 전환 OFF 권장.\n- **테더링/핫스팟**: Holafly 무제한은 핫스팟 허용이지만 **속도 제한**(보통 500MB/일 이후 저속) 있을 수 있음 → 9세 카톡엔 충분.\n- **고객센터**: Holafly는 24시간 한국어 채팅 지원 (앱 또는 웹) — 안 터지면 즉시 문의.\n- **호환 단말 확인**: iPhone XS 이상, 갤럭시 S20 이상은 모두 eSIM 지원. 구형 폰은 사전 확인.\n"}, "donghaeng": {"title": "🛂 외교부 동행앱 등록 가이드", "md": "# 🛂 외교부 동행앱 등록 가이드\n\n> 외교부 \"해외안전여행 동행\" 앱에 가족 4명 일정 등록. 사고·재난 발생 시 영사 콜센터가 위치 기반으로 연락·지원.\n\n## 📌 정식 명칭\n\n- 앱 이름: **해외안전여행 동행** (외교부 운영, 무료)\n- iOS: App Store \"해외안전여행 동행\"\n- Android: Play Store \"해외안전여행 동행\"\n- 웹: https://www.0404.go.kr/dev/main.mofa\n\n## 우리 가족 등록 정보\n\n| 항목 | 내용 |\n|---|---|\n| 본인 (아빠 43세) | 여권번호·연락처·이메일 |\n| 동행자 1 (엄마 41세) | 여권번호·연락처 |\n| 동행자 2 (자녀 9세) | 여권번호 (보호자 부모) |\n| 동행자 3 (자녀 5세) | 여권번호 (보호자 부모) |\n| 출국일 | 2026-05-20 |\n| 귀국일 | 2026-05-25 (또는 5/24 23:45 출발 → 5/25 새벽 도착) |\n| 체류 도시 | 베트남 다낭 (Da Nang) |\n| 숙소 1 | 미카즈키 다낭 리조트 (5/20–22) |\n| 숙소 2 | 푸라마 리조트 다낭 (5/22–24) |\n| 비상 연락처 | 한국 가족·지인 1명 |\n\n---\n\n### 1. 앱 다운로드\n\n- App Store / Play Store에서 \"해외안전여행 동행\" 검색 → 설치\n- 외교부(Ministry of Foreign Affairs) 마크 확인\n\n### 2. 회원가입 & 본인 인증\n\n- 휴대폰 본인 인증 (한국 번호 SMS) 또는 PASS 앱 인증\n- 이름·생년월일·여권번호 입력\n\n### 3. 여행 등록\n\n- \"내 여행 등록\" → \"신규 등록\"\n- 출국일·귀국일 입력 (2026-05-20 / 2026-05-25)\n- 방문 국가: 베트남 / 도시: 다낭 (Da Nang)\n- 숙소 주소 2곳 입력 (영문)\n- 여행 목적: 가족여행\n\n### 4. 동행자 추가\n\n- \"동행자 추가\" → 가족 3명 (배우자·자녀 2명)\n- 자녀는 보호자(부모) 정보 자동 연결\n- 각자 여권번호·이름(영문) 입력\n\n### 5. 비상 연락처\n\n- 국내 가족·지인 1명 (이름·관계·연락처)\n- 사고 발생 시 외교부가 즉시 연락하는 번호\n\n### 6. 위치 기반 알림 동의\n\n- 백그라운드 위치 동의 ON (선택이지만 강력 권장)\n- 다낭 지역 위기·재난·태풍 알림 자동 푸시\n\n## ✅ 체크리스트\n\n- [ ] D-7 (5/13): 앱 다운 + 회원가입 + 본인 인증\n- [ ] D-7: 가족 4명 여권번호 영문 그대로 입력\n- [ ] D-7: 숙소 2곳 주소 등록\n- [ ] D-7: 비상 연락처 등록 (한국 가족 1명)\n- [ ] D-1: 위치 기반 알림 ON 확인\n- [ ] 출국 후: 영사 콜센터 번호 폰에 저장\n\n## 🆘 비상 연락처 (저장 필수)\n\n- **외교부 영사 콜센터 (24시간)**: +82-2-3210-0404\n- **무료 통화** (해외 무료): 0800-2100-0404 / 0800-2100-1304 (베트남 내)\n- **주베트남 대한민국 대사관 (하노이)**: +84-24-3831-5110\n- **주호치민 대한민국 총영사관**: +84-28-3822-5757\n  - 다낭은 별도 영사 출장소 없음 → 호치민 총영사관 관할\n  - 야간·주말 긴급: +84-93-850-0238\n\n## 🔗 출처\n\n- 해외안전여행 공식: https://www.0404.go.kr/dev/main.mofa\n- 동행 등록 안내: https://www.0404.go.kr/dev/main.mofa (메뉴: 동행서비스)\n\n## ⚠️ 주의\n\n- **D-7 권장**: 등록은 출국 1주일 전이 적당. 너무 일찍 등록하면 일정 변경 시 수정 번거로움.\n- **여권번호 정확히**: 오타 1글자라도 영사 지원 시 신원 확인 지연. 여권 사진 보고 입력.\n- **자녀 단독 등록 X**: 9세·5세는 반드시 부모 계정 동행자로 등록. 미성년자 단독 계정 불가.\n- **위치 권한**: iOS는 \"항상 허용\" 선택해야 백그라운드 알림 작동. \"앱 사용 중\" 만 허용하면 재난 알림 못 받음.\n- **귀국 후**: 자동 종료되지만 원하면 수동으로 \"여행 종료\" 처리 가능.\n- **여행자 보험과 별개**: 동행앱은 외교부 영사 지원용. 의료비·도난은 별도 여행자보험 필수.\n"}, "hotels": {"title": "🏨 호텔 문의 메일 (미카즈키·푸라마)", "md": "# 🏨 호텔 사전 문의 가이드 (미카즈키 + 푸라마)\n\n> 출국 전 양 호텔에 메일로 사전 확인. 5세·9세 자녀 동반이라 키즈 시설·식사·체크인 시간이 핵심.\n\n## 📌 문의 일정\n\n- **D-14 (5/6)**: 메일 발송 (응답 평균 2~3일)\n- **D-7 (5/13)**: 미회신 시 전화 재확인\n- **D-1 (5/19)**: 최종 픽업·체크인 시간 컨펌\n\n---\n\n## 🌊 1) 미카즈키 다낭 리조트 (5/20–22, 2박)\n\n### 연락처\n\n- 메일: **sales@mikazuki.com.vn**\n- 전화: **+84 236 3774 555**\n- 웹: https://mikazuki.com.vn/\n\n### 문의 항목\n\n1. 5/20–22 2박 객실 패키지에 **워터파크·온센 무제한** 포함 여부\n2. **한식당** 운영 시간 + 5세 어린이 메뉴 가능 여부\n3. **22층 온센 가족탕(수영복 착용)** 운영 시간 + 5세 입장 가능 여부\n4. **공항 픽업** 옵션·요금 (1회 편도, 4인+캐리어 4개)\n5. 객실 **추가 침구**(어린이 2명 슈퍼싱글/엑스트라베드) + **욕조·드라이어** 유무\n\n### 메일 본문 (한국어)\n\n```\n제목: [예약 문의] 5월 20일~22일 가족 4인 투숙 사전 문의\n\n미카즈키 다낭 리조트 예약 담당자님께,\n\n안녕하세요. 2026년 5월 20일부터 22일까지 2박 투숙을 예약한\n한국에서 오는 가족 여행객입니다.\n부부 2인(43세/41세)과 자녀 2명(9세/5세)이 함께 갑니다.\n\n투숙 전 아래 사항을 확인하고 싶어 메일드립니다.\n\n1. 저희가 예약한 객실 패키지에 워터파크와 온센 입장이\n   무제한 포함되어 있는지 확인 부탁드립니다.\n\n2. 리조트 내 한식당의 운영 시간과\n   5세 어린이용 메뉴(또는 어린이 의자) 제공 여부를 알려주시기 바랍니다.\n\n3. 22층 온센 가족탕(수영복 착용)의 운영 시간과\n   5세 자녀 입장이 가능한지 확인 부탁드립니다.\n\n4. 다낭 국제공항 → 리조트 픽업 서비스가 가능한지,\n   가능하다면 4인 + 캐리어 4개 기준 요금을 알려주시면 감사하겠습니다.\n   (5월 20일 13:50 도착 예정)\n\n5. 객실에 어린이 2명을 위한 추가 침구(엑스트라베드 또는 슈퍼싱글) 가능 여부와\n   욕조·드라이어 비치 여부를 확인하고 싶습니다.\n\n회신 주시면 감사하겠습니다.\n\n감사합니다.\n[이름] / [한국 휴대폰 번호] / [이메일]\n```\n\n### 메일 본문 (English)\n\n```\nSubject: [Booking Inquiry] Family of 4 Pre-arrival Questions, May 20–22\n\nDear Reservation Team,\n\nI hope this message finds you well. We are a Korean family of four,\nbooked at Mikazuki Da Nang Resort from 20 to 22 May 2026 (2 nights).\nOur party includes a couple (43 / 41 years old) and two children\n(9 and 5 years old).\n\nBefore our arrival, I would be grateful if you could clarify the\nfollowing items:\n\n1. Does our room package include unlimited access to the water park\n   and onsen facilities? Could you please confirm what is included?\n\n2. What are the operating hours of the Korean restaurant on-site,\n   and do you offer a children's menu (or high chair) suitable for\n   a 5-year-old?\n\n3. Could you share the operating hours of the 22F family onsen\n   (swimsuit-required), and confirm whether a 5-year-old child is\n   permitted to enter?\n\n4. Do you offer airport pick-up service from Da Nang International\n   Airport? If so, please advise the rate for 4 passengers + 4 large\n   suitcases. (Our arrival is 20 May, 13:50.)\n\n5. Could the room be arranged with extra bedding for 2 children\n   (extra bed or single bed)? Also, please confirm whether the\n   bathroom has a bathtub and a hair dryer.\n\nThank you in advance for your kind assistance. I look forward to\nyour reply.\n\nBest regards,\n[Name] / [Korean mobile] / [Email]\n```\n\n---\n\n## 🌴 2) 푸라마 리조트 다낭 (5/22–24, 2박)\n\n### 연락처\n\n- 메일: **reservation@furamavietnam.com**\n- 전화: **+84-236-3847 333**\n- 웹: https://furamavietnam.com/\n\n### 문의 항목\n\n1. 5/22 12:30 도착 시 **짐 보관**(체크인 전) 가능 여부\n2. 정식 체크인 16:00 / 5/24 **레이트 체크아웃 14:00** 협상 가능 여부\n3. **무료 키즈클럽** 운영 시간 + 5세 입장 가능 여부\n4. **4개 풀 운영 시간** (특히 키즈풀)\n5. **V-Senses 스파** 가족 마사지 패키지 + 어린이 마사지 가능 여부\n6. 조식 **한국식 옵션** (쌀국수·죽 코너 등)\n7. 5/24 12:00 체크아웃 후 23:45 비행기까지 **데이패스·라운지** 사용 가능 여부\n\n### 메일 본문 (한국어)\n\n```\n제목: [예약 문의] 5월 22일~24일 가족 4인 투숙 사전 문의\n\n푸라마 리조트 다낭 예약 담당자님께,\n\n안녕하세요. 2026년 5월 22일부터 24일까지 2박 투숙을 예약한\n한국에서 오는 가족 여행객입니다.\n부부 2인(43세/41세)과 자녀 2명(9세/5세)이 함께 갑니다.\n\n투숙 전 아래 사항을 확인 부탁드립니다.\n\n1. 5월 22일 12:30경 리조트 도착 예정인데,\n   정식 체크인 전에 짐 보관이 가능한지 확인하고 싶습니다.\n\n2. 정식 체크인이 16:00이라면, 5월 24일 체크아웃을\n   기본 12:00이 아닌 14:00 레이트 체크아웃으로 조정 가능할까요?\n   가능하다면 추가 요금이 있는지도 알려주세요.\n\n3. 무료 키즈클럽의 운영 시간과 5세 자녀 입장이\n   가능한지 확인 부탁드립니다.\n\n4. 4개의 수영장 운영 시간 (특히 키즈풀)을 알려주세요.\n\n5. V-Senses 스파에서 가족 마사지 패키지가 있는지,\n   9세·5세 어린이 대상 마사지(또는 동반 입장)가 가능한지 알고 싶습니다.\n\n6. 조식 뷔페에 한국식 옵션(쌀국수·죽 등 어린이가 먹기 좋은 메뉴)이\n   포함되는지 확인 부탁드립니다.\n\n7. 5월 24일 12:00 체크아웃 후, 같은 날 23:45 출국 비행기까지\n   샤워·휴식할 수 있는 데이패스나 라운지 사용 옵션이 있는지\n   알려주시면 감사하겠습니다.\n\n회신 기다리겠습니다.\n\n감사합니다.\n[이름] / [한국 휴대폰 번호] / [이메일]\n```\n\n### 메일 본문 (English)\n\n```\nSubject: [Booking Inquiry] Family of 4 Pre-arrival Questions, May 22–24\n\nDear Reservation Team,\n\nI hope this message finds you well. We are a Korean family of four,\nbooked at Furama Resort Da Nang from 22 to 24 May 2026 (2 nights).\nOur party includes a couple (43 / 41 years old) and two children\n(9 and 5 years old).\n\nBefore our arrival, I would appreciate your help with the following:\n\n1. We expect to arrive around 12:30 on 22 May. Could you store our\n   luggage before official check-in?\n\n2. Since standard check-in is 16:00, would it be possible to arrange\n   a late check-out at 14:00 (instead of 12:00) on 24 May? Please\n   advise if any additional fee applies.\n\n3. Could you share the operating hours of the complimentary Kids\n   Club, and confirm whether a 5-year-old is allowed to join?\n\n4. Please advise the operating hours of the four pools, particularly\n   the children's pool.\n\n5. Does V-Senses Spa offer a family massage package? Are children\n   aged 9 and 5 eligible for treatments (or to accompany parents)?\n\n6. Does the breakfast buffet include Korean-style options (e.g. pho,\n   rice porridge) suitable for young children?\n\n7. After our check-out at 12:00 on 24 May, our departure flight is\n   at 23:45 the same day. Do you offer a day-use room, day pass,\n   or lounge access for shower and rest before the flight?\n\nThank you in advance for your assistance. I look forward to your reply.\n\nBest regards,\n[Name] / [Korean mobile] / [Email]\n```\n\n## 🔗 출처\n\n- 미카즈키 다낭: https://mikazuki.com.vn/\n- 푸라마 다낭: https://furamavietnam.com/\n\n## ⚠️ 주의\n\n- **메일 회신 평균 2~3일**: D-14 발송 → D-10에도 미회신 시 전화 재시도. 베트남 호텔 메일 응답 느림.\n- **영문 이름**: 메일 서명에 여권 영문명 그대로 (예약 매칭 위해).\n- **유선 통화 시간대**: 베트남 시각 09:00–17:00 (KST 11:00–19:00) 권장. 한국어 가능 직원 부재 시 영어로.\n- **레이트 체크아웃 무료 보장 X**: 푸라마 14:00은 객실 가용 시에만. 도착일에 재확인 필요. 유료 옵션($30~50)도 같이 문의.\n- **공항 픽업 비교**: 미카즈키 픽업이 일반 단독차량보다 비쌀 수 있음 → 가격 받고 외부 차량(prep-transport.md)과 비교 후 결정.\n- **확정 컨펌 보관**: 메일 답신은 인쇄·캡처해 도착 시 프런트에서 즉시 제시 가능하게 준비.\n- **결제 방식**: 현장 결제 시 신용카드(Visa/Master) 가능. 일부 부가 서비스(스파·픽업)는 USD 또는 VND 현금 요구할 수 있음.\n"}, "transport": {"title": "🚐 차량 예약 가이드", "md": "# 🚗 차량 예약 가이드 (다낭 가족여행)\n\n> 5/20 도착부터 5/24 출국까지 4번의 이동. 5세 카시트가 핵심 변수 — 그랩에는 카시트 없음, 한국어 단독차량은 사전 요청 가능.\n\n## 📌 4번의 이동 시나리오\n\n| 일자 | 구간 | 추천 옵션 | 예상 가격 |\n|---|---|---|---|\n| **5/20 13:50 도착** | 다낭공항 → 미카즈키 | 단독 밴 (한국어 가이드) | 25~35만동 (≈1.4~2만원) |\n|  |  | 그랩 SUV (대안) | 20~30만동 |\n| **5/22 점심 후** | 미카즈키 → (시내·스파 경유) → 푸라마 | 단독 차량 (대기 포함) | 30~40만동 (≈1.7~2.3만원) |\n| **5/23 풀데이** | 푸라마 ↔ 호이안 (대기·왕복) | 한국어 단독차량 풀데이 | 25~35만원/일 |\n| **5/24 출국** | 푸라마 → 다낭공항 | 그랩 SUV 또는 단독차량 | 20~30만동 |\n\n> 환율 기준: 1만동 ≈ 560원 (변동)\n\n## 우리 가족 추천 조합\n\n- ✅ **공항 픽업 (5/20)**: 한국어 단독 — 13시간 비행 직후 5세 컨디션 + 카시트 보장\n- ✅ **5/22 호텔 간 이동**: 한국어 단독 — 시내 점심·스파 경유 가능, 짐 5개 + 4인\n- ✅ **5/23 호이안**: 한국어 단독 풀데이 — 가족·아이 페이스 맞춤 + 한국어 가이드\n- 🟢 **5/24 출국**: 그랩 SUV — 짧은 거리, 5세 안고 무릎 좌석 OK (저녁 시간대 한산)\n\n---\n\n### 1. 한국어 단독차량 예약 사이트\n\n| 사이트 | URL | 특징 |\n|---|---|---|\n| **마이리얼트립** | https://www.myrealtrip.com | 검색 \"다낭 한국어 픽업 단독차량\" / 후기 많음 |\n| **KKday** | https://www.kkday.com/ko/product/list?keyword=다낭+픽업 | 즉시 확정·바우처 |\n| **클룩 (Klook)** | https://www.klook.com/ko | 다낭 단독 차량·호이안 투어 |\n| **트립닷컴** | https://kr.trip.com | 공항 픽업 검색 / 가격 비교 |\n| **몽키트래블** | https://vn.monkeytravel.com | 한인 운영, 카톡 응대, 카시트 요청 가능 |\n| **베트남가이드** | https://vietnamguide.co.kr | 한인 운영, 호이안 풀데이 강점 |\n\n### 2. 그랩 (Grab) 셋업\n\n1. App Store / Play Store \"Grab\" 다운로드 (한국에서 미리)\n2. 회원가입 — 한국 번호로 SMS 인증\n3. 결제수단: **신용카드 등록**(VISA/Master) — VND 자동 결제\n4. 차량 옵션:\n   - **GrabCar** — 일반 4인승 세단\n   - **GrabCar Plus / SUV** — 7인승, 짐 4개 OK ← 우리 가족용\n   - **GrabBike** — 오토바이 (가족 X)\n5. 호출 시 **공항 GrabCar 전용 픽업존**(주차장 P1 지정 위치)에서 대기\n\n### 3. 예약 템플릿 (한국어, 메일/카톡)\n\n```\n[다낭 단독차량 예약 문의]\n\n안녕하세요. 가족 4인 다낭 여행 차량 예약 문의드립니다.\n\n■ 일정 1: 공항 픽업\n  - 일시: 2026년 5월 20일 13:50 다낭공항 도착\n  - 항공편: [편명]\n  - 구간: 다낭공항 → 미카즈키 다낭 리조트\n  - 인원: 성인 2명(43/41세) + 어린이 2명(9세/5세)\n  - 짐: 캐리어 4개 + 백팩 1개\n  - 요청: 5세 카시트(또는 부스터) 1개 필수\n\n■ 일정 2: 호텔 이동 (대기 포함)\n  - 일시: 2026년 5월 22일 12:00경\n  - 구간: 미카즈키 → 다낭 시내(점심·스파) → 푸라마 리조트\n  - 대기 시간: 약 3~4시간\n  - 카시트 요청 동일\n\n■ 일정 3: 호이안 풀데이\n  - 일시: 2026년 5월 23일 09:00~18:00 (9시간)\n  - 구간: 푸라마 → 호이안 → 푸라마 (대기·왕복)\n  - 카시트 요청 동일\n  - 한국어 가이드/기사 가능 여부 확인 부탁드립니다.\n\n견적 및 예약 가능 여부 회신 부탁드립니다.\n감사합니다.\n\n[이름] / [카톡 ID] / [이메일]\n```\n\n## ✅ 체크리스트\n\n- [ ] D-14 (5/8): 마이리얼트립·KKday·몽키트래블 3곳 견적 비교\n- [ ] D-10: 공항 픽업·5/22 이동·5/23 호이안 3건 동시 예약 (가능하면 한 업체로 묶음 할인)\n- [ ] D-7: 카시트 1개 사전 요청 컨펌\n- [ ] D-7: 그랩 앱 다운 + 카드 등록 + 한국에서 작동 테스트\n- [ ] D-1: 픽업 기사 카톡/전화로 항공편 도착시간 재확인\n- [ ] 다낭 도착: 공항 픽업존(P1) 위치 미리 캡처\n- [ ] 5/24 출국: 호텔 컨시어지에서 그랩 호출 도와달라고 요청 가능\n\n## 🔗 출처\n\n- 마이리얼트립: https://www.myrealtrip.com\n- KKday 다낭: https://www.kkday.com/ko/product/list?keyword=다낭+픽업\n- 클룩: https://www.klook.com/ko\n- 트립닷컴: https://kr.trip.com\n- 몽키트래블: https://vn.monkeytravel.com\n- 베트남가이드: https://vietnamguide.co.kr\n- 그랩: https://www.grab.com/vn/en/\n\n## ⚠️ 주의\n\n- **5세 카시트 필수**: 그랩은 카시트 옵션 없음. 한국어 단독차량은 사전 요청해야 확보, 당일 요청은 늦음 (D-7까지).\n- **공항 픽업 사인 확인**: 단독차량 기사는 도착 게이트에서 \"[성함] 님\" 사인 들고 대기. 사인이 없으면 예약 업체에 즉시 전화.\n- **그랩 결제 함정**: 공항 일부 그랩 기사가 미터 대신 현금 요구하는 경우 있음 → 앱 결제 고집, 다른 차 호출.\n- **호이안 풀데이 기사 식대**: 풀데이 단독차량은 기사 식대 별도 (1만~2만원) 또는 포함 여부 사전 확인.\n- **짐 5개 + 4인**: 일반 그랩카(세단)에는 안 들어감 → 반드시 **GrabCar Plus / 7인승**.\n- **현금 준비**: 단독차량 팁 (1회 5~10만동 ≈ 3~6천원) 권장. VND 소액권 미리 환전.\n- **5/24 23:45 비행기**: 푸라마 → 공항 약 15분이지만 저녁 러시 고려해 출발 2시간 30분 전 호텔 출발 (21:15경).\n- **취소 정책**: 예약 사이트별로 24h~72h 전 취소 무료. 일정 확정 전엔 취소 가능 옵션 위주로 결제.\n"}};
+
 // ============ 준비물·사전준비 데이터 ============
 const PREP_DATA = [
   { id: 'pre', name: '사전 신청·예약', deadline: 'D-15 ~ D-1', items: [
     { task: '여행자보험 가입', detail: '4인 가족, 어린이 의료비 충분히. 휴대품·항공지연 보장', deadline: 'D-7' },
-    { task: 'Holafly eSIM 구매 (부부 2개)', detail: '5일권 무제한, QR 인쇄 또는 메일 보관', deadline: 'D-3' },
+    { task: 'Holafly eSIM 구매 (부부 2개)', detail: '5일권 무제한, QR 인쇄 또는 메일 보관', deadline: 'D-3', link: 'esim' },
     { task: '트래블월렛/트래블로그 발급·충전', detail: '50% 비율, VPBank·TPBank ATM 무료', deadline: 'D-10' },
-    { task: '외교부 동행 앱 가족 4인 등록', detail: '응급 시 영사 콜센터 통합', deadline: 'D-7' },
+    { task: '외교부 동행 앱 가족 4인 등록', detail: '응급 시 영사 콜센터 통합', deadline: 'D-7', link: 'donghaeng' },
     { task: '여권 6개월 유효기간 확인', detail: '5/24 출국 기준 11/24 이후 만료여야', deadline: 'D-30' },
-    { task: '미카즈키 호텔 메일 — 워터파크 패키지·온센·한식당', detail: 'sales@mikazuki.com.vn / +84 236 3774 555', deadline: 'D-10' },
-    { task: '푸라마 호텔 메일 — 레이트 체크아웃·데이패스 협상', detail: 'reservation@furamavietnam.com / +84-236-3847 333', deadline: 'D-10' },
-    { task: '한국어 단독차량 예약 (5/22, 5/23, 5/24)', detail: '마이리얼트립 또는 한인 픽업. 5세 카시트 요청', deadline: 'D-7' },
-    { task: '공항 픽업 차량 (5/20 13:50 도착)', detail: '단독 밴 25~35만동 또는 그랩SUV', deadline: 'D-3' },
+    { task: '미카즈키 호텔 메일 — 워터파크 패키지·온센·한식당', detail: 'sales@mikazuki.com.vn / +84 236 3774 555', deadline: 'D-10', link: 'hotels' },
+    { task: '푸라마 호텔 메일 — 레이트 체크아웃·데이패스 협상', detail: 'reservation@furamavietnam.com / +84-236-3847 333', deadline: 'D-10', link: 'hotels' },
+    { task: '한국어 단독차량 예약 (5/22, 5/23, 5/24)', detail: '마이리얼트립 또는 한인 픽업. 5세 카시트 요청', deadline: 'D-7', link: 'transport' },
+    { task: '공항 픽업 차량 (5/20 13:50 도착)', detail: '단독 밴 25~35만동 또는 그랩SUV', deadline: 'D-3', link: 'transport' },
     { task: '인천 T1 제네시스 발렛 예약 ✅', detail: '★ 맡김 5/20 07:30 / 회수 5/25 07:00 (예약 완료). 차량번호·예약번호·발렛존 위치 인쇄', deadline: '완료' },
     { task: '트리스 스파 예약 (5/22 14:30)', detail: 'Hotline +84 888 343 779 또는 Fresha', deadline: 'D-3' },
     { task: '노아 스파 예약 (5/24 13:30)', detail: '카카오톡 채널 "다낭노아스파"', deadline: 'D-3' },
@@ -1894,6 +1909,7 @@ function renderPrep() {
         <div class="prep-item-body">
           <div class="prep-item-task">
             <span>${it.task}</span>
+            ${it.link ? `<button class="prep-link-btn" data-prep-link="${it.link}" title="자세히 보기">ⓘ 자세히</button>` : ''}
             ${it.deadline ? `<span class="prep-item-deadline">${it.deadline}</span>` : ''}
           </div>
           ${it.detail ? `<div class="prep-item-detail">${it.detail}</div>` : ''}
@@ -1932,6 +1948,14 @@ function renderPrep() {
     if (!confirm('모든 체크 상태를 초기화하시겠습니까?')) return;
     PREP_DATA.forEach(cat => cat.items.forEach((_, i) => localStorage.removeItem(`prep-${cat.id}-${i}`)));
     renderPrep();
+  });
+  // ⓘ 자세히 버튼 → prep 상세 뷰
+  wrap.querySelectorAll('.prep-link-btn').forEach(btn => {
+    btn.addEventListener('click', (ev) => {
+      ev.preventDefault();
+      ev.stopPropagation();
+      openPrepDetail(btn.dataset.prepLink);
+    });
   });
 }
 
@@ -2600,6 +2624,40 @@ function hideCardDetail() {
     }
     mapWasCollapsedBeforeDetail = null;
   }
+  // 준비물 모드에서 들어왔으면 준비물 모드로 복귀
+  if (cameFromPrep) {
+    cameFromPrep = false;
+    const prepTab = document.querySelector('.mode-tab[data-mode="prep"]');
+    if (prepTab && currentMode !== 'prep') prepTab.click();
+  }
+}
+
+let cameFromPrep = false;
+function openPrepDetail(linkId) {
+  const info = PREP_DETAIL[linkId];
+  if (!info) return;
+  cameFromPrep = true;
+  // 후보 모드로 잠시 전환 (detail view 재활용)
+  const candTab = document.querySelector('.mode-tab[data-mode="candidates"]');
+  if (candTab && currentMode !== 'candidates') candTab.click();
+  setTimeout(() => {
+    let mdHtml = '';
+    if (typeof marked !== 'undefined') {
+      try { mdHtml = marked.parse(info.md, { breaks: true, gfm: true }); }
+      catch (e) { mdHtml = ''; }
+    }
+    detailCatPill.style.background = '#4a6c8a';
+    detailCatPill.textContent = '🛂 준비물 가이드';
+    detailContent.innerHTML = `
+      <div class="detail-body">
+        <h2 class="detail-title">${info.title}</h2>
+        ${mdHtml ? `<div class="detail-md">${mdHtml}</div>` : `<pre>${info.md}</pre>`}
+      </div>
+    `;
+    candidatesSection.classList.add('show-detail');
+    document.getElementById('detailView').scrollTop = 0;
+    history.pushState({ prepDetail: true, prepId: linkId }, '', '');
+  }, 50);
 }
 
 function fitToActiveCategory() {
@@ -2621,7 +2679,7 @@ function highlightMarker(cardId, on) {
 }
 
 detailBackBtn.addEventListener('click', () => {
-  if (history.state?.cardDetail) {
+  if (history.state?.cardDetail || history.state?.prepDetail) {
     history.back();
   } else {
     hideCardDetail();
@@ -2638,7 +2696,7 @@ window.addEventListener('popstate', () => {
 // ESC 키로 뒤로가기
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape' && candidatesSection.classList.contains('show-detail')) {
-    if (history.state?.cardDetail) history.back();
+    if (history.state?.cardDetail || history.state?.prepDetail) history.back();
     else hideCardDetail();
   }
 });
