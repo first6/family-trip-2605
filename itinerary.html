@@ -1343,6 +1343,12 @@ function commonDay20(extra=[]) {
   return {
     day: "5/20", weekday: "수", title: "도착일",
     items: [
+      { time: "06:00", icon: "🚗", title: "안암역 자차 출발", tag: "transport", desc: "안암(성북)→인천 T1 평일 새벽 1.5h 가정. 출퇴근 정체 회피 위해 06시 출발" },
+      { time: "07:30", icon: "🅿️", title: "인천 T1 도착·제네시스 발렛", tag: "transport", desc: "T1 출국장 발렛존 인계 → 5분 내 체크인 카운터" },
+      { time: "07:40", icon: "🛂", title: "VN431 체크인·출국·보안", tag: "transport", desc: "VN431 = T1 출발. 평일 아침 30~40분, 가족 동반 우선 레인 활용" },
+      { time: "08:20", icon: "🛋️", title: "마티나/스카이허브 라운지", place: "ICN_LOUNGE", tag: "activity", desc: "5세 한식 시리얼·죽·과일 + 부부 커피 + 9세 콘센트. 마티나 성인 USD 39 / 어린이 USD 17 (9.1 카드)" },
+      { time: "09:30", icon: "🚶", title: "탑승 게이트 이동", tag: "transport" },
+      { time: "10:00", icon: "🛫", title: "VN431 인천 출발", tag: "flight", desc: "비행 약 5h 30m, 베트남 시차 -2h" },
       { time: "13:50", icon: "🛬", title: "다낭 도착·픽업", place: "DAD", tag: "flight", desc: "VN431" },
       { time: "15:00", icon: "🏨", title: "미카즈키 체크인 + 짐 풀기", place: "MIKAZUKI", tag: "hotel" },
       { time: "16:30", icon: "🛍️", title: "Big C Hoa Khanh 가벼운 쇼핑", place: "BIGC_HOA_KHANH", tag: "activity", desc: "차 10분, 베트남 대형마트. 현지옷·티셔츠·일상품·간식. 본격 쇼핑은 5/24 롯데마트" },
@@ -1415,7 +1421,10 @@ ITINERARIES.A = [
       { time: "18:00", icon: "🥩", title: "골든미트하우스 저녁", place: "GOLDEN_MEAT", tag: "meal" },
       { time: "20:00", icon: "🚶", title: "한강 산책", place: "HAN_RIVER_PIER", tag: "activity" },
       { time: "21:00", icon: "🔥", title: "용다리 불쇼 (보너스)", place: "DRAGON_BRIDGE", tag: "event" },
-      { time: "21:30", icon: "🚐", title: "공항으로 출발", place: "DRAGON_BRIDGE", tag: "transport" },
+      { time: "21:30", icon: "🚐", title: "공항으로 출발", place: "DRAGON_BRIDGE", tag: "transport", desc: "권장: 19:30 출발해 라운지 1.5h 풀 활용 (현 일정은 빡빡)" },
+      { time: "22:00", icon: "✈️", title: "다낭공항 도착·체크인·보안", place: "DAD", tag: "transport" },
+      { time: "22:30", icon: "🛋️", title: "CIP 오키드 라운지 (24h)", place: "DAD_LOUNGE", tag: "activity", desc: "안마의자 + 소파 + 따뜻한 식사. 만 2~11세 성인 50% / 3h 한도. 사전 결제 필수 (9.2 카드)" },
+      { time: "23:15", icon: "🚶", title: "탑승 게이트 이동", place: "DAD", tag: "transport" },
       { time: "23:45", icon: "🛫", title: "인천행 출발 (VJ878)", place: "DAD", tag: "flight" }
     ]}
 ];
@@ -1470,7 +1479,10 @@ ITINERARIES.B = [
       { time: "18:00", icon: "🥩", title: "골든미트하우스 저녁", place: "GOLDEN_MEAT", tag: "meal" },
       { time: "19:30", icon: "🎡", title: "선월드 Sun Wheel", place: "SUN_WHEEL", tag: "event" },
       { time: "21:00", icon: "🔥", title: "용다리 불쇼", place: "DRAGON_BRIDGE", tag: "event" },
-      { time: "22:00", icon: "🚐", title: "공항으로 출발", place: "DRAGON_BRIDGE", tag: "transport" },
+      { time: "22:00", icon: "🚐", title: "공항으로 출발", place: "DRAGON_BRIDGE", tag: "transport", desc: "권장: 20:00 출발해 라운지 1.5h 풀 활용 (현 일정은 빡빡)" },
+      { time: "22:30", icon: "✈️", title: "다낭공항 도착·체크인·보안", place: "DAD", tag: "transport" },
+      { time: "23:00", icon: "🛋️", title: "CIP 오키드 라운지 (24h)", place: "DAD_LOUNGE", tag: "activity", desc: "안마의자 + 소파 + 따뜻한 식사. 만 2~11세 성인 50% / 3h 한도. 사전 결제 필수 (9.2 카드)" },
+      { time: "23:25", icon: "🚶", title: "탑승 게이트 이동", place: "DAD", tag: "transport" },
       { time: "23:45", icon: "🛫", title: "인천행 (VJ878)", place: "DAD", tag: "flight" }
     ]}
 ];
@@ -1525,7 +1537,10 @@ ITINERARIES.C = [
       { time: "18:00", icon: "🥩", title: "골든미트 저녁 (한식)", place: "GOLDEN_MEAT", tag: "meal" },
       { time: "19:30", icon: "🎡", title: "Sun Wheel 야간", place: "SUN_WHEEL", tag: "event" },
       { time: "21:00", icon: "🔥", title: "용다리 불쇼", place: "DRAGON_BRIDGE", tag: "event" },
-      { time: "22:00", icon: "🚐", title: "공항으로", place: "DRAGON_BRIDGE", tag: "transport" },
+      { time: "22:00", icon: "🚐", title: "공항으로", place: "DRAGON_BRIDGE", tag: "transport", desc: "권장: 20:00 출발해 라운지 1.5h 풀 활용 (현 일정은 빡빡)" },
+      { time: "22:30", icon: "✈️", title: "다낭공항 도착·체크인·보안", place: "DAD", tag: "transport" },
+      { time: "23:00", icon: "🛋️", title: "CIP 오키드 라운지 (24h)", place: "DAD_LOUNGE", tag: "activity", desc: "안마의자 + 소파 + 따뜻한 식사. 만 2~11세 성인 50% / 3h 한도. 사전 결제 필수 (9.2 카드)" },
+      { time: "23:25", icon: "🚶", title: "탑승 게이트 이동", place: "DAD", tag: "transport" },
       { time: "23:45", icon: "🛫", title: "인천행 (VJ878)", place: "DAD", tag: "flight" }
     ]}
 ];
@@ -1580,7 +1595,10 @@ ITINERARIES.D = [
       { time: "18:00", icon: "🥩", title: "골든미트 저녁", place: "GOLDEN_MEAT", tag: "meal" },
       { time: "19:30", icon: "🌃", title: "박당 보행자 거리 야간", place: "BACH_DANG", tag: "event" },
       { time: "21:00", icon: "🔥", title: "용다리 불쇼", place: "DRAGON_BRIDGE", tag: "event" },
-      { time: "22:00", icon: "🚐", title: "공항으로", place: "DRAGON_BRIDGE", tag: "transport" },
+      { time: "22:00", icon: "🚐", title: "공항으로", place: "DRAGON_BRIDGE", tag: "transport", desc: "권장: 20:00 출발해 라운지 1.5h 풀 활용 (현 일정은 빡빡)" },
+      { time: "22:30", icon: "✈️", title: "다낭공항 도착·체크인·보안", place: "DAD", tag: "transport" },
+      { time: "23:00", icon: "🛋️", title: "CIP 오키드 라운지 (24h)", place: "DAD_LOUNGE", tag: "activity", desc: "안마의자 + 소파 + 따뜻한 식사. 만 2~11세 성인 50% / 3h 한도. 사전 결제 필수 (9.2 카드)" },
+      { time: "23:25", icon: "🚶", title: "탑승 게이트 이동", place: "DAD", tag: "transport" },
       { time: "23:45", icon: "🛫", title: "인천행 (VJ878)", place: "DAD", tag: "flight" }
     ]}
 ];
@@ -1634,7 +1652,10 @@ ITINERARIES.E = [
       { time: "17:30", icon: "🎮", title: "Helio Center (키즈+야시장)", place: "HELIO_CENTER", tag: "event" },
       { time: "19:30", icon: "🥩", title: "골든미트 저녁", place: "GOLDEN_MEAT", tag: "meal" },
       { time: "21:00", icon: "🔥", title: "용다리 불쇼", place: "DRAGON_BRIDGE", tag: "event" },
-      { time: "22:00", icon: "🚐", title: "공항으로", place: "DRAGON_BRIDGE", tag: "transport" },
+      { time: "22:00", icon: "🚐", title: "공항으로", place: "DRAGON_BRIDGE", tag: "transport", desc: "권장: 20:00 출발해 라운지 1.5h 풀 활용 (현 일정은 빡빡)" },
+      { time: "22:30", icon: "✈️", title: "다낭공항 도착·체크인·보안", place: "DAD", tag: "transport" },
+      { time: "23:00", icon: "🛋️", title: "CIP 오키드 라운지 (24h)", place: "DAD_LOUNGE", tag: "activity", desc: "안마의자 + 소파 + 따뜻한 식사. 만 2~11세 성인 50% / 3h 한도. 사전 결제 필수 (9.2 카드)" },
+      { time: "23:25", icon: "🚶", title: "탑승 게이트 이동", place: "DAD", tag: "transport" },
       { time: "23:45", icon: "🛫", title: "인천행 (VJ878)", place: "DAD", tag: "flight" }
     ]}
 ];
@@ -1674,6 +1695,7 @@ const PLACE_TO_CARD = {
   HAN_MARKET: '7.5', BIGC_HOA_KHANH: '7.9',
   AN_BANG: '1.5', NAM_O: '1.3',
   MIKAZUKI: '8.1', FURAMA: '8.2', TREES_SPA: '8.3', NOAH_SPA: '8.4',
+  ICN_LOUNGE: '9.1', DAD_LOUNGE: '9.2',
 };
 function findCardById(cid) {
   return CANDIDATE_DATA.cards.find(c => c.id === cid);
