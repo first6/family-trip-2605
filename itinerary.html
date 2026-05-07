@@ -2106,6 +2106,12 @@ function openCardFromTimeline(cardId) {
   const card = findCardById(cardId);
   if (!card) return;
   cameFromTimeline = true;
+  // 일정→카드 진입 시 지도 자동 최소화 (이전 상태 기억 후 뒤로갈 때 복원)
+  mapWasCollapsedBeforeDetail = main.classList.contains('map-collapsed');
+  if (!mapWasCollapsedBeforeDetail) {
+    main.classList.add('map-collapsed');
+    document.getElementById('mapToggleBtn').classList.add('collapsed');
+  }
   // 후보 모드로 전환 (mode-tab 클릭 시뮬레이션)
   const candTab = document.querySelector('.mode-tab[data-mode="candidates"]');
   if (candTab && currentMode !== 'candidates') candTab.click();
@@ -2473,11 +2479,17 @@ function hideCardDetail() {
   candidatesSection.classList.remove('show-detail');
   // 지도를 카테고리 전체 영역으로 복원
   fitToActiveCategory();
-  // 일정 모드에서 들어왔으면 일정 모드로 복귀
+  // 일정 모드에서 들어왔으면 일정 모드로 복귀 + 지도 상태 복원
   if (cameFromTimeline) {
     cameFromTimeline = false;
     const itinTab = document.querySelector('.mode-tab[data-mode="itinerary"]');
     if (itinTab && currentMode !== 'itinerary') itinTab.click();
+    if (mapWasCollapsedBeforeDetail === false) {
+      main.classList.remove('map-collapsed');
+      document.getElementById('mapToggleBtn').classList.remove('collapsed');
+      setTimeout(() => map.invalidateSize(), 280);
+    }
+    mapWasCollapsedBeforeDetail = null;
   }
 }
 
@@ -2553,6 +2565,7 @@ function renderCandidateMarkers() {
 }
 
 let mapWasCollapsedBeforePrep = null;  // prep 진입 전 지도 상태 기억
+let mapWasCollapsedBeforeDetail = null;  // 일정→카드 진입 전 지도 상태 기억
 
 document.querySelectorAll('.mode-tab').forEach(el => {
   el.addEventListener('click', () => {
