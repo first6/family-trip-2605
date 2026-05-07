@@ -434,6 +434,34 @@
     align-items: center;
     gap: 5px;
   }
+  .ti-travel {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 4px 14px 4px 60px;
+    font-size: 10.5px;
+    color: var(--ink-soft);
+    background: linear-gradient(to right, transparent 0, #faf8f3 12%, #faf8f3 88%, transparent 100%);
+    font-style: italic;
+    line-height: 1.4;
+  }
+  .ti-travel-arrow {
+    color: var(--ink-soft);
+    font-size: 10px;
+    opacity: 0.7;
+    flex-shrink: 0;
+  }
+  .ti-travel-info {
+    font-weight: 500;
+  }
+  .ti-travel-cost {
+    color: var(--ink-mute);
+    font-weight: 400;
+  }
+  @media (max-width: 600px) {
+    .ti-travel { padding-left: 50px; font-size: 10px; }
+  }
+
   .ti-card-link {
     font-size: 10px;
     padding: 3px 7px;
@@ -1828,6 +1856,33 @@ function getTravelTime(from, to) {
   return TRAVEL_TIMES[`${from}-${to}`] || TRAVEL_TIMES[`${to}-${from}`] || null;
 }
 
+// 보조 정보 — 이동수단·예상 금액 (timeline 사이 connector용)
+const TRAVEL_COST = {
+  "DAD-MIKAZUKI": { mode: "픽업밴 / 그랩SUV", cost: "25~35만동 (약 1.5만원)" },
+  "DAD-FURAMA": { mode: "픽업밴 / 그랩카", cost: "20~30만동 (약 1.3만원)" },
+  "MIKAZUKI-BIGC_HOA_KHANH": { mode: "그랩카 / 호텔택시", cost: "10~15만동 (약 6천원)" },
+  "MIKAZUKI-PIZZA_4PS": { mode: "단독차량 / 그랩SUV", cost: "25~35만동 + 짐" },
+  "MIKAZUKI-FURAMA": { mode: "단독차량 (짐 포함)", cost: "1팀 8~12만원" },
+  "PIZZA_4PS-TREES_SPA": { mode: "그랩카", cost: "5~8만동" },
+  "TREES_SPA-FURAMA": { mode: "그랩카", cost: "10~15만동" },
+  "FURAMA-HOIAN": { mode: "한국어 단독차량 (왕복)", cost: "1팀 25~35만원/일" },
+  "HOIAN-DRAGON_BRIDGE": { mode: "단독차량 / 그랩", cost: "30~40만동" },
+  "DRAGON_BRIDGE-FURAMA": { mode: "그랩카", cost: "10~15만동" },
+  "FURAMA-NOAH_SPA": { mode: "노아 픽업 무료", cost: "0동 (2인 90분 시)" },
+  "FURAMA-GOLDEN_MEAT": { mode: "그랩카", cost: "8~12만동" },
+  "GOLDEN_MEAT-SUN_WHEEL": { mode: "그랩카", cost: "5~8만동" },
+  "SUN_WHEEL-DRAGON_BRIDGE": { mode: "도보 또는 그랩", cost: "도보 5분 / 3만동" },
+  "DRAGON_BRIDGE-DAD": { mode: "그랩 / 호텔 셔틀", cost: "10~15만동" },
+  "FURAMA-PIZZA_4PS": { mode: "그랩카", cost: "10~15만동" },
+  "FURAMA-DRAGON_BRIDGE": { mode: "그랩카", cost: "10~15만동" },
+};
+function getTravelInfo(from, to) {
+  const time = getTravelTime(from, to);
+  if (!time) return null;
+  const cost = TRAVEL_COST[`${from}-${to}`] || TRAVEL_COST[`${to}-${from}`] || null;
+  return { time, ...(cost || {}) };
+}
+
 // ----- 자동 컬러 할당: data에 colorHex/tint가 없으면 DAY_COLORS 순환으로 채움 -----
 function applyDayColors(arr) {
   arr.forEach((day, di) => {
@@ -2003,6 +2058,18 @@ function renderTimeline() {
           ${place ? `<span class="ti-place">${pinNum ? `<span class="ti-pin-num" style="background:${day.colorHex}">${pinNum}</span>` : '📍'} ${place.short}</span>` : ''}
         </div>
       </div>`;
+      // 다음 항목과 장소가 다르면 이동 connector 삽입
+      const next = day.items[ii + 1];
+      if (next && it.place && next.place && it.place !== next.place) {
+        const travel = getTravelInfo(it.place, next.place);
+        if (travel) {
+          html += `<div class="ti-travel">
+            <span class="ti-travel-arrow">↓</span>
+            <span class="ti-travel-info">${travel.time}${travel.mode ? ' · ' + travel.mode : ''}</span>
+            ${travel.cost ? `<span class="ti-travel-cost">· ${travel.cost}</span>` : ''}
+          </div>`;
+        }
+      }
     });
     html += `</div>`;
   });
