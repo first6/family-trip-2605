@@ -2637,27 +2637,30 @@ function openPrepDetail(linkId) {
   const info = PREP_DETAIL[linkId];
   if (!info) return;
   cameFromPrep = true;
-  // 후보 모드로 잠시 전환 (detail view 재활용)
+  // 후보 모드로 전환 (detail view 재활용)
   const candTab = document.querySelector('.mode-tab[data-mode="candidates"]');
   if (candTab && currentMode !== 'candidates') candTab.click();
-  setTimeout(() => {
-    let mdHtml = '';
-    if (typeof marked !== 'undefined') {
-      try { mdHtml = marked.parse(info.md, { breaks: true, gfm: true }); }
-      catch (e) { mdHtml = ''; }
-    }
-    detailCatPill.style.background = '#4a6c8a';
-    detailCatPill.textContent = '🛂 준비물 가이드';
-    detailContent.innerHTML = `
-      <div class="detail-body">
-        <h2 class="detail-title">${info.title}</h2>
-        ${mdHtml ? `<div class="detail-md">${mdHtml}</div>` : `<pre>${info.md}</pre>`}
-      </div>
-    `;
-    candidatesSection.classList.add('show-detail');
-    document.getElementById('detailView').scrollTop = 0;
-    history.pushState({ prepDetail: true, prepId: linkId }, '', '');
-  }, 50);
+  // prep 가이드는 지도 불필요 — 강제 접기 (mode-tab handler가 펼친 상태 즉시 덮어쓰기)
+  if (!main.classList.contains('map-collapsed')) {
+    main.classList.add('map-collapsed');
+    document.getElementById('mapToggleBtn').classList.add('collapsed');
+  }
+  let mdHtml = '';
+  if (typeof marked !== 'undefined') {
+    try { mdHtml = marked.parse(info.md, { breaks: true, gfm: true }); }
+    catch (e) { mdHtml = ''; }
+  }
+  detailCatPill.style.background = '#4a6c8a';
+  detailCatPill.textContent = '🛂 준비물 가이드';
+  detailContent.innerHTML = `
+    <div class="detail-body">
+      <h2 class="detail-title">${info.title}</h2>
+      ${mdHtml ? `<div class="detail-md">${mdHtml}</div>` : `<pre>${info.md}</pre>`}
+    </div>
+  `;
+  candidatesSection.classList.add('show-detail');
+  document.getElementById('detailView').scrollTop = 0;
+  history.pushState({ prepDetail: true, prepId: linkId }, '', '');
 }
 
 function fitToActiveCategory() {
