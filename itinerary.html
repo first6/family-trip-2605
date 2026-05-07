@@ -737,6 +737,21 @@
     font-weight: 500;
     margin-left: auto;
   }
+  .prep-cat--optional .prep-cat-header {
+    border-bottom-style: dashed;
+    color: var(--ink-soft);
+  }
+  .prep-cat--optional .prep-cat-header::before {
+    content: '✨';
+    font-size: 13px;
+  }
+  .prep-cat--optional .prep-cat-deadline {
+    background: #f0eee9;
+    color: var(--ink-soft);
+  }
+  .prep-cat--optional .prep-item {
+    background: #fbfaf6;
+  }
   .prep-item {
     display: flex; gap: 10px; padding: 8px 0;
     align-items: flex-start;
@@ -1761,6 +1776,23 @@ const PREP_DATA = [
     { task: '캐리어 라벨·태그', detail: '캐리어 식별' },
     { task: '모기 패치·기피제 (Soffell 또는 한국)', detail: '5세 안전 제품' },
   ]},
+  { id: 'optional', name: '선택 — 후기 기반 (있으면 좋다)', deadline: '선택', items: [
+    { task: '샤워기 수전 필터 (비타민C 카트리지 6개)', detail: '베트남 호텔 수돗물 석회·녹물 후기 다수. 머리 빠짐·피부 자극 호소. 미카즈키·푸라마도 호불호. 월마트·다이소 5천원~' },
+    { task: '휴대용 비데 (펌프식 1~2만원)', detail: '베트남 호텔 비데 미비치 흔함. 5세·9세 위생 + 매운 음식 후 부담 ↓' },
+    { task: '휴대용 옷걸이 6개 + 미니 빨래줄', detail: '워터파크 2박 + 풀 2박 = 수영복 8벌 헹굼·건조. 호텔 기본 옷걸이 부족 호소 다수' },
+    { task: '미니 빨래 비누·세제 튜브', detail: '수영복 소금·모래 즉시 헹굼. 호텔 세탁비 5만동/벌 절약' },
+    { task: '방수 휴대폰 케이스 4개 (목걸이형)', detail: '워터파크·바구니배·논누억 비치 분실 방지. 다이소 3천원' },
+    { task: '미니 셀카봉 + 삼각대', detail: '아오자이 스냅·소원배·핑크성당 가족 단체샷. 작가 안 부를 때 필수' },
+    { task: '베이비 바디워시·샴푸 미니 (5세용)', detail: '호텔 어매니티 베트남산 호불호. 5세 민감 피부 트러블 위험. 한국 제품 50ml 휴대' },
+    { task: '휴지 포켓 4팩', detail: '베트남 식당·시장·관광지 화장실 휴지 빈약 (한시장·호이안 시장·바구니배 선착장)' },
+    { task: '손소독제 + 알콜 와이프', detail: '거리음식·해변·시장 손씻기 어려움. 5세 식전 손' },
+    { task: '5세·9세 본인 물안경 + 소형 튜브', detail: '호텔 대여 가능하나 사이즈·위생 호불호. 미카즈키 워터파크는 무료 대여 OK' },
+    { task: '안대·귀마개 (부부 2세트)', detail: '호텔 옆방 단체 소음 호불호. 새벽 비행기 도착 첫날 컨디션 회복' },
+    { task: '미니 페브리즈/방향제', detail: '베트남 호텔 객실 곰팡이·습기 냄새 호불호 후기 다수' },
+    { task: '전기포트 보호용 종이컵·티백', detail: '베트남 호텔 객실 컵 위생 호불호. 5세 우유·차 따뜻하게' },
+    { task: '베트남 동전 지갑 + 잔돈 분리 케이스', detail: '베트남 동은 0이 많아 헷갈림. 1만/5만/10만 분리하면 빠른 결제' },
+    { task: '미니 가위·반창고 키트', detail: '캐리어 끈·옷 라벨·아이 발 물집 즉시 처치' },
+  ]},
 ];
 
 function renderPrep() {
@@ -1772,7 +1804,7 @@ function renderPrep() {
     const catChecked = cat.items.reduce((acc, _, i) => acc + (localStorage.getItem(`prep-${cat.id}-${i}`) === '1' ? 1 : 0), 0);
     total += catTotal;
     checked += catChecked;
-    html += `<div class="prep-cat">
+    html += `<div class="prep-cat ${cat.id === 'optional' ? 'prep-cat--optional' : ''}">
       <div class="prep-cat-header">
         <span>${cat.name}</span>
         ${cat.deadline ? `<span class="prep-cat-deadline">${cat.deadline}</span>` : `<span class="prep-cat-count">${catChecked}/${catTotal}</span>`}
