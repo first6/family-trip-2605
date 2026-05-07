@@ -579,10 +579,8 @@
     .ti-tag { display: none; }
     .tabs { gap: 3px; }
     .tab { padding: 5px 10px; font-size: 11px; }
-    .mode-tab .mode-text { display: none; }
-    .mode-tab .mode-emoji { font-size: 14px; }
-    .mode-tab { padding: 6px 10px; }
-    .icon-toggle { width: 30px; height: 30px; font-size: 12px; }
+    .mode-tab { padding: 6px 8px; font-size: 11px; }
+    .icon-toggle { width: 36px; height: 30px; font-size: 10.5px; padding: 0 4px; }
   }
 
   /* ============ Mode Tabs (일정 / 후보) ============ */
@@ -619,17 +617,138 @@
   }
 
   /* ============ Candidates ============ */
-  .timeline-section, .candidates-section {
+  .timeline-section, .candidates-section, .prep-section {
     flex: 1 1 0;
     min-height: 0;
     display: flex;
     flex-direction: column;
     overflow: hidden;
   }
-  .main.mode-itinerary .candidates-section { display: none; }
-  .main.mode-candidates .timeline-section { display: none; }
+  .main.mode-itinerary .candidates-section,
+  .main.mode-itinerary .prep-section { display: none; }
+  .main.mode-candidates .timeline-section,
+  .main.mode-candidates .prep-section { display: none; }
+  .main.mode-prep .timeline-section,
+  .main.mode-prep .candidates-section { display: none; }
   .main.timeline-collapsed .timeline-section,
-  .main.timeline-collapsed .candidates-section { flex: 0 0 0; height: 0; overflow: hidden; }
+  .main.timeline-collapsed .candidates-section,
+  .main.timeline-collapsed .prep-section { flex: 0 0 0; height: 0; overflow: hidden; }
+
+  /* ============ Prep Mode (준비물·사전준비) ============ */
+  .prep-wrap {
+    flex: 1; min-height: 0;
+    overflow-y: auto;
+    background: var(--bg);
+    padding: 12px;
+    -webkit-overflow-scrolling: touch;
+  }
+  .prep-wrap::-webkit-scrollbar { width: 5px; }
+  .prep-wrap::-webkit-scrollbar-thumb { background: #d8d6d0; border-radius: 3px; }
+
+  .prep-progress {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 12px 14px;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 12px;
+  }
+  .prep-progress-bar {
+    flex: 1;
+    height: 6px;
+    background: var(--line);
+    border-radius: 999px;
+    overflow: hidden;
+  }
+  .prep-progress-fill {
+    height: 100%;
+    background: var(--accent);
+    transition: width 0.3s;
+  }
+  .prep-progress-num { font-weight: 700; font-variant-numeric: tabular-nums; }
+  .prep-reset-btn {
+    font-size: 10.5px;
+    padding: 4px 8px;
+    border-radius: 6px;
+    border: 1px solid var(--line);
+    background: var(--panel);
+    cursor: pointer;
+    font-family: inherit;
+    color: var(--ink-mute);
+  }
+  .prep-reset-btn:hover { background: #f3f1ec; }
+
+  .prep-cat {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 12px 14px;
+    margin-bottom: 10px;
+  }
+  .prep-cat-header {
+    font-size: 14px; font-weight: 700;
+    margin-bottom: 8px;
+    display: flex; align-items: center; gap: 8px;
+    border-bottom: 1px solid var(--line-soft);
+    padding-bottom: 7px;
+  }
+  .prep-cat-deadline {
+    font-size: 10.5px; color: var(--accent);
+    font-weight: 600;
+    margin-left: auto;
+    background: #fff4ee;
+    padding: 2px 7px;
+    border-radius: 999px;
+  }
+  .prep-cat-count {
+    font-size: 10.5px;
+    color: var(--ink-soft);
+    font-weight: 500;
+    margin-left: auto;
+  }
+  .prep-item {
+    display: flex; gap: 10px; padding: 8px 0;
+    align-items: flex-start;
+    border-bottom: 1px solid var(--line-soft);
+    font-size: 13px;
+    cursor: pointer;
+  }
+  .prep-item:last-child { border-bottom: none; }
+  .prep-item input[type="checkbox"] {
+    margin-top: 3px;
+    width: 16px; height: 16px;
+    cursor: pointer;
+    accent-color: var(--accent);
+    flex-shrink: 0;
+  }
+  .prep-item.checked .prep-item-task {
+    text-decoration: line-through;
+    color: var(--ink-soft);
+  }
+  .prep-item-body { flex: 1; min-width: 0; }
+  .prep-item-task {
+    font-weight: 600;
+    line-height: 1.4;
+    display: flex; align-items: center; gap: 6px;
+    flex-wrap: wrap;
+  }
+  .prep-item-detail {
+    font-size: 11.5px;
+    color: var(--ink-mute);
+    line-height: 1.45;
+    margin-top: 2px;
+  }
+  .prep-item-deadline {
+    font-size: 10px;
+    background: var(--accent);
+    color: white;
+    padding: 1px 6px;
+    border-radius: 4px;
+    font-weight: 700;
+  }
 
   .timeline-wrap, .candidates-wrap {
     flex: 1 1 auto;
@@ -1046,10 +1165,11 @@
   <main class="main mode-itinerary" id="mainEl">
     <div class="mode-bar">
       <button class="lnb-toggle" id="lnbToggle" title="개요 패널 접기/펼치기">☰</button>
-      <button class="mode-tab active" data-mode="itinerary"><span class="mode-emoji">📅</span><span class="mode-text">일정</span></button>
-      <button class="mode-tab" data-mode="candidates"><span class="mode-emoji">🎴</span><span class="mode-text">후보 카드</span></button>
+      <button class="mode-tab active" data-mode="itinerary">일정</button>
+      <button class="mode-tab" data-mode="candidates">후보 카드</button>
+      <button class="mode-tab" data-mode="prep">준비물</button>
       <button class="icon-toggle" id="timelineToggle" title="콘텐츠 접기/펼치기"><span class="chev">▾</span></button>
-      <button class="icon-toggle map-icon-toggle" id="mapToggleBtn" title="지도 접기/펼치기">🗺️</button>
+      <button class="icon-toggle map-icon-toggle" id="mapToggleBtn" title="지도 접기/펼치기">지도</button>
     </div>
 
     <section class="timeline-section">
@@ -1069,6 +1189,10 @@
         </div>
         <div id="detailContent"></div>
       </div>
+    </section>
+
+    <section class="prep-section">
+      <div class="prep-wrap" id="prepWrap"></div>
     </section>
 
     <div class="map-wrap">
@@ -1505,6 +1629,168 @@ const PLACE_TO_CARD = {
 };
 function findCardById(cid) {
   return CANDIDATE_DATA.cards.find(c => c.id === cid);
+}
+
+// ============ 준비물·사전준비 데이터 ============
+const PREP_DATA = [
+  { id: 'pre', name: '사전 신청·예약', deadline: 'D-15 ~ D-1', items: [
+    { task: '여행자보험 가입', detail: '4인 가족, 어린이 의료비 충분히. 휴대품·항공지연 보장', deadline: 'D-7' },
+    { task: 'Holafly eSIM 구매 (부부 2개)', detail: '5일권 무제한, QR 인쇄 또는 메일 보관', deadline: 'D-3' },
+    { task: '트래블월렛/트래블로그 발급·충전', detail: '50% 비율, VPBank·TPBank ATM 무료', deadline: 'D-10' },
+    { task: '외교부 동행 앱 가족 4인 등록', detail: '응급 시 영사 콜센터 통합', deadline: 'D-7' },
+    { task: '여권 6개월 유효기간 확인', detail: '5/24 출국 기준 11/24 이후 만료여야', deadline: 'D-30' },
+    { task: '미카즈키 호텔 메일 — 워터파크 패키지·온센·한식당', detail: 'sales@mikazuki.com.vn / +84 236 3774 555', deadline: 'D-10' },
+    { task: '푸라마 호텔 메일 — 레이트 체크아웃·데이패스 협상', detail: 'reservation@furamavietnam.com / +84-236-3847 333', deadline: 'D-10' },
+    { task: '한국어 단독차량 예약 (5/22, 5/23, 5/24)', detail: '마이리얼트립 또는 한인 픽업. 5세 카시트 요청', deadline: 'D-7' },
+    { task: '공항 픽업 차량 (5/20 13:50 도착)', detail: '단독 밴 25~35만동 또는 그랩SUV', deadline: 'D-3' },
+    { task: '트리스 스파 예약 (5/22 14:30)', detail: 'Hotline +84 888 343 779 또는 Fresha', deadline: 'D-3' },
+    { task: '노아 스파 예약 (5/24 13:30)', detail: '카카오톡 채널 "다낭노아스파"', deadline: 'D-3' },
+    { task: '골든미트하우스 예약 (저녁)', detail: '카카오톡 한국어 응대', deadline: 'D-2' },
+  ]},
+  { id: 'medicine', name: '어린이 상비약·응급', items: [
+    { task: '해열제 시럽 (타이레놀/부루펜)', detail: '5세·9세 용량별 표시 확인' },
+    { task: '콧물약·종합감기약 (소아용)', detail: '5세·9세 모두 준비' },
+    { task: '멀미약 (5세용)', detail: '호이안·차량 이동·하이반 굽잇길 대비' },
+    { task: '지사제 (Smecta 분말 또는 어린이용)', detail: '5세 설사 대비' },
+    { task: '항히스타민제 (지르텍)', detail: '해파리 쏘임·알레르기' },
+    { task: '응급 밴드·후시딘·연고', detail: '상처 처치 + 모기 물린 곳' },
+    { task: '체온계 (귀체온계 권장)', detail: '5세 발열 모니터링' },
+    { task: '어른용 진통제·소화제·정장제', detail: '게보린·훼스탈·정장제' },
+  ]},
+  { id: 'sun', name: 'UV·해변·물놀이', items: [
+    { task: '자외선 차단제 SPF50+ (4인분)', detail: '2~3시간마다 재도포. 어린이용 별도' },
+    { task: '래쉬가드 (5세·9세)', detail: 'UV 차단, 미카즈키 워터파크용' },
+    { task: 'UV 차단 긴팔 셔츠 (부부)', detail: '햇볕 약한 남편 필수' },
+    { task: '챙 넓은 모자 4개', detail: '가족 전원' },
+    { task: 'UV 선글라스 (부부)', detail: '한낮 외출용' },
+    { task: '아쿠아슈즈 4인분', detail: '한낮 모래 발화상 방지 + 풀·비치' },
+    { task: '미니 선풍기·쿨링 타올', detail: '한낮 외출 시' },
+    { task: '비치 타올 1장', detail: '호텔 무료 제공이지만 백업' },
+    { task: '5세 구명조끼/암튜브', detail: '수영 안전' },
+    { task: '물안경 (가족)', detail: '워터파크용' },
+  ]},
+  { id: 'kids', name: '어린이 짐·장난감', items: [
+    { task: '5세 카시트 1개 (휴대용)', detail: '그랩에 카시트 없음. 한국에서 휴대 또는 한국어 픽업 업체에 사전 요청' },
+    { task: '힙시트 또는 유아 띠 (5세용)', detail: '사찰·계단·외출 시 안기 보조' },
+    { task: '5세 인형·장난감 1~2개', detail: '비행기·호텔 안정감' },
+    { task: '9세 책·색칠놀이·태블릿', detail: '비행기·식당·차량 대기' },
+    { task: '5세 수영복', detail: '미카즈키·푸라마용' },
+    { task: '간단한 한국 과자 1봉씩', detail: '5세 거부 음식 시 안전판' },
+    { task: '아이용 텀블러 2개', detail: '호텔 룸에서 끓인 물' },
+    { task: '아이 슬리퍼·실내화', detail: '호텔 객실용' },
+  ]},
+  { id: 'sacred', name: '사찰 매너 (린응사·핑크성당·오행산)', items: [
+    { task: '어깨 덮는 가디건 (5세 포함 4벌)', detail: '사찰·기내·에어컨 대비' },
+    { task: '무릎 덮는 긴 치마/긴 바지 (5세 포함)', detail: '사찰 입장 매너 필수' },
+    { task: '얇은 긴팔 셔츠', detail: '사찰 + UV 차단' },
+    { task: '깔끔한 양말 (가족)', detail: '사찰 내부 신발 벗을 때' },
+  ]},
+  { id: 'food', name: '비상식·간식', items: [
+    { task: '즉석밥 6개', detail: '5세 비상용' },
+    { task: '김자반·아기김 4팩', detail: '안전 반찬' },
+    { task: '컵라면 2개 (안 매운 것)', detail: '5세용' },
+    { task: '참치캔 2개', detail: '단백질 보충' },
+    { task: '고추장 튜브 1개', detail: '한식 향수' },
+    { task: '포카리스웨트 가루 5포', detail: '5세 설사 시 수분 보충' },
+    { task: '초콜릿·사탕·젤리', detail: '비행기·차량 안정용' },
+  ]},
+  { id: 'docs', name: '서류·증명', items: [
+    { task: '여권 4명 (사진 페이지 3중 백업)', detail: '폰·이메일·종이 백업' },
+    { task: '여행자보험 증서', detail: '인쇄 + 폰 사진' },
+    { task: '항공권·호텔 바우처 인쇄', detail: '체크인용 백업' },
+    { task: '미카즈키·푸라마 호텔 베트남어 명함', detail: '택시 기사용 (인쇄)' },
+    { task: '영문 가족관계증명서', detail: '응급 의료·출입국 비상' },
+    { task: '5세·9세 영문 출생증명서', detail: '드물게 요구. 발급해두면 안전' },
+  ]},
+  { id: 'electronics', name: '전자기기·충전', items: [
+    { task: '한국 플러그 그대로 OK (220V·돼지코)', detail: '베트남 어댑터 불필요' },
+    { task: '보조배터리 2개', detail: '항공 휴대용 합산 100Wh 이하' },
+    { task: '폰 충전기 (가족 4명용)', detail: 'Lightning + USB-C' },
+    { task: '카메라·여분 메모리카드', detail: '풀카드 인생샷 백업' },
+    { task: '5세용 이어폰', detail: '비행기 영화 시청' },
+    { task: '멀티탭 1구', detail: '호텔 콘센트 부족 대비' },
+  ]},
+  { id: 'cash', name: '환전·결제', items: [
+    { task: '5만원권 30% 비율', detail: '한시장 금은방 환전 적합' },
+    { task: '100달러 신권 20% 비율', detail: '환율 5~7% 좋음. 빳빳한 신권만' },
+    { task: '트래블월렛/트래블로그 충전 50%', detail: 'VPBank·TPBank ATM 무료' },
+    { task: '소액 달러·동 약간', detail: '도착 즉시 택시·팁용' },
+    { task: '신용카드 (Visa/Master 1장)', detail: '고급 식당·5성 호텔용' },
+    { task: '동전 지갑', detail: '동전·소액 정리' },
+  ]},
+  { id: 'misc', name: '기타·생활', items: [
+    { task: '지퍼백 大 5장 + 中 10장', detail: '젖은 옷·음식 보관' },
+    { task: '물티슈 (한국 제품)', detail: '호텔도 있지만 백업, 한국이 더 부드러움' },
+    { task: '핸드워시·세정제 (미니)', detail: '여행용 사이즈' },
+    { task: '비닐봉지 5장', detail: '쓰레기·세탁물' },
+    { task: '작은 우산 또는 우비 5인', detail: '5월 스콜 대비' },
+    { task: '여행용 잠금장치', detail: '캐리어 잠금' },
+    { task: '캐리어 라벨·태그', detail: '캐리어 식별' },
+    { task: '모기 패치·기피제 (Soffell 또는 한국)', detail: '5세 안전 제품' },
+  ]},
+];
+
+function renderPrep() {
+  const wrap = document.getElementById('prepWrap');
+  let html = '';
+  let total = 0, checked = 0;
+  PREP_DATA.forEach(cat => {
+    const catTotal = cat.items.length;
+    const catChecked = cat.items.reduce((acc, _, i) => acc + (localStorage.getItem(`prep-${cat.id}-${i}`) === '1' ? 1 : 0), 0);
+    total += catTotal;
+    checked += catChecked;
+    html += `<div class="prep-cat">
+      <div class="prep-cat-header">
+        <span>${cat.name}</span>
+        ${cat.deadline ? `<span class="prep-cat-deadline">${cat.deadline}</span>` : `<span class="prep-cat-count">${catChecked}/${catTotal}</span>`}
+      </div>`;
+    cat.items.forEach((it, i) => {
+      const id = `prep-${cat.id}-${i}`;
+      const isChecked = localStorage.getItem(id) === '1';
+      html += `<label class="prep-item ${isChecked?'checked':''}" data-key="${id}">
+        <input type="checkbox" ${isChecked?'checked':''}>
+        <div class="prep-item-body">
+          <div class="prep-item-task">
+            <span>${it.task}</span>
+            ${it.deadline ? `<span class="prep-item-deadline">${it.deadline}</span>` : ''}
+          </div>
+          ${it.detail ? `<div class="prep-item-detail">${it.detail}</div>` : ''}
+        </div>
+      </label>`;
+    });
+    html += '</div>';
+  });
+  // 진행률 바를 맨 위에 prepend
+  const pct = total > 0 ? Math.round(checked / total * 100) : 0;
+  const progressHtml = `<div class="prep-progress">
+    <span class="prep-progress-num">${checked}/${total}</span>
+    <div class="prep-progress-bar"><div class="prep-progress-fill" style="width:${pct}%"></div></div>
+    <span class="prep-progress-num">${pct}%</span>
+    <button class="prep-reset-btn" id="prepReset">초기화</button>
+  </div>`;
+  wrap.innerHTML = progressHtml + html;
+
+  wrap.querySelectorAll('.prep-item').forEach(label => {
+    const cb = label.querySelector('input[type=checkbox]');
+    cb.addEventListener('change', () => {
+      const key = label.dataset.key;
+      localStorage.setItem(key, cb.checked ? '1' : '0');
+      label.classList.toggle('checked', cb.checked);
+      // 진행률만 업데이트
+      const allCb = wrap.querySelectorAll('input[type=checkbox]');
+      const c = Array.from(allCb).filter(x => x.checked).length;
+      const t = allCb.length;
+      const p = t > 0 ? Math.round(c / t * 100) : 0;
+      wrap.querySelectorAll('.prep-progress-num')[0].textContent = `${c}/${t}`;
+      wrap.querySelectorAll('.prep-progress-num')[1].textContent = `${p}%`;
+      wrap.querySelector('.prep-progress-fill').style.width = `${p}%`;
+    });
+  });
+  document.getElementById('prepReset').addEventListener('click', () => {
+    if (!confirm('모든 체크 상태를 초기화하시겠습니까?')) return;
+    PREP_DATA.forEach(cat => cat.items.forEach((_, i) => localStorage.removeItem(`prep-${cat.id}-${i}`)));
+    renderPrep();
+  });
 }
 
 // ===== Candidate Data (78 cards across 7 categories) =====
@@ -2199,30 +2485,40 @@ document.querySelectorAll('.mode-tab').forEach(el => {
     if (mode === currentMode) return;
     currentMode = mode;
     document.querySelectorAll('.mode-tab').forEach(e => e.classList.toggle('active', e.dataset.mode === mode));
-    main.classList.toggle('mode-itinerary', mode === 'itinerary');
-    main.classList.toggle('mode-candidates', mode === 'candidates');
-    // 모드 전환 시 상세 닫기
+    ['itinerary', 'candidates', 'prep'].forEach(m =>
+      main.classList.toggle(`mode-${m}`, mode === m)
+    );
     candidatesSection.classList.remove('show-detail');
+
+    // 지도 마커 레이어 정리
+    map.removeLayer(markerLayer);
+    map.removeLayer(pathLayer);
+    map.removeLayer(candidateMarkerLayer);
+    map.removeLayer(hotelPinLayer);
+
     if (mode === 'candidates') {
-      map.removeLayer(markerLayer);
-      map.removeLayer(pathLayer);
       map.addLayer(candidateMarkerLayer);
       map.addLayer(hotelPinLayer);
       renderCatBar();
       renderCandidates();
       renderCandidateMarkers();
-    } else {
-      map.removeLayer(candidateMarkerLayer);
-      map.removeLayer(hotelPinLayer);
+    } else if (mode === 'itinerary') {
       map.addLayer(markerLayer);
       map.addLayer(pathLayer);
       renderMap();
       document.getElementById('mapInfo').innerHTML =
         `<strong>전체 일정</strong>${Object.keys(placeMarkers).length}개 장소 · 5일 동선`;
+    } else if (mode === 'prep') {
+      document.getElementById('mapInfo').innerHTML =
+        `<strong>준비물 모드</strong>지도 마커 비활성`;
+      renderPrep();
     }
     setTimeout(() => map.invalidateSize(), 280);
   });
 });
+
+// 첫 페이지 로드 시 prep 데이터 미리 렌더 (모드 전환 시 즉시 보이게)
+renderPrep();
 
 // Resize → re-fit map
 let resizeTimer;
