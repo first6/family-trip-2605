@@ -2479,16 +2479,33 @@ function renderCandidateMarkers() {
     `<strong>${cat.icon} ${cat.name}</strong>${cards.length}개 후보 · 카드 클릭 → 지도 이동`;
 }
 
+let mapWasCollapsedBeforePrep = null;  // prep 진입 전 지도 상태 기억
+
 document.querySelectorAll('.mode-tab').forEach(el => {
   el.addEventListener('click', () => {
     const mode = el.dataset.mode;
     if (mode === currentMode) return;
+    const prevMode = currentMode;
     currentMode = mode;
     document.querySelectorAll('.mode-tab').forEach(e => e.classList.toggle('active', e.dataset.mode === mode));
     ['itinerary', 'candidates', 'prep'].forEach(m =>
       main.classList.toggle(`mode-${m}`, mode === m)
     );
     candidatesSection.classList.remove('show-detail');
+
+    // prep 모드 진입/이탈 시 지도 자동 접기/복원
+    const mapBtn = document.getElementById('mapToggleBtn');
+    if (mode === 'prep' && prevMode !== 'prep') {
+      mapWasCollapsedBeforePrep = main.classList.contains('map-collapsed');
+      if (!mapWasCollapsedBeforePrep) {
+        main.classList.add('map-collapsed');
+        mapBtn.classList.add('collapsed');
+      }
+    } else if (prevMode === 'prep' && mapWasCollapsedBeforePrep === false) {
+      main.classList.remove('map-collapsed');
+      mapBtn.classList.remove('collapsed');
+      mapWasCollapsedBeforePrep = null;
+    }
 
     // 지도 마커 레이어 정리
     map.removeLayer(markerLayer);
