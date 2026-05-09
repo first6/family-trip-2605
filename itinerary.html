@@ -658,7 +658,7 @@
   }
 
   /* ============ Candidates ============ */
-  .timeline-section, .candidates-section, .prep-section {
+  .timeline-section, .candidates-section, .prep-section, .timetable-section {
     flex: 1 1 0;
     min-height: 0;
     display: flex;
@@ -666,14 +666,101 @@
     overflow: hidden;
   }
   .main.mode-itinerary .candidates-section,
-  .main.mode-itinerary .prep-section { display: none; }
+  .main.mode-itinerary .prep-section,
+  .main.mode-itinerary .timetable-section { display: none; }
   .main.mode-candidates .timeline-section,
-  .main.mode-candidates .prep-section { display: none; }
+  .main.mode-candidates .prep-section,
+  .main.mode-candidates .timetable-section { display: none; }
   .main.mode-prep .timeline-section,
-  .main.mode-prep .candidates-section { display: none; }
+  .main.mode-prep .candidates-section,
+  .main.mode-prep .timetable-section { display: none; }
+  .main.mode-timetable .timeline-section,
+  .main.mode-timetable .candidates-section,
+  .main.mode-timetable .prep-section { display: none; }
   .main.timeline-collapsed .timeline-section,
   .main.timeline-collapsed .candidates-section,
-  .main.timeline-collapsed .prep-section { flex: 0 0 0; height: 0; overflow: hidden; }
+  .main.timeline-collapsed .prep-section,
+  .main.timeline-collapsed .timetable-section { flex: 0 0 0; height: 0; overflow: hidden; }
+
+  /* ============ Timetable Mode ============ */
+  .tt-wrap {
+    flex: 1; min-height: 0;
+    overflow: auto;
+    background: var(--bg);
+    -webkit-overflow-scrolling: touch;
+  }
+  .tt-wrap::-webkit-scrollbar { width: 5px; height: 5px; }
+  .tt-wrap::-webkit-scrollbar-thumb { background: #d8d6d0; border-radius: 3px; }
+  .tt-table {
+    border-collapse: collapse;
+    min-width: 100%;
+  }
+  col.tt-col-time { width: 52px; }
+  col.tt-col-day { min-width: 150px; }
+  .tt-head th {
+    position: sticky; top: 0; z-index: 10;
+    background: var(--panel);
+    border-bottom: 2px solid var(--line);
+    padding: 7px 6px 6px;
+    font-size: 11px;
+    white-space: nowrap;
+  }
+  .tt-time-head {
+    position: sticky; left: 0; z-index: 20;
+    background: var(--panel);
+    border-right: 1px solid var(--line);
+  }
+  .tt-day-head {
+    border-left: 1px solid var(--line-soft);
+    text-align: center;
+    border-top: 3px solid var(--day-color, var(--ink));
+  }
+  .tt-day-head-name { font-size: 12px; font-weight: 700; color: var(--ink); }
+  .tt-day-head-sub { font-size: 10px; color: var(--ink-mute); margin-top: 1px; }
+  .tt-row td { border-left: 1px solid #eee; vertical-align: top; padding: 0; }
+  .tt-row--empty { }
+  .tt-row--empty td { height: 5px; }
+  .tt-row--hour td { border-top: 1px solid #e8e6e0; }
+  .tt-time-cell {
+    position: sticky; left: 0; z-index: 5;
+    background: var(--panel);
+    border-right: 1px solid var(--line);
+    padding: 2px 5px 0;
+    font-size: 10px;
+    color: var(--ink-mute);
+    text-align: right;
+    vertical-align: top;
+    white-space: nowrap;
+    min-width: 48px;
+    line-height: 1;
+  }
+  .tt-row--empty .tt-time-cell { padding: 0; }
+  .tt-row--empty .tt-time-cell span { display: none; }
+  .tt-row--hour .tt-time-cell span { display: inline; }
+  .tt-cell { vertical-align: top; }
+  .tt-event {
+    display: flex; align-items: flex-start; gap: 4px;
+    background: color-mix(in srgb, var(--day-color, #6fa8c8) 12%, white);
+    border-left: 3px solid var(--day-color, #6fa8c8);
+    border-radius: 4px;
+    padding: 4px 6px;
+    margin: 2px 3px;
+    font-size: 11px;
+    cursor: pointer;
+    transition: opacity 0.15s;
+    line-height: 1.3;
+  }
+  .tt-event:hover { opacity: 0.75; }
+  .tt-event--transport {
+    background: #f5f4f0;
+    border-left-color: #c4c0b5;
+    color: var(--ink-mute);
+  }
+  .tt-event-icon { flex-shrink: 0; font-size: 12px; }
+  .tt-event-title { font-weight: 500; }
+  @supports not (color: color-mix(in srgb, red 10%, white)) {
+    .tt-event { background: #eef4f8; }
+  }
 
   /* ============ Prep Mode (준비물·사전준비) ============ */
   .prep-wrap {
@@ -1235,6 +1322,7 @@
     <div class="mode-bar">
       <button class="lnb-toggle" id="lnbToggle" title="개요 패널 접기/펼치기">☰</button>
       <button class="mode-tab active" data-mode="itinerary">일정</button>
+      <button class="mode-tab" data-mode="timetable">시간표</button>
       <button class="mode-tab" data-mode="candidates">후보 카드</button>
       <button class="mode-tab" data-mode="prep">준비물</button>
       <button class="icon-toggle" id="timelineToggle" title="콘텐츠 접기/펼치기"><span class="chev">▾</span></button>
@@ -1262,6 +1350,10 @@
 
     <section class="prep-section">
       <div class="prep-wrap" id="prepWrap"></div>
+    </section>
+
+    <section class="timetable-section">
+      <div class="tt-wrap" id="timetableWrap"></div>
     </section>
 
     <div class="map-wrap">
@@ -2411,8 +2503,103 @@ function renderAll() {
   placeOrderMap = computePlaceOrder();
   renderTabs();
   renderTimeline();
+  renderTimetable();
   renderMap();
   setTimeout(() => map.invalidateSize(), 100);
+}
+
+function renderTimetable() {
+  const wrap = document.getElementById('timetableWrap');
+  if (!wrap) return;
+  const days = getActiveDays();
+
+  // 30분 슬롯 06:00 ~ 23:30
+  const slots = [];
+  for (let h = 6; h <= 23; h++) {
+    slots.push(`${String(h).padStart(2,'0')}:00`);
+    slots.push(`${String(h).padStart(2,'0')}:30`);
+  }
+  slots.push('24:00');
+
+  function snapSlot(time) {
+    if (!time) return null;
+    const parts = time.split(':');
+    const h = parseInt(parts[0], 10);
+    const m = parseInt(parts[1] || '0', 10);
+    if (h >= 24) return '24:00';
+    return `${String(h).padStart(2,'0')}:${m < 30 ? '00' : '30'}`;
+  }
+
+  // 날짜별 슬롯→이벤트 매핑
+  const eventMap = {};
+  days.forEach(di => {
+    eventMap[di] = {};
+    (ITINERARY[di]?.items || []).forEach(it => {
+      const slot = snapSlot(it.time);
+      if (!slot) return;
+      if (!eventMap[di][slot]) eventMap[di][slot] = [];
+      eventMap[di][slot].push(it);
+    });
+  });
+
+  // 이벤트 있는 슬롯 파악 (앞뒤 빈 슬롯 trim)
+  const firstEvent = slots.findIndex(s => days.some(di => eventMap[di][s]?.length));
+  const lastEvent  = slots.length - 1 - [...slots].reverse().findIndex(s => days.some(di => eventMap[di][s]?.length));
+  const visibleSlots = slots.slice(Math.max(0, firstEvent - 1), lastEvent + 2);
+
+  let html = '<table class="tt-table"><colgroup><col class="tt-col-time">';
+  days.forEach(() => { html += '<col class="tt-col-day">'; });
+  html += '</colgroup>';
+
+  // 헤더
+  html += '<thead class="tt-head"><tr><th class="tt-time-head"></th>';
+  days.forEach(di => {
+    const day = ITINERARY[di];
+    html += `<th class="tt-day-head" style="--day-color:${day.colorHex}">
+      <div class="tt-day-head-name">${day.day} (${day.weekday})</div>
+      <div class="tt-day-head-sub">${day.title}</div>
+    </th>`;
+  });
+  html += '</tr></thead><tbody>';
+
+  visibleSlots.forEach(slot => {
+    const hasEvent = days.some(di => eventMap[di][slot]?.length);
+    const isHour = slot.endsWith(':00');
+    const rowClass = `tt-row${hasEvent ? ' tt-row--event' : ' tt-row--empty'}${isHour ? ' tt-row--hour' : ''}`;
+    html += `<tr class="${rowClass}">`;
+    html += `<td class="tt-time-cell"><span>${slot}</span></td>`;
+    days.forEach(di => {
+      const events = eventMap[di][slot] || [];
+      const day = ITINERARY[di];
+      html += `<td class="tt-cell">`;
+      events.forEach(ev => {
+        const isTransport = ev.tag === 'transport';
+        html += `<div class="tt-event${isTransport ? ' tt-event--transport' : ''}" style="--day-color:${day.colorHex}" data-place="${ev.place || ''}" title="${(ev.desc || ev.title).replace(/"/g, '&quot;')}">
+          <span class="tt-event-icon">${ev.icon}</span>
+          <span class="tt-event-title">${ev.title}</span>
+        </div>`;
+      });
+      html += '</td>';
+    });
+    html += '</tr>';
+  });
+
+  html += '</tbody></table>';
+  wrap.innerHTML = html;
+
+  // 클릭 → 지도 이동
+  wrap.querySelectorAll('.tt-event[data-place]').forEach(el => {
+    el.addEventListener('click', () => {
+      const pk = el.dataset.place;
+      if (!pk) return;
+      const place = PLACES[pk];
+      const marker = placeMarkers[pk];
+      if (place && marker) {
+        map.flyTo(place.coords, 14, { duration: 0.5 });
+        setTimeout(() => marker.openPopup(), 600);
+      }
+    });
+  });
 }
 
 // ====== Plan Selector ======
@@ -2781,7 +2968,7 @@ document.querySelectorAll('.mode-tab').forEach(el => {
     const prevMode = currentMode;
     currentMode = mode;
     document.querySelectorAll('.mode-tab').forEach(e => e.classList.toggle('active', e.dataset.mode === mode));
-    ['itinerary', 'candidates', 'prep'].forEach(m =>
+    ['itinerary', 'timetable', 'candidates', 'prep'].forEach(m =>
       main.classList.toggle(`mode-${m}`, mode === m)
     );
     candidatesSection.classList.remove('show-detail');
