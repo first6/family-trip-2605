@@ -2959,6 +2959,7 @@ function renderCandidateMarkers() {
 }
 
 let mapWasCollapsedBeforePrep = null;  // prep 진입 전 지도 상태 기억
+let mapWasCollapsedBeforeTimetable = null;  // timetable 진입 전 지도 상태 기억
 let mapWasCollapsedBeforeDetail = null;  // 일정→카드 진입 전 지도 상태 기억
 
 document.querySelectorAll('.mode-tab').forEach(el => {
@@ -2973,8 +2974,19 @@ document.querySelectorAll('.mode-tab').forEach(el => {
     );
     candidatesSection.classList.remove('show-detail');
 
-    // prep 모드 진입/이탈 시 지도 자동 접기/복원
+    // timetable / prep 모드 진입/이탈 시 지도 자동 접기/복원
     const mapBtn = document.getElementById('mapToggleBtn');
+    if (mode === 'timetable' && prevMode !== 'timetable') {
+      mapWasCollapsedBeforeTimetable = main.classList.contains('map-collapsed');
+      if (!mapWasCollapsedBeforeTimetable) {
+        main.classList.add('map-collapsed');
+        mapBtn.classList.add('collapsed');
+      }
+    } else if (prevMode === 'timetable' && mapWasCollapsedBeforeTimetable === false) {
+      main.classList.remove('map-collapsed');
+      mapBtn.classList.remove('collapsed');
+      mapWasCollapsedBeforeTimetable = null;
+    }
     if (mode === 'prep' && prevMode !== 'prep') {
       mapWasCollapsedBeforePrep = main.classList.contains('map-collapsed');
       if (!mapWasCollapsedBeforePrep) {
