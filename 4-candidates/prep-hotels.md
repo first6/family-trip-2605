@@ -112,15 +112,26 @@ Best regards,
 - 전화: **+84-236-3847 333**
 - 웹: https://furamavietnam.com/
 
-### 문의 항목
+### ✅ 이메일로 확인된 사항 (2026.02~04)
+
+| 항목 | 확인 내용 |
+|---|---|
+| 체크인 | **14:00** (표준) |
+| 체크아웃 | **11:00** (표준) |
+| 객실 | **킹베드 + 엑스트라베드** 준비 완료 |
+| 예약 인원 | 성인 3명 + 아동 1명 (2박) |
+| 예약 정책 | **Non-refundable** (여행사 통해 예약 — 변경·환불 불가, 여행사 문의 필요) |
+| 교통편 | 호텔 유료 픽업 서비스 제공 가능 (항공편 정보 전달 시 견적 제공) |
+
+### 미확인 — 추가 문의 필요
 
 1. 5/22 12:30 도착 시 **짐 보관**(체크인 전) 가능 여부
-2. 정식 체크인 16:00 / 5/24 **레이트 체크아웃 14:00** 협상 가능 여부
+2. 5/24 체크아웃 **레이트 연장** (표준 11:00 → 13:00~14:00) 가능 여부 및 추가 요금
 3. **무료 키즈클럽** 운영 시간 + 5세 입장 가능 여부
 4. **4개 풀 운영 시간** (특히 키즈풀)
 5. **V-Senses 스파** 가족 마사지 패키지 + 어린이 마사지 가능 여부
 6. 조식 **한국식 옵션** (쌀국수·죽 코너 등)
-7. 5/24 12:00 체크아웃 후 23:45 비행기까지 **데이패스·라운지** 사용 가능 여부
+7. 5/24 체크아웃 후 23:45 비행기까지 **데이패스·라운지** 사용 가능 여부
 
 ### 메일 본문 (한국어)
 
@@ -138,9 +149,9 @@ Best regards,
 1. 5월 22일 12:30경 리조트 도착 예정인데,
    정식 체크인 전에 짐 보관이 가능한지 확인하고 싶습니다.
 
-2. 정식 체크인이 16:00이라면, 5월 24일 체크아웃을
-   기본 12:00이 아닌 14:00 레이트 체크아웃으로 조정 가능할까요?
-   가능하다면 추가 요금이 있는지도 알려주세요.
+2. 표준 체크아웃이 11:00으로 알고 있는데, 5월 24일 출국 비행기가
+   23:45이라 체크아웃을 13:00~14:00으로 레이트 연장이 가능한지,
+   가능하다면 추가 요금이 있는지 알려주세요.
 
 3. 무료 키즈클럽의 운영 시간과 5세 자녀 입장이
    가능한지 확인 부탁드립니다.
@@ -153,7 +164,7 @@ Best regards,
 6. 조식 뷔페에 한국식 옵션(쌀국수·죽 등 어린이가 먹기 좋은 메뉴)이
    포함되는지 확인 부탁드립니다.
 
-7. 5월 24일 12:00 체크아웃 후, 같은 날 23:45 출국 비행기까지
+7. 5월 24일 11:00 체크아웃 후, 같은 날 23:45 출국 비행기까지
    샤워·휴식할 수 있는 데이패스나 라운지 사용 옵션이 있는지
    알려주시면 감사하겠습니다.
 
@@ -180,9 +191,9 @@ Before our arrival, I would appreciate your help with the following:
 1. We expect to arrive around 12:30 on 22 May. Could you store our
    luggage before official check-in?
 
-2. Since standard check-in is 16:00, would it be possible to arrange
-   a late check-out at 14:00 (instead of 12:00) on 24 May? Please
-   advise if any additional fee applies.
+2. We understand the standard check-out time is 11:00. As our
+   departure flight on 24 May is at 23:45, could we arrange a late
+   check-out until 13:00–14:00? Please advise if any fee applies.
 
 3. Could you share the operating hours of the complimentary Kids
    Club, and confirm whether a 5-year-old is allowed to join?
@@ -196,7 +207,7 @@ Before our arrival, I would appreciate your help with the following:
 6. Does the breakfast buffet include Korean-style options (e.g. pho,
    rice porridge) suitable for young children?
 
-7. After our check-out at 12:00 on 24 May, our departure flight is
+7. After our check-out at 11:00 on 24 May, our departure flight is
    at 23:45 the same day. Do you offer a day-use room, day pass,
    or lounge access for shower and rest before the flight?
 
@@ -216,7 +227,8 @@ Best regards,
 - **메일 회신 평균 2~3일**: D-14 발송 → D-10에도 미회신 시 전화 재시도. 베트남 호텔 메일 응답 느림.
 - **영문 이름**: 메일 서명에 여권 영문명 그대로 (예약 매칭 위해).
 - **유선 통화 시간대**: 베트남 시각 09:00–17:00 (KST 11:00–19:00) 권장. 한국어 가능 직원 부재 시 영어로.
-- **레이트 체크아웃 무료 보장 X**: 푸라마 14:00은 객실 가용 시에만. 도착일에 재확인 필요. 유료 옵션($30~50)도 같이 문의.
+- **레이트 체크아웃 무료 보장 X**: 표준 11:00 → 13~14:00 연장은 객실 가용 시에만. 체크인일(5/22) 프런트에서 재확인. 유료 옵션($30~50)도 같이 문의.
+- **Non-refundable 예약**: 여행사 통한 환불 불가 예약. 일정 변경 시 여행사에 직접 문의 (푸라마 리조트 측 변경 불가 확인됨, 4월 메일).
 - **공항 픽업 비교**: 미카즈키 픽업이 일반 단독차량보다 비쌀 수 있음 → 가격 받고 외부 차량(prep-transport.md)과 비교 후 결정.
 - **확정 컨펌 보관**: 메일 답신은 인쇄·캡처해 도착 시 프런트에서 즉시 제시 가능하게 준비.
 - **결제 방식**: 현장 결제 시 신용카드(Visa/Master) 가능. 일부 부가 서비스(스파·픽업)는 USD 또는 VND 현금 요구할 수 있음.
