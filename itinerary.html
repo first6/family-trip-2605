@@ -1937,6 +1937,7 @@ function renderPrep() {
     cb.addEventListener('change', () => {
       const key = label.dataset.key;
       localStorage.setItem(key, cb.checked ? '1' : '0');
+      _syncPrepHash();
       label.classList.toggle('checked', cb.checked);
       // 진행률만 업데이트
       const allCb = wrap.querySelectorAll('input[type=checkbox]');
@@ -1951,6 +1952,7 @@ function renderPrep() {
   document.getElementById('prepReset').addEventListener('click', () => {
     if (!confirm('모든 체크 상태를 초기화하시겠습니까?')) return;
     PREP_DATA.forEach(cat => cat.items.forEach((_, i) => localStorage.removeItem(`prep-${cat.id}-${i}`)));
+    _syncPrepHash();
     renderPrep();
   });
   // ⓘ 자세히 버튼 → prep 상세 뷰
@@ -1961,6 +1963,38 @@ function renderPrep() {
       openPrepDetail(btn.dataset.prepLink);
     });
   });
+}
+
+// ===== Prep State — URL hash backup (localStorage 소실 대비) =====
+function _encodePrep() {
+  const parts = [];
+  PREP_DATA.forEach(cat => {
+    let mask = 0;
+    cat.items.forEach((_, i) => {
+      if (localStorage.getItem(`prep-${cat.id}-${i}`) === '1') mask |= (1 << i);
+    });
+    if (mask > 0) parts.push(`${cat.id}:${mask.toString(36)}`);
+  });
+  return parts.join(',');
+}
+function _decodePrep() {
+  const m = location.hash.match(/[#&]p=([^&]*)/);
+  if (!m || !m[1]) return;
+  m[1].split(',').forEach(part => {
+    const sep = part.indexOf(':');
+    if (sep < 0) return;
+    const catId = part.slice(0, sep);
+    const mask = parseInt(part.slice(sep + 1), 36);
+    const cat = PREP_DATA.find(c => c.id === catId);
+    if (!cat || isNaN(mask)) return;
+    cat.items.forEach((_, i) => {
+      if (mask & (1 << i)) localStorage.setItem(`prep-${catId}-${i}`, '1');
+    });
+  });
+}
+function _syncPrepHash() {
+  const enc = _encodePrep();
+  history.replaceState(history.state, '', enc ? `#p=${enc}` : location.pathname + location.search);
 }
 
 // ===== Candidate Data (91 cards across 9 categories) =====
@@ -2795,6 +2829,7 @@ document.querySelectorAll('.mode-tab').forEach(el => {
 });
 
 // 첫 페이지 로드 시 prep 데이터 미리 렌더 (모드 전환 시 즉시 보이게)
+_decodePrep(); // URL hash → localStorage 복원 (Safari ITP 대비)
 renderPrep();
 
 // Resize → re-fit map
